@@ -3,6 +3,7 @@ import React, { useMemo } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 import RootNavigation from './src/navigation/RootNavigation';
+import { LanguageProvider } from './src/locales/LanguageContext';
 
 
 const App = () => {
@@ -18,12 +19,15 @@ const App = () => {
 
   return (
     <GestureHandlerRootView>
-          <StatusBar
+       <LanguageProvider>
+         <StatusBar
               barStyle="dark-content"
               backgroundColor='transparent'
               translucent={false}
             />
         <RootNavigation />
+       </LanguageProvider>
+         
     
     </GestureHandlerRootView>
   );
