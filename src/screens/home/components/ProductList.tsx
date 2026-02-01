@@ -7,9 +7,9 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { products } from '../../../data/products';
-import { useLanguage } from '../../../locales/useLanguage';
+import { useLanguage } from '@locales/useLanguage';
+import colors from '@theme/colors';
 
 export const isRTL = I18nManager.isRTL;
 
