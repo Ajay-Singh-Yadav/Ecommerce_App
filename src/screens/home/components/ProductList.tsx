@@ -10,6 +10,9 @@ import React from 'react';
 import { products } from '../../../data/products';
 import { useLanguage } from '@locales/useLanguage';
 import colors from '@theme/colors';
+import { br, rpm, rh, rw } from '@theme/responsive';
+import { Radius, Spacing } from '@theme/sizes';
+import { pixelRatio } from '@theme/device';
 
 export const isRTL = I18nManager.isRTL;
 
@@ -23,20 +26,24 @@ const ProductList = () => {
 
     return (
       <View style={styles.card}>
-        <Image source={{ uri: item.images[0] }} style={styles.image} />
+        <View style={styles.cardImgContainer}>
+          <Image source={{ uri: item.images[0] }} style={styles.image} />
+        </View>
 
-        <Text style={styles.name}>
-          {strings.FULL_NAME}:{name}
-        </Text>
+        <View style={styles.cartTXTContainer}>
+          <Text style={styles.name}>
+            {strings.FULL_NAME}:{name}
+          </Text>
 
-        <Text style={styles.price}>
-          ${discountedPrice.toFixed(2)}{' '}
-          <Text style={styles.oldPrice}>${item.price}</Text>
-        </Text>
+          <Text style={styles.price}>
+            ${discountedPrice.toFixed(2)}{' '}
+            <Text style={styles.oldPrice}>${item.price}</Text>
+          </Text>
 
-        <Text style={styles.discount}>{item.discount}% OFF</Text>
+          <Text style={styles.discount}>{item.discount}% OFF</Text>
 
-        <Text style={styles.rating}>⭐ {item.rating}</Text>
+          <Text style={styles.rating}>⭐ {item.rating}</Text>
+        </View>
       </View>
     );
   };
@@ -44,10 +51,11 @@ const ProductList = () => {
   return (
     <FlatList
       data={products}
-      horizontal
+      horizontal={false}
       keyExtractor={item => item.id.toString()}
       renderItem={renderItem}
-      contentContainerStyle={{ marginHorizontal: 20 }}
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={styles.contentStyle}
     />
   );
 };
@@ -56,18 +64,36 @@ export default ProductList;
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    padding: 12,
-    marginBottom: 12,
-    elevation: 3,
-    height: 400,
-    margin: 20,
+    width: rw(320),
+    height: rh(250),
+    alignItems: 'center',
+    backgroundColor: colors.white,
+    borderRadius: br(Radius.xs),
+    marginHorizontal: rpm(Spacing.sm),
+    marginVertical: rpm(Spacing.md),
+    borderWidth: 1 / pixelRatio,
+    borderColor: colors.borderGrey,
+    elevation: 10,
+  },
+  contentStyle: {
+    marginVertical: rpm(Spacing.sm),
+  },
+  cardImgContainer: {
+    width: rw(280),
+    height: rh(140),
+    marginTop: rpm(Spacing.md),
   },
   image: {
     width: '100%',
-    height: 180,
-    borderRadius: 8,
+    height: '100%',
+    resizeMode: 'contain',
+    borderRadius: br(Spacing.xs),
+  },
+  cartTXTContainer: {
+    width: rw(300),
+    backgroundColor: colors.gray,
+    marginVertical: rpm(Spacing.md),
+
   },
   name: {
     fontSize: 16,

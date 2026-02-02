@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useRef, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { I18nManager } from 'react-native';
 import RNRestart from 'react-native-restart';
+
 import LocalizedStrings from 'react-native-localization';
 import en from './en';
 import ar from './ar';
@@ -43,7 +44,6 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
         didRestart.current = true;
 
         I18nManager.forceRTL(isRTL);
-        // await AsyncStorage.setItem('shouldRestoreRoute', 'true');
         RNRestart.Restart();
       }
     })();
@@ -60,7 +60,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
 
       if (restart && !didRestart.current) {
         didRestart.current = true;
-                // await AsyncStorage.setItem('shouldRestoreRoute', 'true');
+
         setTimeout(() => RNRestart.Restart(), 300);
       }
     }

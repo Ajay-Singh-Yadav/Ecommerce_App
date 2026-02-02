@@ -1,12 +1,14 @@
 import { StatusBar, StyleSheet, Text, View } from 'react-native';
 import React, { useMemo } from 'react';
-import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-import RootNavigation from './src/navigation/RootNavigation';
-import { LanguageProvider } from './src/locales/LanguageContext';
-
+import { LanguageProvider } from '@locales/LanguageContext';
+import RootNavigation from '@navigation/RootNavigation';
 
 const App = () => {
+
+
+  
   const styles = useMemo(
     () =>
       StyleSheet.create({
@@ -19,16 +21,14 @@ const App = () => {
 
   return (
     <GestureHandlerRootView>
-       <LanguageProvider>
-         <StatusBar
-              barStyle="dark-content"
-              backgroundColor='transparent'
-              translucent={false}
-            />
+      <LanguageProvider>
+        <StatusBar
+          barStyle="dark-content"
+          backgroundColor="transparent"
+          translucent={false}
+        />
         <RootNavigation />
-       </LanguageProvider>
-         
-    
+      </LanguageProvider>
     </GestureHandlerRootView>
   );
 };

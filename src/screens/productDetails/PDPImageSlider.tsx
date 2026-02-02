@@ -1,7 +1,7 @@
-import React from "react";
-import { View, FlatList, Image, StyleSheet, Dimensions } from "react-native";
-import images from "../../constants/images.json"; 
-const { width } = Dimensions.get("window");
+import React from 'react';
+import { View, FlatList, Image, StyleSheet, Dimensions } from 'react-native';
+import images from '../../constants/images.json';
+const { width } = Dimensions.get('window');
 
 export default function ImageSlider() {
   return (
@@ -24,12 +24,12 @@ export default function ImageSlider() {
 
 const styles = StyleSheet.create({
   container: {
-    height: 300, // adjust height as needed
+    height: 200,
   },
   imageWrapper: {
     width: width,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   image: {
     width: width * 0.9,

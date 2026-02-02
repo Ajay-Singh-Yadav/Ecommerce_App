@@ -10,11 +10,11 @@ module.exports = {
           '@assets': './src/assets',
 
           // App structure
-          '@conschatctants': './src/constant',
+          '@constants': './src/constants',
           '@data': './src/data',
           '@global': './src/globalComponents',
           '@locales': './src/locales',
-          '@navigation': './src/navihation',
+          '@navigation': './src/navigation',
           '@redux': './src/redux',
           '@screens': './src/secreens',
           '@theme': './src/theme',
