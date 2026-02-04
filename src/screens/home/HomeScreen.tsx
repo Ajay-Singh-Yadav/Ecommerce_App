@@ -35,7 +35,7 @@ const HomeScreen = () => {
         bag={true}
         subHeaderStyle={styles.leftRightContainer}
       />
-      <ScrollView>
+      <ScrollView nestedScrollEnabled>
         {/* Category */}
         <CategoryHorizontalList />
 

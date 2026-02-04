@@ -40,11 +40,12 @@ const BanerSlider: React.FC<BanerSliderProps> = ({
   };
 
   return (
-    <TouchableOpacity
-      onPress={handleNavigation}
-      activeOpacity={0.9}
-      style={buttonStyle}
-    >
+    // <TouchableOpacity
+    //   onPress={handleNavigation}
+    //   activeOpacity={0.9}
+    //   style={buttonStyle}
+    // >
+    <View style={carouselStyle}>
       <Carousel
         ref={ref}
         data={imageData}
@@ -54,8 +55,19 @@ const BanerSlider: React.FC<BanerSliderProps> = ({
         autoPlayInterval={1500}
         scrollAnimationDuration={3000}
         onProgressChange={progress}
+     
+        onConfigurePanGesture={(gesture) => {
+          gesture.activeOffsetX([-15, 15]); 
+        }}
+
         renderItem={({ item }: any) => (
-          <View style={carouselStyle}>
+          <TouchableOpacity
+            onPress={handleNavigation}
+            activeOpacity={0.9}
+            style={carouselStyle}
+          >
+            {/*        
+            <View style={carouselStyle}> */}
             <Image
               source={item.img}
               style={{
@@ -63,10 +75,11 @@ const BanerSlider: React.FC<BanerSliderProps> = ({
                 height: '100%',
                 resizeMode: 'cover',
                 borderRadius: br(20),
-            
               }}
             />
-          </View>
+            {/* //{' '} */}
+            {/* </View> */}
+          </TouchableOpacity>
         )}
       />
       <View
@@ -81,8 +94,12 @@ const BanerSlider: React.FC<BanerSliderProps> = ({
           <CustomDot key={index} index={index} progress={progress} />
         ))}
       </View>
-    </TouchableOpacity>
+      {/* </TouchableOpacity> */}
+    </View>
   );
 };
 
 export default BanerSlider;
+
+
+
