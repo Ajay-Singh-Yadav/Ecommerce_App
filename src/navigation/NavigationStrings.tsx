@@ -19,4 +19,6 @@ export default {
   LOGIN: 'Login',
   SIGNUP: 'Signup',
   BOTTOM_TAB: 'Bottom Tab',
+  STUDIO_STACK:'Studio Stack',
+  STUDIO:'Studio',
 };

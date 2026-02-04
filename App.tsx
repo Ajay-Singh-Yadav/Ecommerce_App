@@ -25,7 +25,7 @@ const App = () => {
         <StatusBar
           barStyle="dark-content"
           backgroundColor="transparent"
-          translucent={false}
+          translucent={true}
         />
         <RootNavigation />
       </LanguageProvider>

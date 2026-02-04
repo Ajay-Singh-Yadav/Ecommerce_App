@@ -9,13 +9,14 @@ import {
   Dimensions,
 } from 'react-native';
 
+// Dummy heart icon using Unicode — replace with your SVG or Icon component
 const HeartIcon = ({ filled = false }) => (
   <Text style={{ fontSize: 18, color: filled ? 'red' : '#999' }}>
     {filled ? '❤️' : '🤍'}
   </Text>
 );
 
-
+// Star icon with rating number
 const StarRating = ({ rating }: { rating: number }) => (
   <View style={styles.starContainer}>
     <Text style={styles.star}>⭐</Text>
@@ -38,6 +39,7 @@ const ProductListCard = ({ products }: { products: any[] }) => {
         ? originalPriceMatch[1]
         : '';
 
+    // Extract discount percentage from offer string (if any)
     const discountMatch = item.offer.match(/(\d+)% OFF/);
     const discount = discountMatch ? discountMatch[1] + '% OFF' : '';
 

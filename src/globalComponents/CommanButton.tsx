@@ -1,5 +1,12 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React, { useMemo } from 'react';
+import {
+  Animated,
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import React, { useMemo, useRef } from 'react';
 import { ButtonProps } from './Type';
 
 const CommanButton: React.FC<ButtonProps> = ({
@@ -7,9 +14,9 @@ const CommanButton: React.FC<ButtonProps> = ({
   onPress,
   styleButton,
   StyleText,
-  opacity,
   Icon,
 }) => {
+ 
   const styles = useMemo(
     () =>
       StyleSheet.create({
@@ -17,8 +24,10 @@ const CommanButton: React.FC<ButtonProps> = ({
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'center',
+          overflow: 'hidden',
         },
         icon: { marginRight: 8 },
+   
       }),
     [],
   );
@@ -26,12 +35,13 @@ const CommanButton: React.FC<ButtonProps> = ({
     <TouchableOpacity
       style={[styles.button, styleButton]}
       onPress={onPress}
-      activeOpacity={opacity}
     >
-      {Icon && <View style={styles.icon}>{Icon}</View>}
+      {Icon && <View >{Icon}</View>}
       {ButtonText && <Text style={StyleText}>{ButtonText}</Text>}
     </TouchableOpacity>
   );
 };
 
 export default CommanButton;
+
+

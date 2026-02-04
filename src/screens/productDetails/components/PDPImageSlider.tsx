@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, FlatList, Image, StyleSheet, Dimensions } from 'react-native';
-import images from '../../constants/images.json';
+import images from '../../../constants/images.json';
 const { width } = Dimensions.get('window');
 
 export default function ImageSlider() {
