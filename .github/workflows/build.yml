@@ -2,6 +2,8 @@ name: Android Dev Build
 
 on:
   push:
+    branches:
+      - dev
 
 jobs:
   android-build:
@@ -15,27 +17,21 @@ jobs:
         run: yarn install
 
       - name: Set Android SDK env
+        shell: powershell
         run: |
-          echo ANDROID_HOME=%LOCALAPPDATA%\Android\Sdk >> %GITHUB_ENV%
-          echo PATH=%PATH%;%LOCALAPPDATA%\Android\Sdk\platform-tools >> %GITHUB_ENV%
+          echo "ANDROID_HOME=$env:LOCALAPPDATA\Android\Sdk" >> $env:GITHUB_ENV
+          echo "$env:LOCALAPPDATA\Android\Sdk\platform-tools" >> $env:GITHUB_PATH
 
       - name: Cache Gradle
         uses: actions/cache@v3
         with:
           path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-
-      - name: Grant Gradle permission
-        run: |
-          cd android
-          chmod +x gradlew
-
-      - name: Build Android JS Bundle
-        run: yarn run package-android
+            C:\Users\runneradmin\.gradle\caches
+            C:\Users\runneradmin\.gradle\wrapper
+          key: gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
 
       - name: Build Android APK
+        shell: cmd
         run: |
           cd android
-          ./gradlew assembleDebug
+          gradlew assembleDebug
