@@ -2,48 +2,43 @@ name: Android Dev Build
 
 on:
   push:
-    branches: [ "dev" ]
+    branches:
+      - dev
+  workflow_dispatch:
 
 jobs:
   android-build:
-    name: Android Dev Build
-    runs-on: self-hosted
+    runs-on: self-hosted   
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
-        with:
-          ref: dev
-
-      - name: Show runner info (Windows)
-        run: |
-          echo %OS%
-          node -v
-          yarn -v
+        uses: actions/checkout@v4
 
       - name: Install npm dependencies
         run: yarn install
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v2
+      - name: Set Android SDK env
+        shell: powershell
+        run: |
+          echo "ANDROID_HOME=$env:LOCALAPPDATA\Android\Sdk" >> $env:GITHUB_ENV
+          echo "$env:LOCALAPPDATA\Android\Sdk\platform-tools" >> $env:GITHUB_PATH
 
       - name: Cache Gradle
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
-      - name: Grant Gradle permission
-        run: |
-          cd android
-          chmod +x gradlew
-
-      - name: Build Android JS Bundle
-        run: yarn run package-android
+            C:\Users\runneradmin\.gradle\caches
+            C:\Users\runneradmin\.gradle\wrapper
+          key: gradle-${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
 
       - name: Build Android APK
+        shell: cmd
         run: |
+          cd android
+          gradlew assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-debug-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
