@@ -1,0 +1,44 @@
+name: Android Dev Build
+
+on:
+  push:
+    branches:
+      - dev
+  workflow_dispatch:
+
+jobs:
+  android-build:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install npm dependencies
+        run: yarn install
+
+      - name: Set Android SDK env
+        shell: powershell
+        run: |
+          echo "ANDROID_HOME=$env:LOCALAPPDATA\Android\Sdk" >> $env:GITHUB_ENV
+          echo "$env:LOCALAPPDATA\Android\Sdk\platform-tools" >> $env:GITHUB_PATH
+
+      - name: Cache Gradle
+        uses: actions/cache@v4
+        with:
+          path: |
+            C:\Users\runneradmin\.gradle\caches
+            C:\Users\runneradmin\.gradle\wrapper
+          key: gradle-${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+
+      - name: Build Android APK
+        shell: cmd
+        run: |
+          cd android
+          gradlew assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-debug-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
