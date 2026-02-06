@@ -2,30 +2,22 @@ name: Android Dev Build
 
 on:
   push:
-    branches: [ "dev" ]
 
 jobs:
   android-build:
-    name: Android Dev Build
     runs-on: self-hosted
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-        with:
-          ref: dev
-
-      - name: Show runner info (Windows)
-        run: |
-          echo %OS%
-          node -v
-          yarn -v
 
       - name: Install npm dependencies
         run: yarn install
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v2
+      - name: Set Android SDK env
+        run: |
+          echo ANDROID_HOME=%LOCALAPPDATA%\Android\Sdk >> %GITHUB_ENV%
+          echo PATH=%PATH%;%LOCALAPPDATA%\Android\Sdk\platform-tools >> %GITHUB_ENV%
 
       - name: Cache Gradle
         uses: actions/cache@v3
@@ -34,8 +26,6 @@ jobs:
             ~/.gradle/caches
             ~/.gradle/wrapper
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
 
       - name: Grant Gradle permission
         run: |
@@ -47,3 +37,5 @@ jobs:
 
       - name: Build Android APK
         run: |
+          cd android
+          ./gradlew assembleDebug
