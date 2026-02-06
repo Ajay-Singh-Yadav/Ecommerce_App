@@ -11,8 +11,7 @@ import { useSharedValue } from 'react-native-reanimated';
 import Carousel, { ICarouselInstance } from 'react-native-reanimated-carousel';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import { SCREEN_WIDTH } from '@theme/device';
-import { imageSlider } from '@constants/imagePath';
+
 import { br, rh, rpm, rw } from '@theme/responsive';
 import { CustomDot } from './CustomDot ';
 import NavigationStrings from '@navigation/NavigationStrings';
@@ -40,11 +39,7 @@ const BanerSlider: React.FC<BanerSliderProps> = ({
   };
 
   return (
-    // <TouchableOpacity
-    //   onPress={handleNavigation}
-    //   activeOpacity={0.9}
-    //   style={buttonStyle}
-    // >
+  
     <View style={carouselStyle}>
       <Carousel
         ref={ref}
@@ -66,8 +61,7 @@ const BanerSlider: React.FC<BanerSliderProps> = ({
             activeOpacity={0.9}
             style={carouselStyle}
           >
-            {/*        
-            <View style={carouselStyle}> */}
+      
             <Image
               source={item.img}
               style={{
@@ -77,8 +71,7 @@ const BanerSlider: React.FC<BanerSliderProps> = ({
                 borderRadius: br(20),
               }}
             />
-            {/* //{' '} */}
-            {/* </View> */}
+       
           </TouchableOpacity>
         )}
       />
@@ -94,7 +87,7 @@ const BanerSlider: React.FC<BanerSliderProps> = ({
           <CustomDot key={index} index={index} progress={progress} />
         ))}
       </View>
-      {/* </TouchableOpacity> */}
+    
     </View>
   );
 };

@@ -54,6 +54,11 @@ const CategoriesStackScreen = () => (
       component={CategoryScreen}
     />
     <Stack.Screen
+      name={NavigationStrings.WISHLIST}
+      component={WishlistScreen}
+    />
+
+    <Stack.Screen
       name={NavigationStrings.PRODUCT_LIST}
       component={ProductList}
     />
@@ -73,6 +78,10 @@ const StudioStackScreen = () => (
 const ProfileStackScreen = () => (
   <Stack.Navigator screenOptions={screenOptionsWithSlide}>
     <Stack.Screen name={NavigationStrings.PROFILE} component={ProfileScreen} />
+    <Stack.Screen
+      name={NavigationStrings.WISHLIST}
+      component={WishlistScreen}
+    />
   </Stack.Navigator>
 );
 
@@ -80,7 +89,7 @@ const BottomNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={{ headerShown: false, tabBarShowLabel: false }}
-      tabBar={(props)=> <CustomTabBar {...props} />}
+      tabBar={props => <CustomTabBar {...props} />}
     >
       <Tab.Screen
         name={NavigationStrings.HOME_STACK}

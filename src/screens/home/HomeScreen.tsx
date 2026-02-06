@@ -50,6 +50,7 @@ const HomeScreen = () => {
 
         {/* Product List  */}
         <ProductListHorizontal />
+            <ProductListHorizontal />
 
          <BanerSlider
           imageData={imageData}
@@ -58,6 +59,7 @@ const HomeScreen = () => {
           buttonStyle={styles.BannerButtonStyle1}
           carouselStyle={styles.carouselStyle1}
         />
+          <ProductListHorizontal />
 
         {/* <ProductListCard products={products} /> */}
       </ScrollView>
@@ -86,20 +88,24 @@ const styles = StyleSheet.create({
   BannerButtonStyle1: {
     width: SCREEN_WIDTH,
     height: rh(405),
-    marginVertical: rpm(10),
+
+        
   },
   carouselStyle1: {
     alignItems: 'center',
     marginHorizontal: 5,
+         marginVertical:rpm(5)
   },
   BannerButtonStyle2: {
     width: SCREEN_WIDTH-100,
     height: rh(210),
-    marginTop: rpm(30),
+  
+    
   },
   carouselStyle2: {
     width: rw(200),
     height: rh(220),
     borderWidth: 1,
+   marginVertical:rpm(5)
   },
 });

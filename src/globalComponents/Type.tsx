@@ -15,16 +15,26 @@ export interface ButtonProps {
   Icon?: any;
 }
 
-export interface InputFieldProps {
-  value?: any;
-  onChangeText?: (text: string) => void;
-  placeholder?: string;
-  placeholderColor?: string;
+export interface CustomInputProps {
   label?: string;
-  icon?: boolean;
-  secureText?: boolean;
-  error?: string | undefined;
-  onBlur?: any;
+  required?: boolean;
+  value?: string;
+  placeholder?: string;
+  onChangeText?: (text: string) => void;
+  keyboardType?: 'default' | 'email-address' | 'phone-pad' | 'numeric';
+  error?: string;
+  maxLength?: number;
+
+  /** Icons */
+  
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
+  onLeftIconPress?: () => void;
+  onRightIconPress?: () => void;
+
+  /** Search */
+  isSearch?: boolean;
+  editable?: boolean;
 }
 
 export interface BanerSliderProps {
@@ -45,11 +55,11 @@ export interface HeaderProps {
   logo?: boolean;
   search?: boolean;
   bell?: boolean;
-  heart?:  boolean;
+  heart?: boolean;
   bag?: boolean;
   backArrow?: boolean;
-  share?:boolean;
-  headertStyle?:any;
-  subHeaderStyle?:any;
-  backPress?: ()=> void;
+  share?: boolean;
+  headertStyle?: any;
+  subHeaderStyle?: any;
+  backPress?: () => void;
 }

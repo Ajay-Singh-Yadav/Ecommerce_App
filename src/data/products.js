@@ -535,7 +535,7 @@ const products = [
     id: 1,
     image: productImg1,
     brand: 'UrbanWear',
-    shortDescription: 'Comfortable cotton casual t-shirt',
+    shortDescription: 'Comfortable cotton casual t-shirt Comfortable cotton casual t-shirt',
     colour: 'Black',
     sizes: ['S', 'M', 'L', 'XL', '2XL'],
     rating: 4.5,
