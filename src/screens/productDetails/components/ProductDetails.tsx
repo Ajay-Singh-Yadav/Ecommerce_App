@@ -6,6 +6,7 @@ import colors from '@theme/colors';
 import { rh, rpm } from '@theme/responsive';
 import BanerSlider from '@global/BanerSlider';
 import { imageSlider } from '@constants/imagePath';
+import ProductListHorizontal from './ProductList';
 
 const ProductDetails = ({ navigation }: any) => {
   const handleBack = () => {
@@ -18,11 +19,12 @@ const ProductDetails = ({ navigation }: any) => {
         headerContainer: {
           backgroundColor: colors.neutral_0,
           height: rh(10),
-           marginBottom:rpm(10)
+          marginBottom: rpm(40),
         },
         subHeaderStyle: {
           height: rh(20),
           marginTop: rpm(30),
+         
         },
       }),
     [],
@@ -39,7 +41,8 @@ const ProductDetails = ({ navigation }: any) => {
         backPress={handleBack}
         subHeaderStyle={styles.subHeaderStyle}
       />
-      <BanerSlider imageData={imageSlider} />
+      <ProductListHorizontal />
+  
     </SafeAreaView>
   );
 };
