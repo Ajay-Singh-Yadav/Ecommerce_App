@@ -3,7 +3,7 @@ name: Android Dev Build
 on:
   push:
     branches:
-      - dev
+      - main
   workflow_dispatch:
 
 jobs:
@@ -31,14 +31,21 @@ jobs:
             C:\Users\runneradmin\.gradle\wrapper
           key: gradle-${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
 
-      - name: Build Android APK
+      - name: Build Android Release (AAB + APK)
         shell: cmd
         run: |
           cd android
-          gradlew assembleDebug
+          gradlew bundleRelease
+          gradlew assembleRelease
+
+      - name: Upload AAB
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-release-aab
+          path: android/app/build/outputs/bundle/release/app-release.aab
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: android-debug-apk
-          path: android/app/build/outputs/apk/debug/app-debug.apk
+          name: android-release-apk
+          path: android/app/build/outputs/apk/release/app-release.apk
