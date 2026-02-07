@@ -6,7 +6,7 @@ import { imagePath } from '@constants/imagePath';
 import CommanButton from './CommanButton';
 
 //SVG Icons
-import SearchIcon from '@assets/svg/SearchIcon.svg';
+
 import BackArrow from '@assets/svg/BackArrow.svg';
 import Bag from '@assets/svg/Bag.svg';
 import HeartIcon from '@assets/svg/HeartIcon.svg';
@@ -102,7 +102,7 @@ const Header: React.FC<HeaderProps> = ({
         <View style={styles.rightContainer}>
           {search && (
             <CommanButton onPress={handleSearch}
-              Icon={<SearchIcon width={rw(14)} height={rh(14)} />}
+              Icon={<Bag width={rw(14)} height={rh(14)} />}
             />
           )}
 
