@@ -31,7 +31,7 @@ jobs:
             C:\Users\runneradmin\.gradle\wrapper
           key: gradle-${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
 
-      - name: Build Android Release (AAB + APK)
+      - name: Build Android Release (AAB  and  APK)
         shell: cmd
         run: |
           cd android
