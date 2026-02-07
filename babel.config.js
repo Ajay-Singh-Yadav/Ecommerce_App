@@ -24,7 +24,6 @@ module.exports = {
       },
     ],
 
-    // Keep last if enabled later
     'react-native-reanimated/plugin',
   ],
 };

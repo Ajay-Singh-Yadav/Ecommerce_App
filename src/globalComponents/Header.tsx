@@ -37,11 +37,11 @@ const Header: React.FC<HeaderProps> = ({
 
 
 
-  const handleSearch=()=>{
-     navigation.navigate(NavigationStrings.SEARCH_SCREEN)
+  const handleSearch = () => {
+    navigation.navigate(NavigationStrings.SEARCH_SCREEN)
   }
-  const handleWishlist=()=>{
-     navigation.navigate(NavigationStrings.WISHLIST)
+  const handleWishlist = () => {
+    navigation.navigate(NavigationStrings.WISHLIST)
   }
 
 
@@ -54,18 +54,18 @@ const Header: React.FC<HeaderProps> = ({
           flexDirection: 'row',
           alignItems: 'center',
           backgroundColor: colors.primary,
-         
+
         },
         leftRightContainer: {
           flexDirection: 'row',
           width: '100%',
           justifyContent: 'space-between',
-        
+
         },
         leftContainer: {
           width: rw(70),
           height: rh(35),
-         
+
         },
         rightContainer: {
           flexDirection: 'row',
@@ -90,13 +90,13 @@ const Header: React.FC<HeaderProps> = ({
 
   return (
     <View style={[styles.container, headertStyle]}>
-      <View style={[styles.leftRightContainer,subHeaderStyle]}>
+      <View style={[styles.leftRightContainer, subHeaderStyle]}>
         <View style={styles.leftContainer}>
           {logo && (
             <Image source={imagePath.logoIcon} style={styles.logoStyle} />
           )}
           {backArrow && (
-            <CommanButton  onPress ={backPress}  Icon={<BackArrow width={rw(14)} height={rh(14)} />} />
+            <CommanButton onPress={backPress} Icon={<BackArrow width={rw(14)} height={rh(14)} />} />
           )}
         </View>
         <View style={styles.rightContainer}>
@@ -113,7 +113,7 @@ const Header: React.FC<HeaderProps> = ({
             <CommanButton Icon={<Share width={rw(14)} height={rh(14)} />} />
           )}
           {heart && (
-            <CommanButton  onPress={handleWishlist} Icon={<HeartIcon width={rw(16)} height={rh(16)} />} />
+            <CommanButton onPress={handleWishlist} Icon={<HeartIcon width={rw(16)} height={rh(16)} />} />
           )}
           {bag && (
             <CommanButton Icon={<Bag width={rw(16)} height={rh(16)} />} />

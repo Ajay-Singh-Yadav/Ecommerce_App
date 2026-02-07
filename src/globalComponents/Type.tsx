@@ -26,7 +26,7 @@ export interface CustomInputProps {
   maxLength?: number;
 
   /** Icons */
-  
+
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
   onLeftIconPress?: () => void;

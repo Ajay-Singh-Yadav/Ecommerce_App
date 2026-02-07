@@ -70,11 +70,11 @@ const ProfileScreen = () => {
           {renderAction(strings.ORDERS)}
           {renderAction(strings.WALLET)}
           {/* {renderAction(strings.PAYMENTS)} */}
-      
+
         </View>
 
         {/* Sections */}
-        <Section title={strings.MANAGE_ADDRESSES} subtitle={strings.MANAGE_ADDRESSES}/>
+        <Section title={strings.MANAGE_ADDRESSES} subtitle={strings.MANAGE_ADDRESSES} />
         <SectionHeader title={strings.LANGUAGE} />
         <View style={styles.languageWrapper}>
           <Animated.View
