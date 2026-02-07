@@ -11,18 +11,36 @@ jobs:
     runs-on: [self-hosted, Windows]
 
     steps:
+      # 1️⃣ Checkout the repository
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      # 2️⃣ Install npm dependencies
       - name: Install npm dependencies
         run: yarn install
 
+      # 3️⃣ Set Android SDK environment variables
       - name: Set Android SDK env
         shell: powershell
         run: |
           echo "ANDROID_HOME=$env:LOCALAPPDATA\Android\Sdk" >> $env:GITHUB_ENV
           echo "$env:LOCALAPPDATA\Android\Sdk\platform-tools" >> $env:GITHUB_PATH
 
+      # 4️⃣ Restore release keystore from GitHub secret
+      - name: Restore release keystore
+        shell: powershell
+        run: |
+          $b64 = "${{ secrets.ANDROID_KEYSTORE_BASE64 }}"
+          Set-Content -Path android\app\keystore.b64 -Value $b64
+          certutil -decode android\app\keystore.b64 android\app\release-key.keystore
+
+      # 5️⃣ Verify keystore exists
+      - name: Verify keystore file
+        shell: powershell
+        run: |
+          Get-ChildItem android\app\release-key.keystore
+
+      # 6️⃣ Cache Gradle to speed up builds
       - name: Cache Gradle
         uses: actions/cache@v4
         with:
@@ -31,19 +49,23 @@ jobs:
             C:\Users\runneradmin\.gradle\wrapper
           key: gradle-${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
 
-      - name: Build Android Release (AAB  and  APK)
+      # 7️⃣ Build Android Release (clean first to avoid stale files)
+      - name: Build Android Release (AAB and APK)
         shell: cmd
         run: |
           cd android
+          gradlew clean
           gradlew assembleRelease
           gradlew bundleRelease
 
+      # 8️⃣ Upload AAB artifact
       - name: Upload AAB
         uses: actions/upload-artifact@v4
         with:
           name: android-release-aab
           path: android/app/build/outputs/bundle/release/*.aab
 
+      # 9️⃣ Upload APK artifact
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
