@@ -6,7 +6,6 @@ import { imagePath } from '@constants/imagePath';
 import CommanButton from './CommanButton';
 
 //SVG Icons
-
 import BackArrow from '@assets/svg/BackArrow.svg';
 import Bag from '@assets/svg/Bag.svg';
 import HeartIcon from '@assets/svg/HeartIcon.svg';
