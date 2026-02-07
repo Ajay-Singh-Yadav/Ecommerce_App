@@ -30,7 +30,7 @@ const CARD_HEIGHT = CARD_WIDTH * 1.3;
 
 const ProductListCard = ({ products }: { products: any[] }) => {
   const renderItem = ({ item }: any) => {
-   
+
     const priceMatch = item.offer.match(/₹(\d+)/);
     const price = priceMatch ? priceMatch[1] : '';
     const originalPriceMatch = item.offer.match(/₹(\d+)/g);

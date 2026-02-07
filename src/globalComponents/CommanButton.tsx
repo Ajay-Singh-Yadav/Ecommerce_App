@@ -16,7 +16,7 @@ const CommanButton: React.FC<ButtonProps> = ({
   StyleText,
   Icon,
 }) => {
- 
+
   const styles = useMemo(
     () =>
       StyleSheet.create({
@@ -27,7 +27,7 @@ const CommanButton: React.FC<ButtonProps> = ({
           overflow: 'hidden',
         },
         icon: { marginRight: 8 },
-   
+
       }),
     [],
   );

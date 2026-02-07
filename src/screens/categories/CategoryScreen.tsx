@@ -8,7 +8,7 @@ const CategoryScreen = () => {
     <View>
       <Header
         logo={true}
-        search={true}
+        // search={true}
         bell={true}
         heart={true}
         bag={true}
@@ -21,7 +21,7 @@ const CategoryScreen = () => {
 export default CategoryScreen
 
 const styles = StyleSheet.create({
-     leftRightContainer: {
-        marginTop: rpm(40),
-      },
+  leftRightContainer: {
+    marginTop: rpm(40),
+  },
 })

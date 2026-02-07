@@ -5,8 +5,8 @@ import Header from '@global/Header'
 
 const SearchSceen = () => {
   return (
-     <SafeAreaView  style={{flex:1}}>
-     <Header   />
+    <SafeAreaView style={{ flex: 1 }}>
+      <Header />
     </SafeAreaView>
   )
 }

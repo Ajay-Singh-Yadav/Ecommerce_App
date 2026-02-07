@@ -42,7 +42,7 @@ const ProfileScreen = () => {
     <View style={{ flex: 1 }}>
       <Header
         logo={true}
-        search={true}
+        // search={true}
         bell={true}
         heart={true}
         bag={true}

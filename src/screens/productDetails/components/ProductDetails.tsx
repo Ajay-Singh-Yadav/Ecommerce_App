@@ -18,7 +18,7 @@ const ProductDetails = ({ navigation }: any) => {
         headerContainer: {
           backgroundColor: colors.neutral_0,
           height: rh(10),
-           marginBottom:rpm(10)
+          marginBottom: rpm(10)
         },
         subHeaderStyle: {
           height: rh(20),
@@ -39,7 +39,7 @@ const ProductDetails = ({ navigation }: any) => {
         backPress={handleBack}
         subHeaderStyle={styles.subHeaderStyle}
       />
-      <BanerSlider imageData={imageSlider} />
+      {/* <BanerSlider imageData={imageSlider} /> */}
     </SafeAreaView>
   );
 };

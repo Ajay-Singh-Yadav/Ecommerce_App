@@ -99,11 +99,11 @@ const Header: React.FC<HeaderProps> = ({
           )}
         </View>
         <View style={styles.rightContainer}>
-          {search && (
+          {/* {search && (
             <CommanButton onPress={handleSearch}
               Icon={<Bag width={rw(14)} height={rh(14)} />}
             />
-          )}
+          )} */}
 
           {bell && (
             <CommanButton Icon={<BellIcon width={rw(14)} height={rh(14)} />} />
