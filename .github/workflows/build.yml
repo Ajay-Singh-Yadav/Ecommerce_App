@@ -1,9 +1,14 @@
-name: Android Dev Build
+name: Android Staging Build
 
 on:
   push:
     branches:
-      - dev
+      - staging
+
+  pull_request:
+    branches:
+      - staging
+
   workflow_dispatch:
 
 jobs:
@@ -11,53 +16,90 @@ jobs:
     runs-on: [self-hosted, Windows]
 
     steps:
+      # -----------------------
+      # CHECKOUT
+      # -----------------------
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Install npm dependencies
-        run: yarn install
+      # -----------------------
+      # CACHE NODE MODULES
+      # -----------------------
+      - name: Cache node modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+          key: node-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
+      - name: Cache Yarn
+        uses: actions/cache@v4
+        with:
+          path: |
+            C:\Users\runneradmin\AppData\Local\Yarn\Cache
+          key: yarn-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+
+      # -----------------------
+      # INSTALL DEPENDENCIES
+      # -----------------------
+      - name: Install npm dependencies
+        run: yarn install --frozen-lockfile
+
+      # -----------------------
+      # ANDROID SDK ENV
+      # -----------------------
       - name: Set Android SDK env
         shell: powershell
         run: |
           echo "ANDROID_HOME=$env:LOCALAPPDATA\Android\Sdk" >> $env:GITHUB_ENV
           echo "$env:LOCALAPPDATA\Android\Sdk\platform-tools" >> $env:GITHUB_PATH
-      # ✅ RESTORE KEYSTORE
+
+      # -----------------------
+      # RESTORE KEYSTORE
+      # -----------------------
       - name: Restore release keystore
         shell: powershell
         run: |
           $b64 = "${{ secrets.ANDROID_KEYSTORE_BASE64 }}"
           Set-Content -Path keystore.b64 -Value $b64
           certutil -decode keystore.b64 android\app\release-key.keystore
-      # ✅ VERIFY FILE EXISTS
+
       - name: Verify keystore file
         shell: powershell
         run: |
           Get-ChildItem android\app
+
+      # -----------------------
+      # CACHE GRADLE
+      # -----------------------
       - name: Cache Gradle
         uses: actions/cache@v4
         with:
           path: |
             C:\Users\runneradmin\.gradle\caches
             C:\Users\runneradmin\.gradle\wrapper
-          key: gradle-${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
 
-      # ✅ BUILD
-      - name: Build Android Release (AAB and APK)
+      # -----------------------
+      # BUILD
+      # -----------------------
+      - name: Build Android Release (APK + AAB)
         shell: cmd
         run: |
           cd android
-          gradlew assembleRelease
-          gradlew bundleRelease
-      # ✅ UPLOAD FILES
+          gradlew assembleRelease bundleRelease --build-cache --parallel
+
+      # -----------------------
+      # UPLOAD ARTIFACTS
+      # -----------------------
       - name: Upload AAB
         uses: actions/upload-artifact@v4
         with:
-          name: android-release-aab
+          name: android-staging-aab
           path: android\app\build\outputs\bundle\release\*.aab
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: android-release-apk
-          path: android/app/build/outputs/apk/release/*.apk
+          name: android-staging-apk
+          path: android\app\build\outputs\apk\release\*.apk
