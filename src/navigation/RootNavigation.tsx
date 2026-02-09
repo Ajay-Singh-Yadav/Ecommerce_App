@@ -10,6 +10,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import BottomNavigator from './BottomNavigator';
 import LoginScreen from '../screens/auth/LoginScreen';
 import SignupScreen from '../screens/auth/SignupScreen';
+import CheckoutScreen from '../screens/checkout/CheckoutScreen';
+import ProductDetailScreen from '../screens/productDetails/components/ProductDetails';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +23,14 @@ const RootNavigation = () => {
           name={NavigationStrings.BOTTOM_TAB}
           component={BottomNavigator}
         />
+        <Stack.Screen
+          name={NavigationStrings.CHECKOUT}
+          component={CheckoutScreen}
+        />
+         <Stack.Screen
+              name={NavigationStrings.PRODUCT_DETAILS}
+              component={ProductDetailScreen}
+            />
         <Stack.Screen name={NavigationStrings.LOGIN} component={LoginScreen} />
         <Stack.Screen
           name={NavigationStrings.SIGNUP}

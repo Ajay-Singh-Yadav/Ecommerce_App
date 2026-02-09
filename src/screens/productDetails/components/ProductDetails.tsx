@@ -6,33 +6,48 @@ import {
   StyleSheet,
   TouchableOpacity,
   ScrollView,
+  Alert,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import colors from '@theme/colors';
-
 
 import LeftArrow from '@assets/svg/LeftArrow.svg';
 import Heart from '@assets/svg/Heart.svg';
 import Star from '@assets/svg/Star.svg';
 import Cart from '@assets/svg/Cart.svg';
+import NavigationStrings from '@navigation/NavigationStrings';
+import { decreaseQty, increaseQty, maxQty } from '@utils/utilityFunctions';
 
 export default function ProductDetailScreen({ route, navigation }: any) {
   const { product } = route.params;
 
+
   const [qty, setQty] = useState(1);
+
   const [selectedSize, setSelectedSize] = useState('L');
   const [selectedColor, setSelectedColor] = useState('#000');
 
   const sizes = ['S', 'M', 'L', 'XL'];
   const colorsList = ['#8B8B8B', '#4A4A4A', '#000000'];
 
-const increaseQty = () => setQty(qty + 1);
+  const handleIncrease = () => {
+    setQty(prev => {
+      const nextQty = increaseQty(prev, maxQty);
 
-const decreaseQty = () => {
-  if (qty > 1) setQty(qty - 1);
-};
-const price = Number(product?.price || 0);
-const totalPrice = qty * price;
+      if (nextQty === prev) {
+        Alert.alert('Maximum quantity reached');
+        return prev;
+      }
+      return nextQty;
+    });
+  };
+
+  const handleDecrease = () => {
+    setQty(prev => decreaseQty(prev));
+  };
+
+  const price = Number(product?.price || 0);
+  const totalPrice = qty * price;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -61,13 +76,13 @@ const totalPrice = qty * price;
 
           {/* QTY */}
           <View style={styles.qtyBox}>
-            <TouchableOpacity onPress={decreaseQty}>
+            <TouchableOpacity onPress={handleDecrease}>
               <Text style={styles.qtyBtn}>-</Text>
             </TouchableOpacity>
 
             <Text style={styles.qtyValue}>{qty}</Text>
 
-            <TouchableOpacity onPress={increaseQty}>
+            <TouchableOpacity onPress={handleIncrease}>
               <Text style={styles.qtyBtn}>+</Text>
             </TouchableOpacity>
           </View>
@@ -125,7 +140,14 @@ const totalPrice = qty * price;
 
       {/* ADD TO CART */}
       <View style={styles.bottomBar}>
-        <TouchableOpacity style={styles.cartBtn}>
+        <TouchableOpacity
+          style={styles.cartBtn}
+          onPress={() =>
+            navigation.navigate(NavigationStrings.CHECKOUT, {
+              product: product,
+            })
+          }
+        >
           <Cart width={18} height={18} />
 
           <Text style={styles.cartText}>

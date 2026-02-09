@@ -16,6 +16,8 @@ export default {
   muted: '#A3A1A2',
   background2: '#F2F2F2',
   dark: '#121111',
+  tab:'#343031',
+  blank:'',
 
   /** Neutrals */
   neutral_0: '#FFFFFF', // white

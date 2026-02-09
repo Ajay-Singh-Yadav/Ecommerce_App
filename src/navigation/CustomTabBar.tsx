@@ -1,78 +1,52 @@
 import React from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 
-// SVGs
 import Home from '@assets/svg/Home.svg';
-import HomeFilled from '@assets/svg/HomeFilled.svg';
-import Category from '@assets/svg/Category.svg';
-import CategoryFilled from '@assets/svg/CategoryFilled.svg';
-import ProfileFilled from '@assets/svg/ProfileFilled.svg';
-import Profile from '@assets/svg/Profile.svg';
-import Studio from '@assets/svg/Studio.svg';
+import HeartIcon from '@assets/svg/HeartIcon.svg';
+import CartBag from '@assets/svg/CartBag.svg';
+import ProfileIcon from '@assets/svg/ProfileIcon.svg';
 
-import { br, rh, rpm, rw } from '@theme/responsive';
-
-import { ReactElement } from 'react';
-
-type TabIconRenderer = (focused: boolean) => ReactElement;
-
-import NavigationStrings from '../navigation/NavigationStrings';
+import { rh, rpm, rw } from '@theme/responsive';
 import colors from '@theme/colors';
-import { pixelRatio } from '@theme/device';
+import NavigationStrings from '../navigation/NavigationStrings';
 
 const TAB_ICONS = {
-  [NavigationStrings.HOME_STACK]: (focused: boolean) =>
-    focused ? (
-      <HomeFilled width={rw(24)} height={rh(24)} />
-    ) : (
-      <Home width={rw(24)} height={rh(24)} />
-    ),
-
-  [NavigationStrings.CATEGORIES_STACK]: (focused: boolean) =>
-    focused ? (
-      <CategoryFilled width={rw(24)} height={rh(24)} />
-    ) : (
-      <Category width={rw(24)} height={rh(24)} />
-    ),
-
-  [NavigationStrings.STUDIO_STACK]: () => (
-    <Studio width={rw(24)} height={rh(24)} />
-  ),
-
-  [NavigationStrings.PROFILE_STACK]: (focused: boolean) =>
-    focused ? (
-      <ProfileFilled width={rw(24)} height={rh(24)} />
-    ) : (
-      <Profile width={rw(24)} height={rh(24)} />
-    ),
+  [NavigationStrings.HOME_STACK]: Home,
+  [NavigationStrings.CATEGORIES_STACK]: HeartIcon,
+  [NavigationStrings.STUDIO_STACK]: CartBag,
+  [NavigationStrings.PROFILE_STACK]: ProfileIcon,
 };
-
-type TabRouteName = keyof typeof TAB_ICONS;
-
-
-
 
 const CustomTabBar = ({ state, navigation }: any) => {
   return (
     <View style={styles.container}>
       {state.routes.map((route: any, index: number) => {
         const isFocused = state.index === index;
-        const renderIcon = TAB_ICONS[route.name as TabRouteName];
-
-        if (!renderIcon) {
-          console.warn('Missing tab icon for:', route.name);
-          return null;
-        }
+        const Icon = TAB_ICONS[route.name];
 
         return (
           <TouchableOpacity
             key={route.key}
-            onPress={() => !isFocused && navigation.navigate(route.name)}
             style={styles.tab}
-            activeOpacity={0.85}
+            activeOpacity={0.9}
+            onPress={() => !isFocused && navigation.navigate(route.name)}
           >
-            {renderIcon(isFocused)}
-           
+            <View
+              style={[
+                styles.circle,
+                {
+                  backgroundColor: colors.tab,
+                },
+              ]}
+            >
+              <Icon
+                width={rw(20)}
+                height={rw(20)}
+                fill={isFocused ? colors.background2 : colors.muted}
+                stroke={colors.background2}
+                strokeOpacity={1}
+              />
+            </View>
           </TouchableOpacity>
         );
       })}
@@ -80,29 +54,29 @@ const CustomTabBar = ({ state, navigation }: any) => {
   );
 };
 
-
-
 export default CustomTabBar;
-
-
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    height: rh(60),
-    backgroundColor: colors.neutral_0,
-    borderTopWidth:0.5 / pixelRatio,
-    borderTopColor: colors.neutral_300
-  },
-  tab: {
-    flex: 1,
-    justifyContent: 'center',
+    height: rh(50),
+    backgroundColor: colors.primary2,
+    borderRadius: rh(40),
+    marginHorizontal: rpm(14),
+    marginBottom: rpm(20),
+    paddingHorizontal: rpm(10),
     alignItems: 'center',
   },
-  activeIndicator: {
-    marginTop: rpm(6),
-    width: rw(6),
-    height: rw(6),
-    borderRadius: br(3),
- 
+
+  tab: {
+    flex: 1,
+    alignItems: 'center',
+  },
+
+  circle: {
+    width: rw(40),
+    height: rw(40),
+    borderRadius: rw(26),
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

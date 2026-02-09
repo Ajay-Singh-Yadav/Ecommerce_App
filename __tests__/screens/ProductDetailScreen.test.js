@@ -7,6 +7,10 @@ describe('ProductDetailScreen', () => {
     price: 299,
     description: 'Nice product',
   };
+    const mockNavigation = {
+    navigate: jest.fn(),
+  };
+
 
   it('renders product name and price', () => {
     const { getByText } = render(
@@ -27,14 +31,22 @@ describe('ProductDetailScreen', () => {
 
   it('pressing Add to Cart works', () => {
     const { getByText } = render(
-      <ProductDetailScreen route={{ params: { product: mockProduct } }} />
+      // <ProductDetailScreen route={{ params: { product: mockProduct } }} />
+        <ProductDetailScreen
+        navigation={mockNavigation}
+        route={{ params: { product: mockProduct } }}
+      />
     );
 
     const button = getByText(/add to cart/i);
     fireEvent.press(button);
 
     // For now just verify test doesn't crash
-    expect(button).toBeTruthy();
+    // expect(button).toBeTruthy();
+     expect(mockNavigation.navigate).toHaveBeenCalledWith(
+      expect.anything(), // CHECKOUT
+      { product: mockProduct }
+    );
   });
 
   it('increases quantity and updates price when + pressed', () => {

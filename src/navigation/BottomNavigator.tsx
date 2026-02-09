@@ -40,10 +40,10 @@ const HomeStackScreen = () => (
       component={WishlistScreen}
     />
 
-    <Stack.Screen
+    {/* <Stack.Screen
       name={NavigationStrings.PRODUCT_DETAILS}
       component={ProductDetails}
-    />
+    /> */}
   </Stack.Navigator>
 );
 
