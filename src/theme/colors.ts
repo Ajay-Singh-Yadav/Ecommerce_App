@@ -11,6 +11,12 @@ export default {
   brand_teal: '#42A2A2',
   brand_blue: '#3374CA',
 
+  primary2: '#292526',
+  secondary: '#787676',
+  muted: '#A3A1A2',
+  background2: '#F2F2F2',
+  dark: '#121111',
+
   /** Neutrals */
   neutral_0: '#FFFFFF', // white
   neutral_50: '#F9F9F9',
