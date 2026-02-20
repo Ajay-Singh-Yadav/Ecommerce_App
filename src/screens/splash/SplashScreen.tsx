@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const CheckoutScreen = () => {
+const SplashScreen = () => {
   return (
      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>CheckoutScreen</Text>
+      <Text>SplashScreen</Text>
     </View>
   )
 }
 
-export default CheckoutScreen
+export default SplashScreen
 
 const styles = StyleSheet.create({})

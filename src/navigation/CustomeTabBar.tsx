@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const ProductInfo = () => {
+const CustomeTabBar = () => {
   return (
     <View>
-      <Text>ProductInfo</Text>
+      <Text>CustomeTabBar</Text>
     </View>
   )
 }
 
-export default ProductInfo
+export default CustomeTabBar
 
 const styles = StyleSheet.create({})

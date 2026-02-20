@@ -31,7 +31,6 @@ describe('ProductDetailScreen', () => {
 
   it('pressing Add to Cart works', () => {
     const { getByText } = render(
-      // <ProductDetailScreen route={{ params: { product: mockProduct } }} />
         <ProductDetailScreen
         navigation={mockNavigation}
         route={{ params: { product: mockProduct } }}
@@ -41,10 +40,10 @@ describe('ProductDetailScreen', () => {
     const button = getByText(/add to cart/i);
     fireEvent.press(button);
 
-    // For now just verify test doesn't crash
+
     // expect(button).toBeTruthy();
      expect(mockNavigation.navigate).toHaveBeenCalledWith(
-      expect.anything(), // CHECKOUT
+      expect.anything(), 
       { product: mockProduct }
     );
   });

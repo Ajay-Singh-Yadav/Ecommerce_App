@@ -1,27 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { rpm } from '@theme/responsive'
-import Header from '@global/Header'
 
 const CategoryScreen = () => {
   return (
-    <View>
-      <Header
-        logo={true}
-        // search={true}
-        bell={true}
-        heart={true}
-        bag={true}
-        subHeaderStyle={styles.leftRightContainer}
-      />
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>CategoryScreen</Text>
     </View>
   )
 }
 
 export default CategoryScreen
 
-const styles = StyleSheet.create({
-  leftRightContainer: {
-    marginTop: rpm(40),
-  },
-})
+const styles = StyleSheet.create({})

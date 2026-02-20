@@ -1,14 +1,9 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { configureStore } from "@reduxjs/toolkit";
 
-const store = () => {
-  return (
-    <View>
-      <Text>store</Text>
-    </View>
-  )
-}
+import storeReducer from './reducer/slices/storeSlice';
 
-export default store
-
-const styles = StyleSheet.create({})
+export const store = configureStore({
+  reducer:{
+    store:storeReducer
+  }
+})

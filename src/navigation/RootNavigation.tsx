@@ -1,46 +1,32 @@
-import { StyleSheet, Text, View } from 'react-native';
-import {
-  createNativeStackNavigator,
-  NativeStackNavigationOptions,
-} from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import DrawerNavigation from './DrawerNavigation';
+import StudioScreen from '@screens/studio/StudioScreen';
+import SearchSceen from '@screens/search/SearchSceen';
+import CartScreen from '@screens/cart/CartScreen';
+import navigationStrings from './navigationStrings';
 
-import NavigationStrings from './NavigationStrings';
-import { NavigationContainer } from '@react-navigation/native';
-import BottomNavigator from './BottomNavigator';
-import LoginScreen from '../screens/auth/LoginScreen';
-import SignupScreen from '../screens/auth/SignupScreen';
-import CheckoutScreen from '../screens/checkout/CheckoutScreen';
-import ProductDetailScreen from '../screens/productDetails/components/ProductDetails';
 
 const Stack = createNativeStackNavigator();
 
 const RootNavigation = () => {
   return (
-    <NavigationContainer >
-      <Stack.Navigator screenOptions={{headerShown:false}}>
-        <Stack.Screen
-          name={NavigationStrings.BOTTOM_TAB}
-          component={BottomNavigator}
-        />
-        <Stack.Screen
-          name={NavigationStrings.CHECKOUT}
-          component={CheckoutScreen}
-        />
+    <NavigationContainer>
+     <Stack.Navigator screenOptions={{headerShown:false, animation:'fade'}}>
+        <Stack.Screen name={navigationStrings.DRAWER}  component={DrawerNavigation} />
          <Stack.Screen
-              name={NavigationStrings.PRODUCT_DETAILS}
-              component={ProductDetailScreen}
-            />
-        <Stack.Screen name={NavigationStrings.LOGIN} component={LoginScreen} />
-        <Stack.Screen
-          name={NavigationStrings.SIGNUP}
-          component={SignupScreen}
+          name={navigationStrings.STUDIO} 
+          component={StudioScreen}
+          
         />
-      </Stack.Navigator>
+        <Stack.Screen name={navigationStrings.SEARCH} component={SearchSceen} />
+        <Stack.Screen name={navigationStrings.CART}  component={CartScreen} />
+     </Stack.Navigator>
     </NavigationContainer>
-  );
-};
+  )
+}
 
-export default RootNavigation;
+export default RootNavigation
 
-const styles = StyleSheet.create({});

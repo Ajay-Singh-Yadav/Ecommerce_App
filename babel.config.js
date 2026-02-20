@@ -16,7 +16,7 @@ module.exports = {
           '@locales': './src/locales',
           '@navigation': './src/navigation',
           '@redux': './src/redux',
-          '@screens': './src/secreens',
+         '@screens': './src/screens',
           '@theme': './src/theme',
           '@utils': './src/utils',
         },

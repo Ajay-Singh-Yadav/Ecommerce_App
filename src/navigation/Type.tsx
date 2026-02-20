@@ -1,6 +1,6 @@
 
+export interface DrawerProps {
 
+    
 
-export type ParamList = {
-  [key: string]: undefined; 
-};
+}
