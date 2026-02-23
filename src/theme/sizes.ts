@@ -1,33 +1,96 @@
-import { moderateScale, verticalScale } from 'react-native-size-matters';
+import { moderateScale } from 'react-native-size-matters';
 
-const range = (prefix: string, scaleFn = moderateScale) => {
-  const obj: Record<string, number> = {};
-  for (let i = 1; i <= 100; i++) {
-    obj[`${prefix}_${i}`] = scaleFn(i);
-  }
-  return obj;
-};
+export const Sizes = {
+  // ---------- FONT 1 → 20 ----------
+  font_1: moderateScale(1),
+  font_2: moderateScale(2),
+  font_3: moderateScale(3),
+  font_4: moderateScale(4),
+  font_5: moderateScale(5),
+  font_6: moderateScale(6),
+  font_7: moderateScale(7),
+  font_8: moderateScale(8),
+  font_9: moderateScale(9),
+  font_10: moderateScale(10),
+  font_11: moderateScale(11),
+  font_12: moderateScale(12),
+  font_13: moderateScale(13),
+  font_14: moderateScale(14),
+  font_15: moderateScale(15),
+  font_16: moderateScale(16),
+  font_17: moderateScale(17),
+  font_18: moderateScale(18),
+  font_19: moderateScale(19),
+  font_20: moderateScale(20),
 
-type SizeMap = Record<string, number>;
+  // ---------- MARGIN / PADDING ----------
+  mr_1: moderateScale(1),
+  mr_2: moderateScale(2),
+  mr_3: moderateScale(3),
+  mr_4: moderateScale(4),
+  mr_5: moderateScale(5),
+  mr_6: moderateScale(6),
+  mr_7: moderateScale(7),
+  mr_8: moderateScale(8),
+  mr_9: moderateScale(9),
+  mr_10: moderateScale(10),
+  mr_12: moderateScale(12),
+  mr_14: moderateScale(14),
+  mr_16: moderateScale(16),
+  mr_18: moderateScale(18),
+  mr_20: moderateScale(20),
+  mr_24: moderateScale(24),
+  mr_30: moderateScale(30),
+  mr_40: moderateScale(40),
 
-export const sizes: SizeMap & {
-  iconSm: number;
-  iconMd: number;
-  iconLg: number;
-  btnHeight: number;
-  headerHeight: number;
-} = {
-  ...range('spacing'),
-  ...range('fontSize'),
-  ...range('radius'),
-  ...range('margin'),
-  ...range('padding'),
-  ...range('height', verticalScale),
+  pd_1: moderateScale(1),
+  pd_2: moderateScale(2),
+  pd_4: moderateScale(4),
+  pd_6: moderateScale(6),
+  pd_8: moderateScale(8),
+  pd_10: moderateScale(10),
+  pd_12: moderateScale(12),
+  pd_16: moderateScale(16),
+  pd_20: moderateScale(20),
 
-  iconSm: moderateScale(16),
-  iconMd: moderateScale(20),
-  iconLg: moderateScale(24),
+  // ---------- RADIUS ----------
+  rd_2: moderateScale(2),
+  rd_4: moderateScale(4),
+  rd_6: moderateScale(6),
+  rd_8: moderateScale(8),
+  rd_10: moderateScale(10),
+  rd_12: moderateScale(12),
+  rd_16: moderateScale(16),
+  rd_20: moderateScale(20),
+  circle: 999,
 
-  btnHeight: verticalScale(48),
-  headerHeight: verticalScale(56),
+  // ---------- WIDTH / HEIGHT ----------
+  w_20: moderateScale(20),
+  w_18: moderateScale(18),
+  w_24: moderateScale(24),
+  w_30: moderateScale(30),
+  w_40: moderateScale(40),
+  w_60: moderateScale(60),
+  w_80: moderateScale(80),
+  w_100: moderateScale(100),
+  w_150: moderateScale(150),
+  w_200: moderateScale(200),
+
+  h_18: moderateScale(18),
+  h_20: moderateScale(20),
+  h_24: moderateScale(24),
+  h_25: moderateScale(25),
+  h_30: moderateScale(30),
+  h_40: moderateScale(40),
+  h_44: moderateScale(44),
+  h_48: moderateScale(48),
+  h_60: moderateScale(60),
+  h_80: moderateScale(80),
+  h_100: moderateScale(100),
+  h_200: moderateScale(200),
+  h_250: moderateScale(250),
+  h_260: moderateScale(260),
+  h_270: moderateScale(270),
+  h_280: moderateScale(280),
+  h_300: moderateScale(300),
 };

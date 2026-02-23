@@ -52,14 +52,20 @@ export interface BanerSliderProps {
 }
 
 export interface HeaderProps {
+  title?:string;
   logo?: boolean;
   search?: boolean;
-  bell?: boolean;
-  heart?: boolean;
+  heart?: any | boolean;
   bag?: boolean;
-  backArrow?: boolean;
+  backArrow?: any | boolean;
   share?: boolean;
   headertStyle?: any;
   subHeaderStyle?: any;
   backPress?: () => void;
+}
+
+export interface LineProps {
+  style?: any;
+  text?: string;
+  textStyle?: any;
 }

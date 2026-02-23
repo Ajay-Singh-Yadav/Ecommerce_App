@@ -1,26 +1,37 @@
 const ar = {
   PROFILE_TITLE: 'الملف الشخصي',
   EDIT: 'تعديل',
-  MY_ADDRESSES: 'عناويني',
-  MANAGE_ADDRESSES: 'إدارة عناوينك هنا',
 
+  HEY_THERE: 'مرحبا',
+  LOGIN: 'تسجيل الدخول',
+  SIGNUP: 'إنشاء حساب',
+  LOGIN_SIGNUP: 'تسجيل الدخول / إنشاء حساب',
+
+  SHOP_IN: 'تسوق في',
+  MEN: 'رجال',
+  WOMEN: 'نساء',
+
+  ENGAGE: 'تفاعل',
+  FIND_STORE: 'ابحث عن متجر',
   LANGUAGE: 'اللغة',
-  ENGLISH: 'الإنجليزية',
   ARABIC: 'العربية',
+  ENGLISH: 'الإنجليزية',
 
-  CONTACT_US_SECTION: 'اتصل بنا',
+  MY_PROFILE: 'ملفي الشخصي',
+  MY_ACCOUNT: 'حسابي',
+  MY_ORDERS: 'طلباتي',
+  WALLET: 'محفظتي',
+  WISHLIST: 'المفضلة',
+
+  CONTACT_US: 'اتصل بنا',
   HELP_SUPPORT: 'المساعدة والدعم',
-  BECOME_SELLER: 'كن بائعًا',
-  FEEDBACK_SUGGESTION: 'ملاحظات واقتراحات',
+  FEEDBACK: 'ملاحظات واقتراحات',
 
-  ABOUT_US_SECTION: 'من نحن',
+  ABOUT_US: 'معلومات عنا',
   OUR_STORY: 'قصتنا',
-  FANBOOK: 'Fanbook',
+  FANBOOK: 'فانبوك',
 
-  ORDERS: 'طلباتي',
-  WALLET: 'المحفظة',
-  PAYMENT: 'الدفع',
-};
+  APP_VERSION: 'إصدار التطبيق',
+} as const;
 
-export type TranslationKeys = keyof typeof ar;
 export default ar;

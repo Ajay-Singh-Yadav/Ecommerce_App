@@ -1,26 +1,43 @@
 const en = {
   PROFILE_TITLE: 'Profile',
-  EDIT: 'EDIT',
-  MY_ADDRESSES: 'My Addresses',
-  MANAGE_ADDRESSES: 'Manage your addresses here',
+  EDIT: 'Edit',
 
+  // header
+  HEY_THERE: 'Hey There!',
+  LOGIN: 'Login',
+  SIGNUP: 'Signup',
+  LOGIN_SIGNUP: 'Login / Signup',
+
+  // shop
+  SHOP_IN: 'SHOP IN',
+  MEN: 'Men',
+  WOMEN: 'Women',
+
+  ENGAGE: 'ENGAGE',
+  FIND_STORE: 'Find a Store',
   LANGUAGE: 'Language',
-  ENGLISH: 'English',
   ARABIC: 'Arabic',
+  ENGLISH: 'English',
 
-  CONTACT_US_SECTION: 'CONTACT US',
+  // profile
+  MY_PROFILE: 'MY PROFILE',
+  MY_ACCOUNT: 'My Account',
+  MY_ORDERS: 'My Orders',
+  WALLET: 'My Wallet',
+  WISHLIST: 'Wishlist',
+
+  // contact
+  CONTACT_US: 'CONTACT US',
   HELP_SUPPORT: 'Help & Support',
-  BECOME_SELLER: 'Become a Seller',
-  FEEDBACK_SUGGESTION: 'Feedback & Suggestion',
+  FEEDBACK: 'Feedback & Suggestion',
 
-  ABOUT_US_SECTION: 'ABOUT US',
+  // about
+  ABOUT_US: 'ABOUT US',
   OUR_STORY: 'Our Story',
   FANBOOK: 'Fanbook',
 
-  ORDERS: 'Orders',
-  WALLET: 'Wallet',
-  PAYMENTS: 'Payments',
-};
+  APP_VERSION: 'App version',
+} as const;
 
 export type TranslationKeys = keyof typeof en;
 export default en;

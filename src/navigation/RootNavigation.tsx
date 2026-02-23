@@ -7,6 +7,8 @@ import StudioScreen from '@screens/studio/StudioScreen';
 import SearchSceen from '@screens/search/SearchSceen';
 import CartScreen from '@screens/cart/CartScreen';
 import navigationStrings from './navigationStrings';
+import LoginSignup from '@screens/profile/components/LoginSignup';
+import WishlistScreen from '@screens/wishlist/WishlistScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -22,7 +24,9 @@ const RootNavigation = () => {
           
         />
         <Stack.Screen name={navigationStrings.SEARCH} component={SearchSceen} />
+        <Stack.Screen name={navigationStrings.WISHLIST} component={WishlistScreen} />
         <Stack.Screen name={navigationStrings.CART}  component={CartScreen} />
+        <Stack.Screen name={navigationStrings.LOGIN_SIGNUP}  component={LoginSignup} options={{animation:'slide_from_bottom'}} />
      </Stack.Navigator>
     </NavigationContainer>
   )

@@ -1,14 +1,75 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import React, { useMemo } from 'react';
+import Header from '@global/Header';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import colors from '@theme/colors';
+import { Sizes } from '@theme/sizes';
+import { categories } from '@constants/categories';
 
 const WishlistScreen = () => {
+  const styles = useMemo(
+    () =>
+      StyleSheet.create({
+        container: {
+          flex: 1,
+          backgroundColor: colors.white,
+        },
+
+        title: {
+          fontSize: Sizes.font_16,
+        },
+        categories: {
+          flexDirection: 'row',
+          alignItems: 'center',
+          marginTop: Sizes.mr_20,
+          height: Sizes.h_25,
+          marginHorizontal: Sizes.mr_4,
+          paddingHorizontal: Sizes.pd_8,
+          borderWidth: 1,
+          borderColor:colors.ButtonGray,
+          borderRadius: Sizes.rd_8,
+        },
+        caregoryText: {
+          fontSize: Sizes.font_10,
+        },
+      }),
+    [],
+  );
+
+  const renderFlatlistItem = ({ item }: any) => {
+    return (
+      <TouchableOpacity style={styles.categories} activeOpacity={0.5}>
+        <Text style={styles.caregoryText}>{item?.name}</Text>
+      </TouchableOpacity>
+    );
+  };
+
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>WishlistScreen</Text>
-    </View>
-  )
-}
+    <SafeAreaView style={styles.container}>
+      <Header
+        backArrow={true}
+        heart={true}
+        title="My Wishlist"
+        bag={true}
+        search={true}
+      />
+      <FlatList
+        data={categories}
+        keyExtractor={item => item.id.toString()}
+        renderItem={renderFlatlistItem}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+      />
 
-export default WishlistScreen
+      
+    </SafeAreaView>
+  );
+};
 
-const styles = StyleSheet.create({})
+export default WishlistScreen;

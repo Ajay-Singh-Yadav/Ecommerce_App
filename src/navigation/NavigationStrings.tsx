@@ -14,8 +14,8 @@ export default {
     PROFILE_STACK:'Profile Stack',
     CATEORY_STACK:'Category Stack',
     STUDIO_STACK:'Studio Stack',
-    LOGIN:'Login',
-    SIGNUP:'Signup',
+    LOGIN_SIGNUP:'Login Signup',
+   
 
 
 }
