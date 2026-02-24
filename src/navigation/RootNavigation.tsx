@@ -9,6 +9,7 @@ import CartScreen from '@screens/cart/CartScreen';
 import navigationStrings from './navigationStrings';
 import LoginSignup from '@screens/profile/components/LoginSignup';
 import WishlistScreen from '@screens/wishlist/WishlistScreen';
+import SplashScreen from '@screens/splash/SplashScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -16,7 +17,9 @@ const Stack = createNativeStackNavigator();
 const RootNavigation = () => {
   return (
     <NavigationContainer>
-     <Stack.Navigator screenOptions={{headerShown:false, animation:'fade'}}>
+     <Stack.Navigator  screenOptions={{headerShown:false, animation:'fade'}} >
+        
+        <Stack.Screen name={navigationStrings.SPLASH_SCREEN}  component={SplashScreen} />
         <Stack.Screen name={navigationStrings.DRAWER}  component={DrawerNavigation} />
          <Stack.Screen
           name={navigationStrings.STUDIO} 

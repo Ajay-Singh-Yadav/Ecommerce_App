@@ -13,7 +13,6 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import BackArrow from '@assets/svg/BackArrow.svg';
-import { moderateScale, verticalScale, scale } from 'react-native-size-matters';
 import { useNavigation } from '@react-navigation/native';
 
 const LoginSignup = ({}) => {
@@ -21,7 +20,7 @@ const LoginSignup = ({}) => {
     const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
-      {/* Top Image */}
+  
       <View style={styles.imageContainer}>
         <ImageBackground
           source={require('@assets/images/LoginImage.png')}
@@ -41,7 +40,7 @@ const LoginSignup = ({}) => {
           Join us now to be a part of Bewakoof® family.
         </Text>
 
-        {/* Phone Input */}
+       
         <View style={styles.inputWrapper}>
           <Text style={styles.flag}>🇮🇳 +91</Text>
           <TextInput
@@ -51,12 +50,12 @@ const LoginSignup = ({}) => {
           />
         </View>
 
-        {/* Continue Button */}
+        
         <TouchableOpacity style={styles.continueBtn}>
           <Text style={styles.continueText}>CONTINUE</Text>
         </TouchableOpacity>
 
-        {/* Social Buttons */}
+        
         <View style={styles.socialRow}>
           <TouchableOpacity style={styles.socialBtn}>
             <Text style={styles.socialText}>GOOGLE</Text>
@@ -67,7 +66,7 @@ const LoginSignup = ({}) => {
           </TouchableOpacity>
         </View>
 
-        {/* Terms */}
+       
         <Text style={styles.terms}>
           By creating an account or logging in, you agree with Bewakoof’s
           <Text style={styles.link}> T&C </Text>

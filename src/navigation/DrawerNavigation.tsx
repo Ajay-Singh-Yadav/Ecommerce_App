@@ -12,54 +12,59 @@ import BottomNavigation from './BottomNavigation';
 import DrawerHeader from './DrawerHeader';
 import colors from '@theme/colors';
 import Logo from '@assets/svg/Logo.svg';
+import Menu from '@assets/svg/Menu.svg';
 import navigationStrings from './navigationStrings';
 import { CustomDrawer } from './CustomDrawer';
 import { moderateScale } from 'react-native-size-matters';
 import { DrawerActions } from '@react-navigation/native';
+import { Sizes } from '@theme/sizes';
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigation = () => {
   const isRTL = I18nManager.isRTL;
+
   return (
     <Drawer.Navigator
+      key={isRTL ? 'rtl-drawer' : 'ltr-drawer'}
       screenOptions={({ navigation }) => ({
         headerStyle: {
           backgroundColor: colors.primary,
         },
-       
 
-        headerTitleContainerStyle: {
-          width: 'auto',
-          borderWidth:1,
-          
+        drawerStyle: {
+          marginTop: moderateScale(50),
+          borderTopStartRadius: 0,
+          borderBottomStartRadius: 0,
+          borderTopEndRadius: Sizes.rd_20,
+          borderBottomEndRadius: Sizes.rd_20,
         },
 
-        // headerTitle: () => ,
+        overlayColor: 'transparent',
+        headerTitle: () => '',
 
-        drawerStyle: { marginTop: moderateScale(50) },
-        headerLeft: () =>
-          
-          !isRTL && (
+        headerLeft: () => (
+          <View
+            style={{
+              flexDirection: 'row',
+              gap: Sizes.mr_8,
+              marginHorizontal: Sizes.mr_8,
+            }}
+          >
             <TouchableOpacity
+              style={{
+                transform: [{ scaleX: isRTL ? -1 : 1 }],
+              }}
               onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
-              style={{ marginHorizontal: 12, borderWidth:1 }}
             >
-              <Logo width={24} height={24} />
+              <Menu width={24} height={24} />
             </TouchableOpacity>
-          ),
-        // headerRight: () => <DrawerHeader />,
-             headerRight: () =>
-          !isRTL ? (
-            <TouchableOpacity
-              onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
-              style={{ marginHorizontal: 12 }}
-            >
-              <Logo width={24} height={24} />
-            </TouchableOpacity>
-          ) : (
-            <DrawerHeader />
-          ),
+
+            <Logo width={26} height={26} />
+          </View>
+        ),
+
+        headerRight: () => <DrawerHeader />,
       })}
       drawerContent={props => <CustomDrawer {...props} />}
     >

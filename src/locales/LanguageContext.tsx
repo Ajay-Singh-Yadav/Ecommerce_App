@@ -54,6 +54,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
     const isRTL = lang === 'ar';
 
     if (I18nManager.isRTL !== isRTL) {
+      
       I18nManager.forceRTL(isRTL);
 
       if (shouldRestart) {

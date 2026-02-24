@@ -1,5 +1,12 @@
 import { DrawerContentScrollView } from '@react-navigation/drawer';
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  StyleSheet,
+  I18nManager,
+} from 'react-native';
 import User from '@assets/svg/User.svg';
 import Line from '@global/Line';
 import { moderateScale } from 'react-native-size-matters';
@@ -20,7 +27,6 @@ const icons = {
   men: require('@assets/images/men.png'),
   shop: require('@assets/images/shop.png'),
 };
-
 
 const DrawerRow = ({ title, IconPath, language }: any) => (
   <View style={style.drawerStyle}>
@@ -59,11 +65,9 @@ const ProfileBox = ({ title, IconPath }: any) => (
 
 export const CustomDrawer = (props: any) => {
   const navigation = props.navigation;
-   const { language, setLanguage } = useLanguage();
+  const { language, setLanguage, strings } = useLanguage();
 
-
-
-
+  const isRTL = I18nManager.isRTL;
 
   return (
     <DrawerContentScrollView
@@ -77,14 +81,14 @@ export const CustomDrawer = (props: any) => {
           <User width={moderateScale(24)} height={moderateScale(24)} />
           <View style={{ marginHorizontal: moderateScale(10) }}>
             <View>
-              <Text>Hey There!</Text>
+              <Text>{strings.HEY_THERE}</Text>
               <TouchableOpacity
                 style={style.subTextHeader}
                 onPress={() =>
                   navigation.navigate(navigationStrings.LOGIN_SIGNUP)
                 }
               >
-                <Text style={style.loginSignupStyle}>Login / Signup</Text>
+                <Text style={style.loginSignupStyle}>{strings.LOGIN_SIGNUP}</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -96,70 +100,70 @@ export const CustomDrawer = (props: any) => {
       </View>
 
       <Line
-        text="SHOP IN"
+        text={strings.SHOP_IN}
         style={style.LineStyle}
         textStyle={style.textLineStyle}
       />
 
       {/* SHOP SECTION */}
-      <DrawerRow title="Men" IconPath={icons.men} />
-      <DrawerRow title="Women" IconPath={icons.women} />
+      <DrawerRow title={strings.MEN} IconPath={icons.men} />
+      <DrawerRow title={strings.WOMEN} IconPath={icons.women} />
 
       <Line
-        text="ENGAGE"
+        text={strings.ENGAGE}
         style={style.LineStyle}
         textStyle={style.textLineStyle}
       />
-      <DrawerRow title="Find a Store" IconPath={icons.shop} />
+      <DrawerRow title={strings.FIND_STORE} IconPath={icons.shop} />
       <Line
-        text="Language"
+        text={strings.LANGUAGE}
         style={style.LineStyle}
         textStyle={style.textLineStyle}
       />
-     <View style={style.LanguageContainer}>
-  <DrawerRow
-    title="Arabic"
-    language
-    selected={language === 'ar'}
-    onPress={() => setLanguage('ar')}
-  />
+      <View style={style.LanguageContainer}>
+        <DrawerRow
+          title="Arabic"
+          language
+          selected={language === 'ar'}
+          onPress={() => setLanguage('ar')}
+        />
 
-  <DrawerRow
-    title="English"
-    language
-    selected={language === 'en'}
-    onPress={() => setLanguage('en')}
-  />
-</View>
+        <DrawerRow
+          title="English"
+          language
+          selected={language === 'en'}
+          onPress={() => setLanguage('en')}
+        />
+      </View>
       <Line
-        text="MY PROFILE"
+        text={strings.MY_PROFILE}
         style={style.LineStyle}
         textStyle={style.textLineStyle}
       />
 
       {/* PROFILE GRID */}
       <View style={{ flexDirection: 'row' }}>
-        <ProfileBox title="My Account" IconPath={icons.myAccount} />
-        <ProfileBox title="My Orders" IconPath={icons.delivery} />
-        <ProfileBox title="My Wallet" IconPath={icons.wallet} />
-        <ProfileBox title="Wishlist" IconPath={icons.wishlist} />
+        <ProfileBox title={strings.MY_ACCOUNT} IconPath={icons.myAccount} />
+        <ProfileBox title={strings.MY_ORDERS} IconPath={icons.delivery} />
+        <ProfileBox title={strings.WALLET} IconPath={icons.wallet} />
+        <ProfileBox title={strings.WISHLIST} IconPath={icons.wishlist} />
       </View>
       <Line
-        text="CONTACT US"
+        text={strings.CONTACT_US}
         style={style.LineStyle}
         textStyle={style.textLineStyle}
       />
       {/* FOOTER */}
-      <DrawerRow title="Help & Support" />
-      <DrawerRow title="Feedback" />
+      <DrawerRow title={strings.HELP_SUPPORT} />
+      <DrawerRow title={strings.FEEDBACK} />
       <Line
-        text="ABOUT US"
+        text={strings.ABOUT_US}
         style={style.LineStyle}
         textStyle={style.textLineStyle}
       />
-      <DrawerRow title="Our Story" />
-      <DrawerRow title="Fanbook" />
-      <Text style={{ color: colors.lightGray }}>App version 2.0.0</Text>
+      <DrawerRow title={strings.OUR_STORY} />
+      <DrawerRow title={strings.FEEDBACK} />
+      <Text style={{ color: colors.lightGray }}>{strings.APP_VERSION}</Text>
     </DrawerContentScrollView>
   );
 };
@@ -222,7 +226,7 @@ const style = StyleSheet.create({
     padding: Sizes.pd_6,
   },
   LanguageButtonSelected: {
-  backgroundColor: colors.brand_blue,
-  borderColor: colors.brand_blue,
-},
+    backgroundColor: colors.brand_blue,
+    borderColor: colors.brand_blue,
+  },
 });

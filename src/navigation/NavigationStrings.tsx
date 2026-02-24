@@ -15,6 +15,7 @@ export default {
     CATEORY_STACK:'Category Stack',
     STUDIO_STACK:'Studio Stack',
     LOGIN_SIGNUP:'Login Signup',
+    SPLASH_SCREEN:'Splash Screen',
    
 
 
