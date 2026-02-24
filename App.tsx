@@ -1,23 +1,22 @@
 import { StatusBar, StyleSheet, Text, View } from 'react-native';
-import React, { useMemo } from 'react';
+import remoteConfig from '@react-native-firebase/remote-config';
+import React, { useMemo, useEffect, useState } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Provider } from 'react-redux';
 
 import { LanguageProvider } from '@locales/LanguageContext';
 import RootNavigation from '@navigation/RootNavigation';
 import { store } from '@redux/store';
+import Config from 'react-native-config';
 
 const App = () => {
-  const styles = useMemo(
-    () =>
-      StyleSheet.create({
-        container: {
-          flex: 1,
-        },
-      }),
-    [],
-  );
 
+
+
+useEffect(() => {
+  console.log("ENV:", Config.ENV);
+  console.log("BASE_URL:", Config.BASE_URL);
+}, []);
   return (
     <Provider store={store}>
       <GestureHandlerRootView>
@@ -36,4 +35,8 @@ const App = () => {
 
 export default App;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});

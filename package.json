@@ -5,13 +5,17 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
+    "android:staging": "cross-env ENVFILE=.env.staging npx react-native run-android --mode StagingDebug",
+    "android:prod": "cross-env ENVFILE=.env.production npx react-native run-android --mode ProductionDebug",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "clean": "cd android && ./gradlew clean"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^2.2.0",
     "@react-native-firebase/app": "^23.8.6",
+    "@react-native-firebase/remote-config": "^23.8.6",
     "@react-native/new-app-screen": "0.83.1",
     "@react-navigation/bottom-tabs": "^7.10.1",
     "@react-navigation/drawer": "^7.7.13",
