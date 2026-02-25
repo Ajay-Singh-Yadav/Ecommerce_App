@@ -26,11 +26,11 @@ const RootNavigation = () => {
           name={navigationStrings.SPLASH_SCREEN}
           component={SplashScreen}
         />
-        <Stack.Screen name={navigationStrings.LOGIN} component={LoginScreen} />
+        {/* <Stack.Screen name={navigationStrings.LOGIN} component={LoginScreen} />
         <Stack.Screen
           name={navigationStrings.SIGNUP}
           component={SignupScreen}
-        />
+        /> */}
 
         <Stack.Screen
           name={navigationStrings.DRAWER}

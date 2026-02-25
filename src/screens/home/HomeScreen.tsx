@@ -13,7 +13,7 @@ const HomeScreen = () => {
 
   return (
     <View>
-      <TouchableOpacity onPress={()=> setLanguage('ar')}>
+      <TouchableOpacity onPress={()=> setLanguage('en')}>
         <Text>{strings.ABOUT_US}</Text>
       </TouchableOpacity>
       <Text>Home Screen</Text>

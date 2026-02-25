@@ -85,6 +85,7 @@ export const Sizes = {
   h_44: moderateScale(44),
   h_48: moderateScale(48),
   h_60: moderateScale(60),
+  h_70: moderateScale(70),
   h_80: moderateScale(80),
   h_100: moderateScale(100),
   h_200: moderateScale(200),

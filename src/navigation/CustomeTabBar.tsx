@@ -1,14 +1,86 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React from 'react';
 
-const CustomeTabBar = () => {
+import HomeIcon from '@assets/svg/Home.svg';
+import CategoryIcon from '@assets/svg/Category.svg';
+import PlayIcon from '@assets/svg/Play.svg';
+import ProfileIcon from '@assets/svg/Profile.svg';
+import navigationStrings from './navigationStrings';
+import { Sizes } from '@theme/sizes';
+import colors from '@theme/colors';
+
+export const CustomTabBar = ({ state, descriptors, navigation }: any) => {
   return (
-    <View>
-      <Text>CustomeTabBar</Text>
+    <View style={styles.tabContainer}>
+      {state.routes.map((route: any, index: any) => {
+        const isFocused = state.index === index;
+        const { options } = descriptors[route.key];
+        let IconComponent;
+
+        switch (route.name) {
+          case navigationStrings.HOME_STACK:
+            IconComponent = HomeIcon;
+            break;
+          case navigationStrings.CATEORY_STACK:
+            IconComponent = CategoryIcon;
+            break;
+          case navigationStrings.STUDIO_STACK:
+            IconComponent = PlayIcon;
+            break;
+          case navigationStrings.PROFILE_STACK:
+            IconComponent = ProfileIcon;
+            break;
+          default:
+            IconComponent = HomeIcon;
+        }
+
+        const onPress = () => {
+          if (route.name === navigationStrings.STUDIO_STACK) {
+            navigation.navigate(navigationStrings.STUDIO);
+          } else {
+            navigation.navigate(route.name);
+          }
+        };
+
+        return (
+          <View style={styles.tabButtonContainer}>
+            <TouchableOpacity
+              key={route.key}
+              onPress={onPress}
+              style={[
+                styles.tabButton,
+                {
+                  backgroundColor: isFocused ? colors.ButtonGray : colors.white,
+                },
+              ]}
+            >
+              <IconComponent width={24} height={24} />
+            </TouchableOpacity>
+          </View>
+        );
+      })}
     </View>
-  )
-}
+  );
+};
 
-export default CustomeTabBar
+const styles = StyleSheet.create({
+  tabContainer: {
+    flexDirection: 'row',
+    height: Sizes.h_60,
+    backgroundColor: '#fff',
+    marginBottom: Sizes.mr_12,
+  },
+  tabButtonContainer: {
+    flex: 1,
+     marginHorizontal:Sizes.mr_8,
+    // borderWidth: Sizes.mr_1,
+  },
 
-const styles = StyleSheet.create({})
+  tabButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: Sizes.pd_10,
+    borderRadius: Sizes.rd_8,
+    // borderWidth: Sizes.mr_1,
+  },
+});
