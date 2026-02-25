@@ -32,7 +32,7 @@ const LoginScreen = () => {
   const navigation = useNavigation<any>();
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
+      <Text style={styles.title}>Login Screen</Text>
 
       <Formik
         initialValues={{
@@ -78,7 +78,7 @@ const LoginScreen = () => {
               <Text style={styles.error}>{errors.password}</Text>
             )}
 
-            <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+            <TouchableOpacity   testID="login-button"  style={styles.button} onPress={handleSubmit}>
               <Text style={styles.btnText}>Login</Text>
             </TouchableOpacity>
 

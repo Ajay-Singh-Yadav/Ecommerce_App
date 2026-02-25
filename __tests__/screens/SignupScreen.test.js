@@ -2,6 +2,8 @@ import { render, fireEvent, waitFor } from '@testing-library/react-native';
 import { Alert } from 'react-native';
 import SignupScreen from '../../src/screens/profile/components/SignupScreen';
 
+jest.spyOn(Alert, 'alert');
+
 describe('SignupScreen', () => {
   const mockNavigation = {
     navigate: jest.fn(),
@@ -11,7 +13,6 @@ describe('SignupScreen', () => {
     const { getByPlaceholderText } = render(
       <SignupScreen navigation={mockNavigation} />,
     );
-
     expect(getByPlaceholderText('First Name')).toBeTruthy();
     expect(getByPlaceholderText('Last Name')).toBeTruthy();
     expect(getByPlaceholderText('Email')).toBeTruthy();
@@ -34,47 +35,42 @@ describe('SignupScreen', () => {
   });
 
   it('shows error for all invalid email formats', async () => {
-  const { getByPlaceholderText, getByText } = render(
-    <SignupScreen navigation={mockNavigation} />
-  );
-
-  const invalidEmails = [
-    'userdomain.com',       
-    'user@',               
-    '@domain.com',          
-    'user@@domain.com',     
-    'user@domaincom',       
-    'user!#@domain.com',    
-    '',                     
-  ];
-
-  const emailInput = getByPlaceholderText('Email');
-
-  for (const email of invalidEmails) {
-    fireEvent.changeText(emailInput, email);
-    fireEvent.press(getByText(/submit/i));
-
-    await waitFor(() => {
-      expect(
-        getByText(/email must/i) // adjust to your actual error text
-      ).toBeTruthy();
-    });
-  }
-});
-
-  it('shows error for invalid email and phone', async () => {
     const { getByPlaceholderText, getByText } = render(
       <SignupScreen navigation={mockNavigation} />,
     );
 
-    
-    fireEvent.changeText(getByPlaceholderText('Email'), '123wrong');
+    const invalidEmails = [
+      'userdomain.com',
+      'user@',
+      '@domain.com',
+      'user@@domain.com',
+      'user@domaincom',
+      'user!#@domain.com',
+      '',
+    ];
+
+    const emailInput = getByPlaceholderText('Email');
+
+    for (const email of invalidEmails) {
+      fireEvent.changeText(emailInput, email);
+      fireEvent.press(getByText(/submit/i));
+
+      await waitFor(() => {
+        expect(getByText(/email must/i)).toBeTruthy();
+      });
+    }
+  });
+
+  it('shows error for invalid  phone', async () => {
+    const { getByPlaceholderText, getByText } = render(
+      <SignupScreen navigation={mockNavigation} />,
+    );
+
     fireEvent.changeText(getByPlaceholderText('Phone Number'), '1234');
 
     fireEvent.press(getByText(/submit/i));
 
     await waitFor(() => {
-      expect(getByText(/email must/i)).toBeTruthy();
       expect(getByText(/phone number must be exactly 10 digits/i)).toBeTruthy();
     });
   });
@@ -92,7 +88,6 @@ describe('SignupScreen', () => {
       expect(getByText(/password must contain 8 characters/i)).toBeTruthy();
     });
   });
-  jest.spyOn(Alert, 'alert');
 
   it('submits form with valid data and shows alert', async () => {
     const { getByPlaceholderText, getByText } = render(<SignupScreen />);
@@ -102,8 +97,8 @@ describe('SignupScreen', () => {
     fireEvent.changeText(getByPlaceholderText('Email'), 'john123@test.com');
     fireEvent.changeText(getByPlaceholderText('Phone Number'), '9876543210');
     fireEvent.changeText(getByPlaceholderText('Password'), 'Abc@1234');
+    fireEvent.press(getByText('Female'));
 
-    fireEvent.press(getByText('Male'));
     fireEvent.press(getByText(/submit/i));
 
     await waitFor(() => {
