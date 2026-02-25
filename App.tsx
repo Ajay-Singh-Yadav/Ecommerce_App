@@ -10,13 +10,14 @@ import { store } from '@redux/store';
 import Config from 'react-native-config';
 
 const App = () => {
+  useEffect(() => {
+    console.log('ENV:', Config.ENV);
+    console.log('BASE_URL:', Config.BASE_URL);
+  }, []);
 
 
 
-useEffect(() => {
-  console.log("ENV:", Config.ENV);
-  console.log("BASE_URL:", Config.BASE_URL);
-}, []);
+  
   return (
     <Provider store={store}>
       <GestureHandlerRootView>

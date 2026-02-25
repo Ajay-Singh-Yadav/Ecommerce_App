@@ -15,6 +15,17 @@ jest.mock('react-native-gesture-handler', () => {
   };
 });
 
+jest.mock('react-native-reanimated', () => {
+  const Reanimated = require('react-native-reanimated/mock');
+
+  // Override methods that might trigger native worklets
+  Reanimated.default.call = () => {};
+  Reanimated.default.__setNativeProps = () => {};
+  Reanimated.default.runOnJS = (fn) => fn;
+
+  return Reanimated;
+});
+
 jest.mock('@react-native-async-storage/async-storage', () =>
   require('@react-native-async-storage/async-storage/jest/async-storage-mock')
 );
@@ -70,6 +81,6 @@ jest.mock('react-native-gesture-handler', () => {
   return {
     GestureHandlerRootView: ({ children }) => children,
   };
+  
 });
-
 

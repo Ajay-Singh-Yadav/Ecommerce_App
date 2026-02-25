@@ -1,5 +1,6 @@
 export const imagePath = {
   logoIcon: require('@assets/images/logoIcon.jpg'),
+  SplashImage:require('@assets/images/splashImage.png')
 };
 
 
