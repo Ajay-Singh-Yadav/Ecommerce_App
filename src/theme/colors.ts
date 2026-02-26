@@ -2,6 +2,10 @@ export default {
   noColor: 'transparent',
 
   red: '#F60000',
+  black:'#000',
+  yellow:'#FF9500',
+  
+
 
   /** Brand */
   primary: '#FFD232', // saffron

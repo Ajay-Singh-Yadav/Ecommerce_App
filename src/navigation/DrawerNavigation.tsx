@@ -60,7 +60,7 @@ const DrawerNavigation = () => {
               <Menu width={24} height={24} />
             </TouchableOpacity>
 
-            <Logo width={26} height={26} />
+            <Logo width={26} height={26} color={colors.white} />
           </View>
         ),
 

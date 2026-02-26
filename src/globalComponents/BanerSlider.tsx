@@ -1,111 +1,107 @@
-// import {
-//   StyleSheet,
-//   Text,
-//   View,
-//   Dimensions,
-//   Image,
-//   TouchableOpacity,
-// } from 'react-native';
-// import React, { useRef } from 'react';
-// import { useSharedValue } from 'react-native-reanimated';
-// import Carousel, { ICarouselInstance } from 'react-native-reanimated-carousel';
-// import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import React, { useRef, useMemo, useEffect, useState } from 'react';
+import {
+  View,
+  Image,
+  TouchableOpacity,
+  Dimensions,
+  StyleProp,
+  ViewStyle,
+  ImageStyle,
+} from 'react-native';
 
+import Carousel, { ICarouselInstance } from 'react-native-reanimated-carousel';
+import { useSharedValue } from 'react-native-reanimated';
+import { useNavigation } from '@react-navigation/native';
 
-// import { br, rh, rpm, rw } from '@theme/responsive';
-// import { CustomDot } from './CustomDot ';
-// import NavigationStrings from '@navigation/NavigationStrings';
-// import { useNavigation } from '@react-navigation/native';
-// import { ParamList } from '@navigation/Type';
-// import { BanerSliderProps } from './Type';
+import { CustomDot } from './CustomDot ';
+import navigationStrings from '@navigation/navigationStrings';
+import { Sizes } from '@theme/sizes';
+import LogoLoader from './LogoLoader';
+import colors from '@theme/colors';
 
-// const BanerSlider: React.FC<BanerSliderProps> = ({
-//   buttonStyle,
-//   imageStyle,
-//   carouselStyle,
-//   width,
-//   height,
-//   mode,
-//   imageData,
-// }) => {
-//   const navigation = useNavigation<NativeStackNavigationProp<ParamList>>();
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
-//   const ref = useRef<ICarouselInstance>(null);
-//   const progress = useSharedValue<number>(1);
+type Props = {
+  width?: number;
+  height?: number;
+  imageData?: any[];
+  buttonStyle?: StyleProp<ViewStyle>;
+  carouselStyle?: StyleProp<ViewStyle>;
+  imageStyle?: StyleProp<ImageStyle>;
+};
 
-//   const handleNavigation = () => {
-//     navigation.navigate(NavigationStrings.PRODUCT_DETAILS);
-//   };
+const BanerSlider: React.FC<Props> = ({
+  width,
+  height,
+  imageData = [],
+  buttonStyle,
+  carouselStyle,
+  imageStyle,
+}) => {
+  const navigation = useNavigation<any>();
+  const ref = useRef<ICarouselInstance>(null);
+  const progress = useSharedValue(0);
 
-//   return (
+  const sliderWidth = useMemo(() => width ?? SCREEN_WIDTH, [width]);
 
-//     <View style={buttonStyle}>
-//       <Carousel
-//         ref={ref}
-//         data={imageData}
-//         width={width}
-//         height={height}
-//         autoPlay
-//         autoPlayInterval={1500}
-//         scrollAnimationDuration={3000}
-//         onProgressChange={progress}
+  const sliderHeight = useMemo(
+    () => height ?? sliderWidth * 0.5,
+    [height, sliderWidth],
+  );
 
-//         onConfigurePanGesture={(gesture) => {
-//           gesture.activeOffsetX([-15, 15]);
-//         }}
+  const handleNavigation = () => {
+    navigation.navigate(navigationStrings.PRODUCT_LIST);
+  };
 
-//         renderItem={({ item }: any) => (
-//           <TouchableOpacity
-//             onPress={handleNavigation}
-//             activeOpacity={0.9}
-//             style={carouselStyle}
-//           >
-
-//             <Image
-//               source={item.img}
-//               style={{
-//                 width: '100%',
-//                 height: '100%',
-//                 resizeMode: 'cover',
-//                 borderRadius: br(20),
-//               }}
-//             />
-
-//           </TouchableOpacity>
-//         )}
-//       />
-//       <View
-//         style={{
-//           flexDirection: 'row',
-//           justifyContent: 'center',
-//           alignItems: 'center',
-//           marginTop: rpm(5),
-//         }}
-//       >
-//         {imageData.map((_: any, index: any) => (
-//           <CustomDot key={index} index={index} progress={progress} />
-//         ))}
-//       </View>
-
-//     </View>
-//   );
-// };
-
-// export default BanerSlider;
-
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-
-const BanerSlider = () => {
   return (
-    <View>
-      <Text>BanerSlider</Text>
+    <View style={buttonStyle}>
+      <Carousel
+        ref={ref}
+        data={imageData}
+        width={sliderWidth}
+        height={sliderHeight}
+        autoPlay
+        autoPlayInterval={2500}
+        scrollAnimationDuration={800}
+        onProgressChange={progress}
+        onConfigurePanGesture={gesture => {
+          gesture.activeOffsetX([-10, 10]);
+        }}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            activeOpacity={0.9}
+            onPress={handleNavigation}
+            style={carouselStyle}
+          >
+            <Image
+              source={item.img}
+              resizeMode="cover"
+              style={[
+                {
+                  width: '100%',
+                  height: '100%',
+                  borderRadius: Sizes.rd_20,
+                },
+                imageStyle,
+              ]}
+            />
+          </TouchableOpacity>
+        )}
+      />
+
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'center',
+          marginTop: Sizes.mr_4,
+        }}
+      >
+        {imageData.map((_, index) => (
+          <CustomDot key={index} index={index} progress={progress} />
+        ))}
+      </View>
     </View>
-  )
-}
+  );
+};
 
-export default BanerSlider
-
-const styles = StyleSheet.create({})
-
-
+export default BanerSlider;
