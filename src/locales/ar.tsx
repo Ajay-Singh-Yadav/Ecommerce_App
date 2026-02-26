@@ -1,4 +1,7 @@
 const ar = {
+  // ARABIC: 'Arabic',
+  ENGLISH: 'English',
+
   PROFILE_TITLE: 'الملف الشخصي',
   EDIT: 'تعديل',
 
@@ -15,7 +18,7 @@ const ar = {
   FIND_STORE: 'ابحث عن متجر',
   LANGUAGE: 'اللغة',
   ARABIC: 'العربية',
-  ENGLISH: 'الإنجليزية',
+  // ENGLISH: 'الإنجليزية',
 
   MY_PROFILE: 'ملفي الشخصي',
   MY_ACCOUNT: 'حسابي',

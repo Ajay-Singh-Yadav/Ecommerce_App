@@ -11,7 +11,7 @@ const SplashScreen = () => {
 
        useEffect(()=>{
           setTimeout(()=>{
-            navigation.navigate(navigationStrings.DRAWER)
+            navigation.replace(navigationStrings.DRAWER)
           },2000)
      },[])
 

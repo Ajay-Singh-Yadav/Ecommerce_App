@@ -28,7 +28,7 @@ const icons = {
   shop: require('@assets/images/shop.png'),
 };
 
-const DrawerRow = ({ title, IconPath, language }: any) => (
+const DrawerRow = ({ title, IconPath, language, selected, onPress }: any) => (
   <View style={style.drawerStyle}>
     {IconPath && (
       <View style={style.drawerImageStyle}>
@@ -40,7 +40,11 @@ const DrawerRow = ({ title, IconPath, language }: any) => (
     )}
 
     <TouchableOpacity
-      style={language ? style.LanguageButton : null}
+      onPress={onPress}
+      style={[
+        language && style.LanguageButton,
+        language && selected && style.selectedLanguage,
+      ]}
       activeOpacity={0.4}
     >
       <Text style={style.drawerText}>{title}</Text>
@@ -67,18 +71,22 @@ export const CustomDrawer = (props: any) => {
   const navigation = props.navigation;
   const { language, setLanguage, strings } = useLanguage();
 
-  const isRTL = I18nManager.isRTL;
+  useEffect(() => {
+    if (!language) {
+      setLanguage('en');
+    }
+  }, [language]);
 
   return (
     <DrawerContentScrollView
       {...props}
-      contentContainerStyle={{ paddingTop: 10 }}
+      contentContainerStyle={{ paddingTop: Sizes.pd_10 }}
       automaticallyAdjustContentInsets={false}
     >
       {/* Header */}
       <View style={style.header}>
         <View style={style.subHeader}>
-          <User width={moderateScale(24)} height={moderateScale(24)} />
+          <User width={Sizes.w_24} height={Sizes.w_24} />
           <View style={{ marginHorizontal: moderateScale(10) }}>
             <View>
               <Text>{strings.HEY_THERE}</Text>
@@ -88,14 +96,16 @@ export const CustomDrawer = (props: any) => {
                   navigation.navigate(navigationStrings.LOGIN_SIGNUP)
                 }
               >
-                <Text style={style.loginSignupStyle}>{strings.LOGIN_SIGNUP}</Text>
+                <Text style={style.loginSignupStyle}>
+                  {strings.LOGIN_SIGNUP}
+                </Text>
               </TouchableOpacity>
             </View>
           </View>
         </View>
 
         <TouchableOpacity onPress={() => navigation.closeDrawer()}>
-          <Close width={moderateScale(22)} height={moderateScale(22)} />
+          <Close width={Sizes.w_22} height={Sizes.h_22} />
         </TouchableOpacity>
       </View>
 
@@ -121,19 +131,20 @@ export const CustomDrawer = (props: any) => {
         textStyle={style.textLineStyle}
       />
       <View style={style.LanguageContainer}>
+          <DrawerRow
+          title={strings.ENGLISH}
+          language
+          selected={language === 'en'}
+          onPress={() => setLanguage('en')}
+        />
         <DrawerRow
-          title="Arabic"
+          title={strings.ARABIC}
           language
           selected={language === 'ar'}
           onPress={() => setLanguage('ar')}
         />
 
-        <DrawerRow
-          title="English"
-          language
-          selected={language === 'en'}
-          onPress={() => setLanguage('en')}
-        />
+      
       </View>
       <Line
         text={strings.MY_PROFILE}
@@ -156,11 +167,13 @@ export const CustomDrawer = (props: any) => {
       {/* FOOTER */}
       <DrawerRow title={strings.HELP_SUPPORT} />
       <DrawerRow title={strings.FEEDBACK} />
-      <Line
-        text={strings.ABOUT_US}
-        style={style.LineStyle}
-        textStyle={style.textLineStyle}
-      />
+
+        <Line
+          text={strings.ABOUT_US}
+          style={style.LineStyle}
+          textStyle={style.textLineStyle}
+        />
+    
       <DrawerRow title={strings.OUR_STORY} />
       <DrawerRow title={strings.FEEDBACK} />
       <Text style={{ color: colors.lightGray }}>{strings.APP_VERSION}</Text>
@@ -184,46 +197,64 @@ const style = StyleSheet.create({
   },
   loginSignupStyle: {
     color: colors.brand_blue,
-    fontSize: moderateScale(12),
+    fontSize: Sizes.font_12,
   },
   LineStyle: {
-    flex: 1,
+    width: '100%',
+    marginEnd: Sizes.mr_10,
     borderWidth: 0.5,
   },
   textLineStyle: {
-    fontSize: moderateScale(10),
+    fontSize: Sizes.font_10,
   },
   profileBoxStyle: {
-    width: moderateScale(50),
-    height: moderateScale(50),
-    marginRight: moderateScale(10),
-    borderRadius: 10,
+    width: Sizes.w_50,
+    height: Sizes.h_50,
+    marginRight: Sizes.mr_10,
+    borderRadius: Sizes.rd_10,
     alignItems: 'center',
   },
   profileBoxText: {
-    fontSize: moderateScale(10),
+    fontSize: Sizes.font_10,
   },
   drawerStyle: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginVertical: moderateScale(8),
-    gap: moderateScale(10),
+    marginVertical: Sizes.mr_8,
+    gap: Sizes.gap_10,
   },
   drawerImageStyle: {
-    width: moderateScale(20),
-    height: moderateScale(20),
+    width: Sizes.w_20,
+    height: Sizes.h_20,
   },
   drawerText: {
-    fontSize: moderateScale(12),
+    fontSize: Sizes.font_12,
   },
   LanguageContainer: {
     flexDirection: 'row',
     gap: Sizes.mr_10,
   },
-  LanguageButton: {
-    borderWidth: 1,
+  row: {
+    paddingVertical: Sizes.pd_12,
+    paddingHorizontal: Sizes.pd_16,
+  },
+
+  selectedRow: {
+    backgroundColor: colors.primary,
     borderRadius: Sizes.rd_8,
-    padding: Sizes.pd_6,
+  },
+  LanguageButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: Sizes.w_60,
+    height: Sizes.h_30,
+    borderWidth: 0.5,
+    borderRadius: Sizes.rd_8,
+  
+  },
+  selectedLanguage: {
+    backgroundColor: colors.primary,
+    borderRadius: Sizes.rd_6,
   },
   LanguageButtonSelected: {
     backgroundColor: colors.brand_blue,

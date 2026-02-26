@@ -43,9 +43,8 @@ export const CustomTabBar = ({ state, descriptors, navigation }: any) => {
         };
 
         return (
-          <View style={styles.tabButtonContainer}>
+          <View key={route.key} style={styles.tabButtonContainer}>
             <TouchableOpacity
-              key={route.key}
               onPress={onPress}
               style={[
                 styles.tabButton,
@@ -54,7 +53,7 @@ export const CustomTabBar = ({ state, descriptors, navigation }: any) => {
                 },
               ]}
             >
-              <IconComponent width={24} height={24} />
+              <IconComponent width={22} height={22} />
             </TouchableOpacity>
           </View>
         );
@@ -66,14 +65,12 @@ export const CustomTabBar = ({ state, descriptors, navigation }: any) => {
 const styles = StyleSheet.create({
   tabContainer: {
     flexDirection: 'row',
-    height: Sizes.h_60,
+    height: Sizes.h_70,
     backgroundColor: '#fff',
-    marginBottom: Sizes.mr_12,
   },
   tabButtonContainer: {
     flex: 1,
-     marginHorizontal:Sizes.mr_8,
-    // borderWidth: Sizes.mr_1,
+    marginHorizontal: Sizes.mr_8,
   },
 
   tabButton: {
@@ -81,6 +78,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: Sizes.pd_10,
     borderRadius: Sizes.rd_8,
-    // borderWidth: Sizes.mr_1,
   },
 });

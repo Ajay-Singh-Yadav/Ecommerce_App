@@ -1,24 +1,47 @@
+
+
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useLanguage } from '@locales/useLanguage';
+import { getProducts } from '../../api/axios/getProducts';
+import HorizontalProductList from '@screens/productDetails/components/HorizontalProductList';
 
 const HomeScreen = () => {
-  const { language, setLanguage, strings } = useLanguage();
+  const { strings } = useLanguage();
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    if (!language) {
-      setLanguage('en');
-    }
-  }, [language]);
+    const fechProducts = async () => {
+      try {
+        const res = await getProducts();
+        setProducts(res);
+        console.log(res);
+      } catch (e) {
+        console.log('API ERROR:', e);
+      }
+    };
+    fechProducts();
+  }, []);
+
+  const styles = useMemo(
+    () =>
+      StyleSheet.create({
+        container: {
+          flex: 1,
+          justifyContent:'center',
+          
+        
+        },
+      }),
+    [],
+  );
 
   return (
-    <View>
-      <TouchableOpacity onPress={()=> setLanguage('en')}>
-        <Text>{strings.ABOUT_US}</Text>
-      </TouchableOpacity>
-      <Text>Home Screen</Text>
+    <View style={styles.container}>
+      <HorizontalProductList products={products} />
     </View>
   );
 };
 
 export default HomeScreen;
+

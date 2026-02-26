@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { LineProps } from './Type';
-import { moderateScale } from 'react-native-size-matters';
+import { Sizes } from '@theme/sizes';
 
 const Line: React.FC<LineProps> = ({ style, text, textStyle }) => {
   return (
@@ -16,10 +16,9 @@ export default Line;
 
 const styles = StyleSheet.create({
   container: {
-    width:moderateScale(300),
     flexDirection: 'row',
     alignItems: 'center',
-    gap:moderateScale(10),
-    marginVertical:10
+    gap:Sizes.gap_10,
+    marginVertical:Sizes.mr_8
   },
 });

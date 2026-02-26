@@ -36,7 +36,7 @@ const en = {
   OUR_STORY: 'Our Story',
   FANBOOK: 'Fanbook',
 
-  APP_VERSION: 'App versionc',
+  APP_VERSION: 'App version',
 } as const;
 
 export type TranslationKeys = keyof typeof en;
