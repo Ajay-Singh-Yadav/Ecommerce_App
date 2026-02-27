@@ -5,6 +5,7 @@ import HomeIcon from '@assets/svg/Home.svg';
 import CategoryIcon from '@assets/svg/Category.svg';
 import PlayIcon from '@assets/svg/Play.svg';
 import ProfileIcon from '@assets/svg/Profile.svg';
+import User from '@assets/svg/User.svg';
 import navigationStrings from './navigationStrings';
 import { Sizes } from '@theme/sizes';
 import colors from '@theme/colors';
@@ -44,16 +45,8 @@ export const CustomTabBar = ({ state, descriptors, navigation }: any) => {
 
         return (
           <View key={route.key} style={styles.tabButtonContainer}>
-            <TouchableOpacity
-              onPress={onPress}
-              style={[
-                styles.tabButton,
-                {
-                  backgroundColor: isFocused ? colors.ButtonGray : colors.white,
-                },
-              ]}
-            >
-              <IconComponent width={22} height={22} />
+            <TouchableOpacity onPress={onPress} style={[styles.tabButton]}>
+              <IconComponent width={Sizes.w_20} height={Sizes.h_20} />
             </TouchableOpacity>
           </View>
         );

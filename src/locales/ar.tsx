@@ -34,6 +34,8 @@ const ar = {
   OUR_STORY: 'قصتنا',
   FANBOOK: 'فانبوك',
 
+  DELIVERY:'التسليم ل',
+
   APP_VERSION: 'إصدار التطبيق',
 } as const;
 

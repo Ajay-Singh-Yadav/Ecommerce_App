@@ -1,4 +1,10 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {
+  I18nManager,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React, { useMemo } from 'react';
 import colors from '@theme/colors';
 import { Sizes } from '@theme/sizes';
@@ -34,6 +40,9 @@ const Header: React.FC<HeaderProps> = ({
           backgroundColor: colors.white,
           paddingHorizontal: Sizes.pd_10,
         },
+        backIcon: {
+          flexDirection: 'row-reverse',
+        },
         rightIcons: {
           flexDirection: 'row',
           gap: Sizes.mr_10,
@@ -44,7 +53,8 @@ const Header: React.FC<HeaderProps> = ({
           gap: Sizes.mr_8,
         },
         title: {
-          fontSize: Sizes.font_16,
+          fontSize: Sizes.font_12,
+          textAlign: I18nManager.isRTL ? 'right' : 'left',
         },
       }),
     [],
@@ -55,10 +65,16 @@ const Header: React.FC<HeaderProps> = ({
       <View style={styles.subHeader}>
         {backArrow && (
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <BackArrow width={Sizes.w_18} height={Sizes.h_18} />
+            <BackArrow
+              width={Sizes.w_18}
+              height={Sizes.h_18}
+              style={{
+                transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+              }}
+            />
           </TouchableOpacity>
         )}
-        <Text>{title}</Text>
+        <Text style={styles.title}>{title}</Text>
       </View>
       <View style={styles.rightIcons}>
         {search && (

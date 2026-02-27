@@ -8,7 +8,9 @@ import {
   Dimensions,
 } from 'react-native';
 
-import categories from '@data/CategoryData'; // import the 15 categories we created
+import {categories} from '@constants/categories'; 
+import { Sizes } from '@theme/sizes';
+import colors from '@theme/colors';
 
 const { width } = Dimensions.get('window');
 const ITEM_SIZE = width / 4; 
@@ -40,19 +42,21 @@ export default CategoryHorizontalList;
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 10,
+    marginVertical: Sizes.mr_5,
+
   },
   itemContainer: {
-    width: ITEM_SIZE,
-    height: ITEM_SIZE,
-    backgroundColor: '#f0f0f0', 
-    borderRadius: 12,
+    width: Sizes.w_50,
+    height: Sizes.h_50,
+    backgroundColor: colors.ButtonBgGray, 
+    borderRadius: Sizes.rd_10,
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 12,
+    marginRight:Sizes.mr_12,
+    // borderWidth:1
   },
   itemText: {
-    fontSize: 14,
+    fontSize: Sizes.font_12,
     fontWeight: '600',
     textAlign: 'center',
   },

@@ -35,6 +35,7 @@ const en = {
   ABOUT_US: 'ABOUT US',
   OUR_STORY: 'Our Story',
   FANBOOK: 'Fanbook',
+  DELIVERY: 'Delivery to',
 
   APP_VERSION: 'App version',
 } as const;

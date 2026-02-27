@@ -59,7 +59,7 @@ const HorizontalProductList: React.FC<Product> = ({ products }) => {
         },
 
         itemContainer: {
-          width: Sizes.w_150,
+          width: Sizes.w_160,
           height: Sizes.h_260,
           backgroundColor: colors.white,
           marginHorizontal: Sizes.gap_10,

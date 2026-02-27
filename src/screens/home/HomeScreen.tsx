@@ -11,9 +11,13 @@ import { getProducts } from '../../api/axios/getProducts';
 import HorizontalProductList from '@screens/productDetails/components/HorizontalProductList';
 import BanerSlider from '@global/BanerSlider';
 import { Dimensions } from 'react-native';
-import { imageSlider } from '@constants/imagePath';
+import { imageSlider, imageSlider2, imageSlider3 } from '@constants/imagePath';
 import { Sizes } from '@theme/sizes';
 import LogoLoader from '@global/LogoLoader';
+import PinCodeHeader from '@global/PinCodeHeader';
+import CategoryScreen from '@screens/categories/CategoryScreen';
+import CategoryHorizontalList from '@screens/categories/components/CategoryHorizontalList';
+import colors from '@theme/colors';
 
 const HomeScreen = () => {
   const { strings } = useLanguage();
@@ -37,7 +41,8 @@ const HomeScreen = () => {
     () =>
       StyleSheet.create({
         container: {
-          marginTop: Sizes.mr_10,
+          // marginTop: Sizes.mr_10,
+          backgroundColor:colors.white
         },
       }),
     [],
@@ -48,22 +53,19 @@ const HomeScreen = () => {
       style={styles.container}
       nestedScrollEnabled
       showsVerticalScrollIndicator={false}
-    >
-      <BanerSlider imageData={imageSlider} />
+    > 
+
+
+      <PinCodeHeader  pinCode='244901'/>
+          <CategoryHorizontalList  />
+      <BanerSlider imageData={imageSlider2} />
+
       <HorizontalProductList products={products} />
-      <BanerSlider
+      <BanerSlider imageData={imageSlider} />
+
+      <HorizontalProductList products={products} />
       
-        width={Sizes.w_420}
-        height={Sizes.h_300}
-        imageData={imageSlider}
-      />
-   
-   <HorizontalProductList products={products} />
-      <BanerSlider
-        width={Sizes.w_420}
-        height={Sizes.h_500}
-        imageData={imageSlider}
-      />
+      <BanerSlider imageData={imageSlider3}  />
     </ScrollView>
   );
 };
