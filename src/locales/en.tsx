@@ -37,6 +37,11 @@ const en = {
   FANBOOK: 'Fanbook',
   DELIVERY: 'Delivery to',
 
+
+  //TagLines
+  TAGLINE_1: 'Bewakoof Vault',
+  TAGLINE_2: 'Unlock All New styles',
+
   APP_VERSION: 'App version',
 } as const;
 

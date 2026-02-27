@@ -34,9 +34,13 @@ const ar = {
   OUR_STORY: 'قصتنا',
   FANBOOK: 'فانبوك',
 
-  DELIVERY:'التسليم ل',
+  DELIVERY: 'التسليم ل',
 
   APP_VERSION: 'إصدار التطبيق',
+
+  //TagLines
+  TAGLINE_1: 'Bewakoof Vault',
+  TAGLINE_2: 'Unlock All New styles',
 } as const;
 
 export default ar;

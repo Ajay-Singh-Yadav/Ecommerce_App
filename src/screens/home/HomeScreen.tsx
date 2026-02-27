@@ -41,8 +41,7 @@ const HomeScreen = () => {
     () =>
       StyleSheet.create({
         container: {
-          // marginTop: Sizes.mr_10,
-          backgroundColor:colors.white
+          backgroundColor: colors.white,
         },
       }),
     [],
@@ -53,19 +52,22 @@ const HomeScreen = () => {
       style={styles.container}
       nestedScrollEnabled
       showsVerticalScrollIndicator={false}
-    > 
-
-
-      <PinCodeHeader  pinCode='244901'/>
-          <CategoryHorizontalList  />
+    >
+      <PinCodeHeader pinCode="244901" />
+      <CategoryHorizontalList />
       <BanerSlider imageData={imageSlider2} />
 
       <HorizontalProductList products={products} />
       <BanerSlider imageData={imageSlider} />
 
       <HorizontalProductList products={products} />
-      
-      <BanerSlider imageData={imageSlider3}  />
+
+      <View style={{backgroundColor:'transparent'}}>
+        <Text style={{ color: colors.black,  }}>{strings.TAGLINE_1}</Text>
+        <Text style={{ color: colors.black, marginBottom:Sizes.mr_4 }}>{strings.TAGLINE_2}</Text>
+        <BanerSlider imageData={imageSlider3} />
+      </View>
+      <HorizontalProductList products={products} />
     </ScrollView>
   );
 };

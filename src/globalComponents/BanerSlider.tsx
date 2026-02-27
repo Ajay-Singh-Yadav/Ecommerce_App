@@ -17,6 +17,7 @@ import { useNavigation } from '@react-navigation/native';
 import { CustomDot } from './CustomDot ';
 import navigationStrings from '@navigation/navigationStrings';
 import { Sizes } from '@theme/sizes';
+import { Text } from 'react-native-svg';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -88,44 +89,51 @@ const BanerSlider: React.FC<Props> = ({
         onConfigurePanGesture={g => g.activeOffsetX([-10, 10])}
         renderItem={({ item, index }) => {
           const isVideo = item.type === 'video';
+          const source =
+            typeof item.src === 'string' ? { uri: item.src } : item.src;
 
           return (
-            <TouchableOpacity activeOpacity={0.9} onPress={handleNavigation}>
-              {isVideo ? (
-                <Video
-                  source={{ uri: item.src }}
-                  onEnd={() => {
-                    const isLast = activeIndex === imageData.length - 1;
+            <View>
+              <TouchableOpacity activeOpacity={0.9} onPress={handleNavigation}>
+                {isVideo ? (
+                  <Video
+                    source={source}
+                    repeat
+                    onEnd={() => {
+                      const isLast = activeIndex === imageData.length - 1;
 
-                    if (isLast) {
-                      ref.current?.scrollTo({ index: 0, animated: true });
-                    } else {
-                      ref.current?.next();
+                      if (isLast) {
+                        ref.current?.scrollTo({ index: 0, animated: true });
+                      } else {
+                        ref.current?.next();
+                      }
+                    }}
+                    style={{
+                      width: '100%',
+                      height: sliderHeight,
+                      borderRadius: Sizes.rd_12,
+                    }}
+                    resizeMode="cover"
+                    muted
+                    paused={activeIndex !== index}
+                  />
+                ) : (
+                  <Image
+                    source={
+                      typeof item.src === 'string'
+                        ? { uri: item.src }
+                        : item.src
                     }
-                  }}
-                  style={{
-                    width: '100%',
-                    height: sliderHeight,
-                    borderRadius: Sizes.rd_12,
-                  }}
-                  resizeMode="cover"
-                  muted
-                  paused={activeIndex !== index}
-                />
-              ) : (
-                <Image
-                  source={
-                    typeof item.src === 'string' ? { uri: item.src } : item.src
-                  }
-                  resizeMode="cover"
-                  style={{
-                    width: '100%',
-                    height: sliderHeight,
-                    borderRadius: Sizes.rd_12,
-                  }}
-                />
-              )}
-            </TouchableOpacity>
+                    resizeMode="cover"
+                    style={{
+                      width: '100%',
+                      height: sliderHeight,
+                      borderRadius: Sizes.rd_12,
+                    }}
+                  />
+                )}
+              </TouchableOpacity>
+            </View>
           );
         }}
       />

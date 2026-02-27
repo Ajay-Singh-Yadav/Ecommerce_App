@@ -26,8 +26,8 @@ export const imageSlider2 = [
   },
   {
     id: '3',
-    type: 'image',
-    src: 'https://images.bewakoof.com/uploads/grid/app/1x1-2026-DOTW-feb20-men-1771572353.jpg',
+    type: 'video',
+    src: require('@assets/video/Deadpool.mp4'),
   },
   {
     id: '4',
@@ -42,8 +42,14 @@ export const imageSlider2 = [
   {
     id: '6',
     type: 'video',
-    src: 'https://videos.pond5.com/deadpool-cosplayer-reads-newspaper-background-footage-111579070_main_xxl.mp4',
+    src: 'https://cdn.pixabay.com/video/2022/01/18/104883-668881873_medium.mp4',
   },
+  {
+    id: '7',
+    type: 'image',
+    src: 'https://images.bewakoof.com/uploads/grid/app/1x1-2026-BannerRefresh-dotw-27feb-men-1772178173.jpg',
+  },
+
 ];
 export const imageSlider3 = [
   {
