@@ -6,7 +6,7 @@ import CategoryIcon from '@assets/svg/Category.svg';
 import PlayIcon from '@assets/svg/Play.svg';
 import ProfileIcon from '@assets/svg/Profile.svg';
 import User from '@assets/svg/User.svg';
-import navigationStrings from './navigationStrings';
+import navigationStrings from './navigationStrings'
 import { Sizes } from '@theme/sizes';
 import colors from '@theme/colors';
 

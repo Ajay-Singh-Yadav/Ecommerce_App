@@ -21,7 +21,7 @@ const DrawerHeader = () => {
     <View style={styles.container}>
 
 
-      <TouchableOpacity onPress={() => navigation.navigate(NavigationStrings.SEARCH)}  > 
+      <TouchableOpacity onPress={() => navigation.navigate(NavigationStrings.SEARCH)}  >
         <Search width={moderateScale(24)} height={moderateScale(24)} />
       </TouchableOpacity>
       <TouchableOpacity>

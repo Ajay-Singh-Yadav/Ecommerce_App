@@ -131,7 +131,7 @@ export const CustomDrawer = (props: any) => {
         textStyle={style.textLineStyle}
       />
       <View style={style.LanguageContainer}>
-          <DrawerRow
+        <DrawerRow
           title={strings.ENGLISH}
           language
           selected={language === 'en'}
@@ -144,7 +144,7 @@ export const CustomDrawer = (props: any) => {
           onPress={() => setLanguage('ar')}
         />
 
-      
+
       </View>
       <Line
         text={strings.MY_PROFILE}
@@ -168,12 +168,12 @@ export const CustomDrawer = (props: any) => {
       <DrawerRow title={strings.HELP_SUPPORT} />
       <DrawerRow title={strings.FEEDBACK} />
 
-        <Line
-          text={strings.ABOUT_US}
-          style={style.LineStyle}
-          textStyle={style.textLineStyle}
-        />
-    
+      <Line
+        text={strings.ABOUT_US}
+        style={style.LineStyle}
+        textStyle={style.textLineStyle}
+      />
+
       <DrawerRow title={strings.OUR_STORY} />
       <DrawerRow title={strings.FEEDBACK} />
       <Text style={{ color: colors.lightGray }}>{strings.APP_VERSION}</Text>
@@ -250,7 +250,7 @@ const style = StyleSheet.create({
     height: Sizes.h_30,
     borderWidth: 0.5,
     borderRadius: Sizes.rd_8,
-  
+
   },
   selectedLanguage: {
     backgroundColor: colors.primary,
