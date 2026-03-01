@@ -36,6 +36,7 @@ const en = {
   OUR_STORY: 'Our Story',
   FANBOOK: 'Fanbook',
   DELIVERY: 'Delivery to',
+  FREE_SHIPPING: 'FREE SHIPPING on all orders above ₹399',
 
 
   //TagLines

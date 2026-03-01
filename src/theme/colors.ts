@@ -20,6 +20,7 @@ export default {
   SlateGray: '#8F8A9',
   battleshipGray: '#9C9C9C',
   filterDotBlue: '#207BB4',
+  SteelBlue: '#207BB4',
 
   //Text
 

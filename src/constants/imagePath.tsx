@@ -68,3 +68,9 @@ export const imageSlider3 = [
     src: 'https://images.bewakoof.com/uploads/grid/app/HC-desktop-1440x400-BewakoofVault-Capsule-indieverse-men-3-1771936238.jpg',
   },
 ];
+
+
+export const ProductListBannerData = {
+  TshirtsBanner: 'https://www.bewakoof.com/_next/image?url=https%3A%2F%2Fimages.bewakoof.com%2Fuploads%2Fcategory%2Fdesktop%2FDesktop-CFT-common--2--1771404952.jpg&w=640&q=75',
+  ShirtsBanner: ''
+};

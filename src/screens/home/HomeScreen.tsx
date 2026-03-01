@@ -8,7 +8,7 @@ import {
 import React, { useEffect, useMemo, useState } from 'react';
 import { useLanguage } from '@locales/useLanguage';
 import { getProducts } from '../../api/axios/getProducts';
-import HorizontalProductList from '@screens/productDetails/components/HorizontalProductList';
+import HorizontalProductList from '@global/HorizontalProductList';
 import BanerSlider from '@global/BanerSlider';
 import { Dimensions } from 'react-native';
 import { imageSlider, imageSlider2, imageSlider3 } from '@constants/imagePath';
@@ -21,19 +21,15 @@ import colors from '@theme/colors';
 
 const HomeScreen = () => {
   const { strings } = useLanguage();
-  // const { width } = Dimensions.get('window').width;
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     const fechProducts = async () => {
-      try {
-        const res = await getProducts();
-        setProducts(res);
-        console.log(res);
-      } catch (e) {
-        console.log('API ERROR:', e);
-      }
+      const res = await getProducts();
+      setProducts(res);
+      console.log("Products:", res);
     };
+
     fechProducts();
   }, []);
 
@@ -62,9 +58,9 @@ const HomeScreen = () => {
 
       <HorizontalProductList products={products} />
 
-      <View style={{backgroundColor:'transparent'}}>
-        <Text style={{ color: colors.black,  }}>{strings.TAGLINE_1}</Text>
-        <Text style={{ color: colors.black, marginBottom:Sizes.mr_4 }}>{strings.TAGLINE_2}</Text>
+      <View>
+        <Text style={{ color: colors.black, }}>{strings.TAGLINE_1}</Text>
+        <Text style={{ color: colors.black, marginBottom: Sizes.mr_4 }}>{strings.TAGLINE_2}</Text>
         <BanerSlider imageData={imageSlider3} />
       </View>
       <HorizontalProductList products={products} />

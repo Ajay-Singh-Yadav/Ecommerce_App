@@ -1,275 +1,1622 @@
+export const tshirtProducts = [
+  {
+    id: "TSHIRT_001",
 
-const productImg1 = require('@assets/images/productImg1.jpg');
-const productImg2 = require('@assets/images/productImg2.jpg');
-const productImg3 = require('@assets/images/productImg3.jpg');
-const productImg4 = require('@assets/images/productImg4.jpg');
-const productImg5 = require('@assets/images/productImg5.jpg');
-const productImg6 = require('@assets/images/productImg6.jpg');
+    title: {
+      en: "Men's Black Wind Hashira Graphic Printed Oversized T-shirt",
+      ar: "تيشيرت أسود مطبوع هاشيرا واسع للرجال"
+    },
 
-const products = [
-  {
-    id: 1,
-    image: productImg1,
-    brand: 'UrbanWear',
-    shortDescription: 'Comfortable cotton casual t-shirt Comfortable cotton casual t-shirt',
-    colour: 'Black',
-    sizes: ['S', 'M', 'L', 'XL', '2XL'],
-    rating: 4.5,
-    totalReviews: 320,
-    deliveryDate: 'Expected delivery in 3–5 days',
-    cashOnDelivery: true,
-    offer: '20% OFF',
-  },
-  {
-    id: 2,
-    image: productImg2,
-    brand: 'StreetMode',
-    shortDescription: 'Slim fit round neck t-shirt',
-    colour: 'White',
-    sizes: ['S', 'M', 'L', 'XL', '2XL'],
-    rating: 4.2,
-    totalReviews: 210,
-    deliveryDate: 'Expected delivery in 4–6 days',
-    cashOnDelivery: true,
-    offer: 'Buy 1 Get 1 50% OFF',
-  },
-  {
-    id: 3,
-    image: productImg3,
-    brand: 'DenimCo',
-    shortDescription: 'Premium stretch denim jeans',
-    colour: 'Blue',
-    sizes: ['S', 'M', 'L', 'XL', '2XL'],
-    rating: 4.6,
-    totalReviews: 540,
-    deliveryDate: 'Expected delivery in 2–4 days',
-    cashOnDelivery: true,
-    offer: '30% OFF',
-  },
-  {
-    id: 4,
-    image: productImg4,
-    brand: 'FashionHub',
-    shortDescription: 'Trendy oversized hoodie',
-    colour: 'Grey',
-    sizes: ['S', 'M', 'L', 'XL', '2XL'],
-    rating: 4.4,
-    totalReviews: 180,
-    deliveryDate: 'Expected delivery in 3–5 days',
-    cashOnDelivery: true,
-    offer: 'Flat ₹500 OFF',
-  },
-  {
-    id: 5,
-    image: productImg5,
-    brand: 'ActivePro',
-    shortDescription: 'Breathable sports t-shirt',
-    colour: 'Red',
-    sizes: ['S', 'M', 'L', 'XL', '2XL'],
-    rating: 4.1,
-    totalReviews: 95,
-    deliveryDate: 'Expected delivery in 5–7 days',
-    cashOnDelivery: true,
-    offer: '15% OFF',
-  },
-  {
-    id: 6,
-    image: productImg6,
-    brand: 'ClassicFit',
-    shortDescription: 'Formal slim-fit shirt',
-    colour: 'Light Blue',
-    sizes: ['S', 'M', 'L', 'XL', '2XL'],
-    rating: 4.7,
-    totalReviews: 410,
-    deliveryDate: 'Expected delivery in 2–3 days',
-    cashOnDelivery: true,
-    offer: '25% OFF',
+    brand: {
+      en: "Official Demon Slayer Merchandise",
+      ar: "منتجات ديمون سلاير الأصلية"
+    },
+
+    category: {
+      id: "tshirts",
+      name: {
+        en: "T-Shirts",
+        ar: "تيشيرت"
+      }
+    },
+
+    subCategory: {
+      id: "topwear",
+      name: {
+        en: "Topwear",
+        ar: "ملابس علوية"
+      }
+    },
+
+    price: {
+      current: 799,
+      original: 1599,
+      discount: 50,
+      currency: "₹"
+    },
+
+    fabric: {
+      en: "Premium Dense Fabric",
+      ar: "قماش كثيف ممتاز"
+    },
+
+    rating: {
+      average: 4.6,
+      totalRatings: 923,
+      totalReviews: 613,
+      recommendationPercent: 93,
+
+      breakdown: {
+        5: 613,
+        4: 249,
+        3: 61,
+        2: 0,
+        1: 0
+      }
+    },
+
+    boughtInfo: {
+      count: 60,
+      days: 7,
+      message: {
+        en: "60 people bought this in the last 7 days",
+        ar: "60 شخص اشتروا هذا المنتج خلال آخر 7 أيام"
+      }
+    },
+
+    images: [
+      "https://images.bewakoof.com/t640/men-s-blue-marvel-moon-knight-graphic-printed-t-shirt-483814-1755083362-1.jpg",
+      "https://images.bewakoof.com/original/men-s-blue-marvel-moon-knight-graphic-printed-oversized-t-shirt-537232-1667562903-2.jpg",
+    ],
+
+    sizes: [
+      { size: "S", stockLeft: 3 },
+      { size: "M", stockLeft: 8 },
+      { size: "L", stockLeft: 0 },
+      { size: "XL", stockLeft: 5 },
+      { size: "2XL", stockLeft: 9 }
+    ],
+
+    offers: [
+      {
+        id: 1,
+        title: {
+          en: "Get ₹79 BK Cash upto ₹500",
+          ar: "احصل على 79 روبية كاش باك حتى 500"
+        },
+        description: {
+          en: "Get EXTRA 10% Cashback on orders above ₹499",
+          ar: "احصل على استرداد نقدي إضافي 10٪ على الطلبات فوق 499"
+        },
+        code: "GETCASH10",
+        tag: {
+          en: "APP ONLY",
+          ar: "التطبيق فقط"
+        }
+      }
+    ],
+
+    delivery: {
+      freeShipping: true,
+
+      message: {
+        en: "This product is eligible for FREE SHIPPING",
+        ar: "هذا المنتج مؤهل للشحن المجاني"
+      },
+
+      codAvailable: true,
+
+      estimatedDays: 5,
+
+      pincodeRequired: true
+    },
+
+    highlights: [
+      {
+        label: {
+          en: "Design",
+          ar: "التصميم"
+        },
+        value: {
+          en: "Graphic Print",
+          ar: "طباعة رسومية"
+        }
+      },
+      {
+        label: {
+          en: "Fit",
+          ar: "المقاس"
+        },
+        value: {
+          en: "Oversized Fit",
+          ar: "مقاس واسع"
+        }
+      },
+      {
+        label: {
+          en: "Neck",
+          ar: "الرقبة"
+        },
+        value: {
+          en: "Round Neck",
+          ar: "ياقة دائرية"
+        }
+      },
+      {
+        label: {
+          en: "Sleeve Style",
+          ar: "الأكمام"
+        },
+        value: {
+          en: "Half Sleeve",
+          ar: "نصف كم"
+        }
+      },
+      {
+        label: {
+          en: "Wash Care",
+          ar: "الغسيل"
+        },
+        value: {
+          en: "Machine wash as per tag",
+          ar: "غسيل آلي حسب التعليمات"
+        }
+      }
+    ],
+
+    description: {
+      en: "Comfortable oversized t-shirt with premium dense fabric. Perfect for casual wear.",
+      ar: "تيشيرت واسع مريح بقماش عالي الجودة. مثالي للارتداء اليومي."
+    },
+
+    returnPolicy: {
+      title: {
+        en: "15 Days Returns & Exchange",
+        ar: "إرجاع واستبدال خلال 15 يوم"
+      },
+      description: {
+        en: "Know about return & exchange policy",
+        ar: "تعرف على سياسة الإرجاع والاستبدال"
+      }
+    },
+
+    badges: [
+      {
+        title: {
+          en: "100% Genuine Product",
+          ar: "منتج أصلي 100٪"
+        }
+      },
+      {
+        title: {
+          en: "100% Secure Payment",
+          ar: "دفع آمن 100٪"
+        }
+      },
+      {
+        title: {
+          en: "Easy Returns & Refunds",
+          ar: "إرجاع واسترداد سهل"
+        }
+      }
+    ]
   },
 
-  // repeated with variations to make 20 products
   {
-    id: 7,
-    image: productImg1,
-    brand: 'UrbanWear',
-    shortDescription: 'Printed casual t-shirt',
-    colour: 'Green',
-    sizes: ['S', 'M', 'L', 'XL', '2XL'],
-    rating: 4.0,
-    totalReviews: 150,
-    deliveryDate: 'Expected delivery in 3–5 days',
-    cashOnDelivery: true,
-    offer: '10% OFF',
-  },
-  {
-    id: 8,
-    image: productImg2,
-    brand: 'StreetMode',
-    shortDescription: 'Polo neck t-shirt',
-    colour: 'Navy Blue',
-    sizes: ['S', 'M', 'L', 'XL', '2XL'],
-    rating: 4.3,
-    totalReviews: 275,
-    deliveryDate: 'Expected delivery in 4–6 days',
-    cashOnDelivery: true,
-    offer: 'Extra 5% OFF',
-  },
-  {
-    id: 9,
-    image: productImg3,
-    brand: 'DenimCo',
-    shortDescription: 'Regular fit denim jeans',
-    colour: 'Dark Blue',
-    sizes: ['S', 'M', 'L', 'XL', '2XL'],
-    rating: 4.5,
-    totalReviews: 620,
-    deliveryDate: 'Expected delivery in 2–4 days',
-    cashOnDelivery: true,
-    offer: '35% OFF',
-  },
-  {
-    id: 10,
-    image: productImg4,
-    brand: 'FashionHub',
-    shortDescription: 'Winter fleece hoodie',
-    colour: 'Maroon',
-    sizes: ['S', 'M', 'L', 'XL', '2XL'],
-    rating: 4.6,
-    totalReviews: 340,
-    deliveryDate: 'Expected delivery in 3–5 days',
-    cashOnDelivery: true,
-    offer: '40% OFF',
-  },
-  {
-    id: 11,
-    image: productImg5,
-    brand: 'ActivePro',
-    shortDescription: 'Quick-dry gym t-shirt',
-    colour: 'Orange',
-    sizes: ['S', 'M', 'L', 'XL', '2XL'],
-    rating: 4.2,
-    totalReviews: 130,
-    deliveryDate: 'Expected delivery in 5–7 days',
-    cashOnDelivery: true,
-    offer: '20% OFF',
-  },
-  {
-    id: 12,
-    image: productImg6,
-    brand: 'ClassicFit',
-    shortDescription: 'Checked formal shirt',
-    colour: 'White & Blue',
-    sizes: ['S', 'M', 'L', 'XL', '2XL'],
-    rating: 4.8,
-    totalReviews: 510,
-    deliveryDate: 'Expected delivery in 2–3 days',
-    cashOnDelivery: true,
-    offer: 'Best Seller',
+    id: "TSHIRT_002",
+
+    title: {
+      en: "Men's Black Wind Hashira Graphic Printed Oversized T-shirt",
+      ar: "تيشيرت أسود مطبوع هاشيرا واسع للرجال"
+    },
+
+    brand: {
+      en: "Official Demon Slayer Merchandise",
+      ar: "منتجات ديمون سلاير الأصلية"
+    },
+
+    category: {
+      id: "tshirts",
+      name: {
+        en: "T-Shirts",
+        ar: "تيشيرت"
+      }
+    },
+
+    subCategory: {
+      id: "topwear",
+      name: {
+        en: "Topwear",
+        ar: "ملابس علوية"
+      }
+    },
+
+    price: {
+      current: 799,
+      original: 1599,
+      discount: 50,
+      currency: "₹"
+    },
+
+    fabric: {
+      en: "Premium Dense Fabric",
+      ar: "قماش كثيف ممتاز"
+    },
+
+    rating: {
+      average: 4.6,
+      totalRatings: 923,
+      totalReviews: 613,
+      recommendationPercent: 93,
+
+      breakdown: {
+        5: 613,
+        4: 249,
+        3: 61,
+        2: 0,
+        1: 0
+      }
+    },
+
+    boughtInfo: {
+      count: 60,
+      days: 7,
+      message: {
+        en: "60 people bought this in the last 7 days",
+        ar: "60 شخص اشتروا هذا المنتج خلال آخر 7 أيام"
+      }
+    },
+
+    images: [
+      "https://images.bewakoof.com/t1080/men-s-fog-green-wilderness-graphic-printed-t-shirt-689703-1763013777-1.jpg",
+      "https://images.bewakoof.com/original/men-s-blue-marvel-moon-knight-graphic-printed-oversized-t-shirt-537232-1667562903-2.jpg",
+    ],
+
+    sizes: [
+      { size: "S", stockLeft: 3 },
+      { size: "M", stockLeft: 8 },
+      { size: "L", stockLeft: 0 },
+      { size: "XL", stockLeft: 5 },
+      { size: "2XL", stockLeft: 9 }
+    ],
+
+    offers: [
+      {
+        id: 1,
+        title: {
+          en: "Get ₹79 BK Cash upto ₹500",
+          ar: "احصل على 79 روبية كاش باك حتى 500"
+        },
+        description: {
+          en: "Get EXTRA 10% Cashback on orders above ₹499",
+          ar: "احصل على استرداد نقدي إضافي 10٪ على الطلبات فوق 499"
+        },
+        code: "GETCASH10",
+        tag: {
+          en: "APP ONLY",
+          ar: "التطبيق فقط"
+        }
+      }
+    ],
+
+    delivery: {
+      freeShipping: true,
+
+      message: {
+        en: "This product is eligible for FREE SHIPPING",
+        ar: "هذا المنتج مؤهل للشحن المجاني"
+      },
+
+      codAvailable: true,
+
+      estimatedDays: 5,
+
+      pincodeRequired: true
+    },
+
+    highlights: [
+      {
+        label: {
+          en: "Design",
+          ar: "التصميم"
+        },
+        value: {
+          en: "Graphic Print",
+          ar: "طباعة رسومية"
+        }
+      },
+      {
+        label: {
+          en: "Fit",
+          ar: "المقاس"
+        },
+        value: {
+          en: "Oversized Fit",
+          ar: "مقاس واسع"
+        }
+      },
+      {
+        label: {
+          en: "Neck",
+          ar: "الرقبة"
+        },
+        value: {
+          en: "Round Neck",
+          ar: "ياقة دائرية"
+        }
+      },
+      {
+        label: {
+          en: "Sleeve Style",
+          ar: "الأكمام"
+        },
+        value: {
+          en: "Half Sleeve",
+          ar: "نصف كم"
+        }
+      },
+      {
+        label: {
+          en: "Wash Care",
+          ar: "الغسيل"
+        },
+        value: {
+          en: "Machine wash as per tag",
+          ar: "غسيل آلي حسب التعليمات"
+        }
+      }
+    ],
+
+    description: {
+      en: "Comfortable oversized t-shirt with premium dense fabric. Perfect for casual wear.",
+      ar: "تيشيرت واسع مريح بقماش عالي الجودة. مثالي للارتداء اليومي."
+    },
+
+    returnPolicy: {
+      title: {
+        en: "15 Days Returns & Exchange",
+        ar: "إرجاع واستبدال خلال 15 يوم"
+      },
+      description: {
+        en: "Know about return & exchange policy",
+        ar: "تعرف على سياسة الإرجاع والاستبدال"
+      }
+    },
+
+    badges: [
+      {
+        title: {
+          en: "100% Genuine Product",
+          ar: "منتج أصلي 100٪"
+        }
+      },
+      {
+        title: {
+          en: "100% Secure Payment",
+          ar: "دفع آمن 100٪"
+        }
+      },
+      {
+        title: {
+          en: "Easy Returns & Refunds",
+          ar: "إرجاع واسترداد سهل"
+        }
+      }
+    ]
   },
 
   {
-    id: 13,
-    image: productImg1,
-    brand: 'UrbanWear',
-    shortDescription: 'Plain cotton t-shirt',
-    colour: 'Yellow',
-    sizes: ['S', 'M', 'L', 'XL', '2XL'],
-    rating: 3.9,
-    totalReviews: 88,
-    deliveryDate: 'Expected delivery in 3–5 days',
-    cashOnDelivery: true,
-    offer: 'Under ₹499',
+    id: "TSHIRT_003",
+
+    title: {
+      en: "Men's Black Wind Hashira Graphic Printed Oversized T-shirt",
+      ar: "تيشيرت أسود مطبوع هاشيرا واسع للرجال"
+    },
+
+    brand: {
+      en: "Official Demon Slayer Merchandise",
+      ar: "منتجات ديمون سلاير الأصلية"
+    },
+
+    category: {
+      id: "tshirts",
+      name: {
+        en: "T-Shirts",
+        ar: "تيشيرت"
+      }
+    },
+
+    subCategory: {
+      id: "topwear",
+      name: {
+        en: "Topwear",
+        ar: "ملابس علوية"
+      }
+    },
+
+    price: {
+      current: 799,
+      original: 1599,
+      discount: 50,
+      currency: "₹"
+    },
+
+    fabric: {
+      en: "Premium Dense Fabric",
+      ar: "قماش كثيف ممتاز"
+    },
+
+    rating: {
+      average: 4.6,
+      totalRatings: 923,
+      totalReviews: 613,
+      recommendationPercent: 93,
+
+      breakdown: {
+        5: 613,
+        4: 249,
+        3: 61,
+        2: 0,
+        1: 0
+      }
+    },
+
+    boughtInfo: {
+      count: 60,
+      days: 7,
+      message: {
+        en: "60 people bought this in the last 7 days",
+        ar: "60 شخص اشتروا هذا المنتج خلال آخر 7 أيام"
+      }
+    },
+
+    images: [
+      "https://images.bewakoof.com/t640/men-s-fog-green-batman-graphic-printed-oversized-t-shirt-659855-1746441400-1.JPG",
+    ],
+
+    sizes: [
+      { size: "S", stockLeft: 3 },
+      { size: "M", stockLeft: 8 },
+      { size: "L", stockLeft: 0 },
+      { size: "XL", stockLeft: 5 },
+      { size: "2XL", stockLeft: 9 }
+    ],
+
+    offers: [
+      {
+        id: 1,
+        title: {
+          en: "Get ₹79 BK Cash upto ₹500",
+          ar: "احصل على 79 روبية كاش باك حتى 500"
+        },
+        description: {
+          en: "Get EXTRA 10% Cashback on orders above ₹499",
+          ar: "احصل على استرداد نقدي إضافي 10٪ على الطلبات فوق 499"
+        },
+        code: "GETCASH10",
+        tag: {
+          en: "APP ONLY",
+          ar: "التطبيق فقط"
+        }
+      }
+    ],
+
+    delivery: {
+      freeShipping: true,
+
+      message: {
+        en: "This product is eligible for FREE SHIPPING",
+        ar: "هذا المنتج مؤهل للشحن المجاني"
+      },
+
+      codAvailable: true,
+
+      estimatedDays: 5,
+
+      pincodeRequired: true
+    },
+
+    highlights: [
+      {
+        label: {
+          en: "Design",
+          ar: "التصميم"
+        },
+        value: {
+          en: "Graphic Print",
+          ar: "طباعة رسومية"
+        }
+      },
+      {
+        label: {
+          en: "Fit",
+          ar: "المقاس"
+        },
+        value: {
+          en: "Oversized Fit",
+          ar: "مقاس واسع"
+        }
+      },
+      {
+        label: {
+          en: "Neck",
+          ar: "الرقبة"
+        },
+        value: {
+          en: "Round Neck",
+          ar: "ياقة دائرية"
+        }
+      },
+      {
+        label: {
+          en: "Sleeve Style",
+          ar: "الأكمام"
+        },
+        value: {
+          en: "Half Sleeve",
+          ar: "نصف كم"
+        }
+      },
+      {
+        label: {
+          en: "Wash Care",
+          ar: "الغسيل"
+        },
+        value: {
+          en: "Machine wash as per tag",
+          ar: "غسيل آلي حسب التعليمات"
+        }
+      }
+    ],
+
+    description: {
+      en: "Comfortable oversized t-shirt with premium dense fabric. Perfect for casual wear.",
+      ar: "تيشيرت واسع مريح بقماش عالي الجودة. مثالي للارتداء اليومي."
+    },
+
+    returnPolicy: {
+      title: {
+        en: "15 Days Returns & Exchange",
+        ar: "إرجاع واستبدال خلال 15 يوم"
+      },
+      description: {
+        en: "Know about return & exchange policy",
+        ar: "تعرف على سياسة الإرجاع والاستبدال"
+      }
+    },
+
+    badges: [
+      {
+        title: {
+          en: "100% Genuine Product",
+          ar: "منتج أصلي 100٪"
+        }
+      },
+      {
+        title: {
+          en: "100% Secure Payment",
+          ar: "دفع آمن 100٪"
+        }
+      },
+      {
+        title: {
+          en: "Easy Returns & Refunds",
+          ar: "إرجاع واسترداد سهل"
+        }
+      }
+    ]
   },
   {
-    id: 14,
-    image: productImg2,
-    brand: 'StreetMode',
-    shortDescription: 'Long sleeve t-shirt',
-    colour: 'Grey',
-    sizes: ['S', 'M', 'L', 'XL', '2XL'],
-    rating: 4.1,
-    totalReviews: 142,
-    deliveryDate: 'Expected delivery in 4–6 days',
-    cashOnDelivery: true,
-    offer: '18% OFF',
+    id: "TSHIRT_004",
+
+    title: {
+      en: "Men's Black Wind Hashira Graphic Printed Oversized T-shirt",
+      ar: "تيشيرت أسود مطبوع هاشيرا واسع للرجال"
+    },
+
+    brand: {
+      en: "Official Demon Slayer Merchandise",
+      ar: "منتجات ديمون سلاير الأصلية"
+    },
+
+    category: {
+      id: "tshirts",
+      name: {
+        en: "T-Shirts",
+        ar: "تيشيرت"
+      }
+    },
+
+    subCategory: {
+      id: "topwear",
+      name: {
+        en: "Topwear",
+        ar: "ملابس علوية"
+      }
+    },
+
+    price: {
+      current: 799,
+      original: 1599,
+      discount: 50,
+      currency: "₹"
+    },
+
+    fabric: {
+      en: "Premium Dense Fabric",
+      ar: "قماش كثيف ممتاز"
+    },
+
+    rating: {
+      average: 4.6,
+      totalRatings: 923,
+      totalReviews: 613,
+      recommendationPercent: 93,
+
+      breakdown: {
+        5: 613,
+        4: 249,
+        3: 61,
+        2: 0,
+        1: 0
+      }
+    },
+
+    boughtInfo: {
+      count: 60,
+      days: 7,
+      message: {
+        en: "60 people bought this in the last 7 days",
+        ar: "60 شخص اشتروا هذا المنتج خلال آخر 7 أيام"
+      }
+    },
+
+    images: [
+      "https://images.bewakoof.com/t640/men-s-grey-hulk-graphic-printed-t-shirt-659600-1738242245-1.jpg",
+      "https://images.bewakoof.com/original/men-s-blue-marvel-moon-knight-graphic-printed-oversized-t-shirt-537232-1667562903-2.jpg",
+    ],
+
+    sizes: [
+      { size: "S", stockLeft: 3 },
+      { size: "M", stockLeft: 8 },
+      { size: "L", stockLeft: 0 },
+      { size: "XL", stockLeft: 5 },
+      { size: "2XL", stockLeft: 9 }
+    ],
+
+    offers: [
+      {
+        id: 1,
+        title: {
+          en: "Get ₹79 BK Cash upto ₹500",
+          ar: "احصل على 79 روبية كاش باك حتى 500"
+        },
+        description: {
+          en: "Get EXTRA 10% Cashback on orders above ₹499",
+          ar: "احصل على استرداد نقدي إضافي 10٪ على الطلبات فوق 499"
+        },
+        code: "GETCASH10",
+        tag: {
+          en: "APP ONLY",
+          ar: "التطبيق فقط"
+        }
+      }
+    ],
+
+    delivery: {
+      freeShipping: true,
+
+      message: {
+        en: "This product is eligible for FREE SHIPPING",
+        ar: "هذا المنتج مؤهل للشحن المجاني"
+      },
+
+      codAvailable: true,
+
+      estimatedDays: 5,
+
+      pincodeRequired: true
+    },
+
+    highlights: [
+      {
+        label: {
+          en: "Design",
+          ar: "التصميم"
+        },
+        value: {
+          en: "Graphic Print",
+          ar: "طباعة رسومية"
+        }
+      },
+      {
+        label: {
+          en: "Fit",
+          ar: "المقاس"
+        },
+        value: {
+          en: "Oversized Fit",
+          ar: "مقاس واسع"
+        }
+      },
+      {
+        label: {
+          en: "Neck",
+          ar: "الرقبة"
+        },
+        value: {
+          en: "Round Neck",
+          ar: "ياقة دائرية"
+        }
+      },
+      {
+        label: {
+          en: "Sleeve Style",
+          ar: "الأكمام"
+        },
+        value: {
+          en: "Half Sleeve",
+          ar: "نصف كم"
+        }
+      },
+      {
+        label: {
+          en: "Wash Care",
+          ar: "الغسيل"
+        },
+        value: {
+          en: "Machine wash as per tag",
+          ar: "غسيل آلي حسب التعليمات"
+        }
+      }
+    ],
+
+    description: {
+      en: "Comfortable oversized t-shirt with premium dense fabric. Perfect for casual wear.",
+      ar: "تيشيرت واسع مريح بقماش عالي الجودة. مثالي للارتداء اليومي."
+    },
+
+    returnPolicy: {
+      title: {
+        en: "15 Days Returns & Exchange",
+        ar: "إرجاع واستبدال خلال 15 يوم"
+      },
+      description: {
+        en: "Know about return & exchange policy",
+        ar: "تعرف على سياسة الإرجاع والاستبدال"
+      }
+    },
+
+    badges: [
+      {
+        title: {
+          en: "100% Genuine Product",
+          ar: "منتج أصلي 100٪"
+        }
+      },
+      {
+        title: {
+          en: "100% Secure Payment",
+          ar: "دفع آمن 100٪"
+        }
+      },
+      {
+        title: {
+          en: "Easy Returns & Refunds",
+          ar: "إرجاع واسترداد سهل"
+        }
+      }
+    ]
   },
   {
-    id: 15,
-    image: productImg3,
-    brand: 'DenimCo',
-    shortDescription: 'Ripped denim jeans',
-    colour: 'Light Blue',
-    sizes: ['S', 'M', 'L', 'XL', '2XL'],
-    rating: 4.4,
-    totalReviews: 390,
-    deliveryDate: 'Expected delivery in 2–4 days',
-    cashOnDelivery: true,
-    offer: 'Trending',
+    id: "TSHIRT_005",
+
+    title: {
+      en: "Men's Black Wind Hashira Graphic Printed Oversized T-shirt",
+      ar: "تيشيرت أسود مطبوع هاشيرا واسع للرجال"
+    },
+
+    brand: {
+      en: "Official Demon Slayer Merchandise",
+      ar: "منتجات ديمون سلاير الأصلية"
+    },
+
+    category: {
+      id: "tshirts",
+      name: {
+        en: "T-Shirts",
+        ar: "تيشيرت"
+      }
+    },
+
+    subCategory: {
+      id: "topwear",
+      name: {
+        en: "Topwear",
+        ar: "ملابس علوية"
+      }
+    },
+
+    price: {
+      current: 799,
+      original: 1599,
+      discount: 50,
+      currency: "₹"
+    },
+
+    fabric: {
+      en: "Premium Dense Fabric",
+      ar: "قماش كثيف ممتاز"
+    },
+
+    rating: {
+      average: 4.6,
+      totalRatings: 923,
+      totalReviews: 613,
+      recommendationPercent: 93,
+
+      breakdown: {
+        5: 613,
+        4: 249,
+        3: 61,
+        2: 0,
+        1: 0
+      }
+    },
+
+    boughtInfo: {
+      count: 60,
+      days: 7,
+      message: {
+        en: "60 people bought this in the last 7 days",
+        ar: "60 شخص اشتروا هذا المنتج خلال آخر 7 أيام"
+      }
+    },
+
+    images: [
+      "https://images.bewakoof.com/t640/men-s-white-motd-panda-graphic-printed-t-shirt-479762-1760944080-1.jpg",
+      "https://images.bewakoof.com/original/men-s-blue-marvel-moon-knight-graphic-printed-oversized-t-shirt-537232-1667562903-2.jpg",
+    ],
+
+    sizes: [
+      { size: "S", stockLeft: 3 },
+      { size: "M", stockLeft: 8 },
+      { size: "L", stockLeft: 0 },
+      { size: "XL", stockLeft: 5 },
+      { size: "2XL", stockLeft: 9 }
+    ],
+
+    offers: [
+      {
+        id: 1,
+        title: {
+          en: "Get ₹79 BK Cash upto ₹500",
+          ar: "احصل على 79 روبية كاش باك حتى 500"
+        },
+        description: {
+          en: "Get EXTRA 10% Cashback on orders above ₹499",
+          ar: "احصل على استرداد نقدي إضافي 10٪ على الطلبات فوق 499"
+        },
+        code: "GETCASH10",
+        tag: {
+          en: "APP ONLY",
+          ar: "التطبيق فقط"
+        }
+      }
+    ],
+
+    delivery: {
+      freeShipping: true,
+
+      message: {
+        en: "This product is eligible for FREE SHIPPING",
+        ar: "هذا المنتج مؤهل للشحن المجاني"
+      },
+
+      codAvailable: true,
+
+      estimatedDays: 5,
+
+      pincodeRequired: true
+    },
+
+    highlights: [
+      {
+        label: {
+          en: "Design",
+          ar: "التصميم"
+        },
+        value: {
+          en: "Graphic Print",
+          ar: "طباعة رسومية"
+        }
+      },
+      {
+        label: {
+          en: "Fit",
+          ar: "المقاس"
+        },
+        value: {
+          en: "Oversized Fit",
+          ar: "مقاس واسع"
+        }
+      },
+      {
+        label: {
+          en: "Neck",
+          ar: "الرقبة"
+        },
+        value: {
+          en: "Round Neck",
+          ar: "ياقة دائرية"
+        }
+      },
+      {
+        label: {
+          en: "Sleeve Style",
+          ar: "الأكمام"
+        },
+        value: {
+          en: "Half Sleeve",
+          ar: "نصف كم"
+        }
+      },
+      {
+        label: {
+          en: "Wash Care",
+          ar: "الغسيل"
+        },
+        value: {
+          en: "Machine wash as per tag",
+          ar: "غسيل آلي حسب التعليمات"
+        }
+      }
+    ],
+
+    description: {
+      en: "Comfortable oversized t-shirt with premium dense fabric. Perfect for casual wear.",
+      ar: "تيشيرت واسع مريح بقماش عالي الجودة. مثالي للارتداء اليومي."
+    },
+
+    returnPolicy: {
+      title: {
+        en: "15 Days Returns & Exchange",
+        ar: "إرجاع واستبدال خلال 15 يوم"
+      },
+      description: {
+        en: "Know about return & exchange policy",
+        ar: "تعرف على سياسة الإرجاع والاستبدال"
+      }
+    },
+
+    badges: [
+      {
+        title: {
+          en: "100% Genuine Product",
+          ar: "منتج أصلي 100٪"
+        }
+      },
+      {
+        title: {
+          en: "100% Secure Payment",
+          ar: "دفع آمن 100٪"
+        }
+      },
+      {
+        title: {
+          en: "Easy Returns & Refunds",
+          ar: "إرجاع واسترداد سهل"
+        }
+      }
+    ]
+  },
+
+  {
+    id: "TSHIRT_006",
+
+    title: {
+      en: "Men's Black Wind Hashira Graphic Printed Oversized T-shirt",
+      ar: "تيشيرت أسود مطبوع هاشيرا واسع للرجال"
+    },
+
+    brand: {
+      en: "Official Demon Slayer Merchandise",
+      ar: "منتجات ديمون سلاير الأصلية"
+    },
+
+    category: {
+      id: "tshirts",
+      name: {
+        en: "T-Shirts",
+        ar: "تيشيرت"
+      }
+    },
+
+    subCategory: {
+      id: "topwear",
+      name: {
+        en: "Topwear",
+        ar: "ملابس علوية"
+      }
+    },
+
+    price: {
+      current: 799,
+      original: 1599,
+      discount: 50,
+      currency: "₹"
+    },
+
+    fabric: {
+      en: "Premium Dense Fabric",
+      ar: "قماش كثيف ممتاز"
+    },
+
+    rating: {
+      average: 4.6,
+      totalRatings: 923,
+      totalReviews: 613,
+      recommendationPercent: 93,
+
+      breakdown: {
+        5: 613,
+        4: 249,
+        3: 61,
+        2: 0,
+        1: 0
+      }
+    },
+
+    boughtInfo: {
+      count: 60,
+      days: 7,
+      message: {
+        en: "60 people bought this in the last 7 days",
+        ar: "60 شخص اشتروا هذا المنتج خلال آخر 7 أيام"
+      }
+    },
+
+    images: [
+      "https://images.bewakoof.com/t640/men-s-blue-marvel-moon-knight-graphic-printed-t-shirt-483814-1755083362-1.jpg",
+      "https://images.bewakoof.com/original/men-s-blue-marvel-moon-knight-graphic-printed-oversized-t-shirt-537232-1667562903-2.jpg",
+    ],
+
+    sizes: [
+      { size: "S", stockLeft: 3 },
+      { size: "M", stockLeft: 8 },
+      { size: "L", stockLeft: 0 },
+      { size: "XL", stockLeft: 5 },
+      { size: "2XL", stockLeft: 9 }
+    ],
+
+    offers: [
+      {
+        id: 1,
+        title: {
+          en: "Get ₹79 BK Cash upto ₹500",
+          ar: "احصل على 79 روبية كاش باك حتى 500"
+        },
+        description: {
+          en: "Get EXTRA 10% Cashback on orders above ₹499",
+          ar: "احصل على استرداد نقدي إضافي 10٪ على الطلبات فوق 499"
+        },
+        code: "GETCASH10",
+        tag: {
+          en: "APP ONLY",
+          ar: "التطبيق فقط"
+        }
+      }
+    ],
+
+    delivery: {
+      freeShipping: true,
+
+      message: {
+        en: "This product is eligible for FREE SHIPPING",
+        ar: "هذا المنتج مؤهل للشحن المجاني"
+      },
+
+      codAvailable: true,
+
+      estimatedDays: 5,
+
+      pincodeRequired: true
+    },
+
+    highlights: [
+      {
+        label: {
+          en: "Design",
+          ar: "التصميم"
+        },
+        value: {
+          en: "Graphic Print",
+          ar: "طباعة رسومية"
+        }
+      },
+      {
+        label: {
+          en: "Fit",
+          ar: "المقاس"
+        },
+        value: {
+          en: "Oversized Fit",
+          ar: "مقاس واسع"
+        }
+      },
+      {
+        label: {
+          en: "Neck",
+          ar: "الرقبة"
+        },
+        value: {
+          en: "Round Neck",
+          ar: "ياقة دائرية"
+        }
+      },
+      {
+        label: {
+          en: "Sleeve Style",
+          ar: "الأكمام"
+        },
+        value: {
+          en: "Half Sleeve",
+          ar: "نصف كم"
+        }
+      },
+      {
+        label: {
+          en: "Wash Care",
+          ar: "الغسيل"
+        },
+        value: {
+          en: "Machine wash as per tag",
+          ar: "غسيل آلي حسب التعليمات"
+        }
+      }
+    ],
+
+    description: {
+      en: "Comfortable oversized t-shirt with premium dense fabric. Perfect for casual wear.",
+      ar: "تيشيرت واسع مريح بقماش عالي الجودة. مثالي للارتداء اليومي."
+    },
+
+    returnPolicy: {
+      title: {
+        en: "15 Days Returns & Exchange",
+        ar: "إرجاع واستبدال خلال 15 يوم"
+      },
+      description: {
+        en: "Know about return & exchange policy",
+        ar: "تعرف على سياسة الإرجاع والاستبدال"
+      }
+    },
+
+    badges: [
+      {
+        title: {
+          en: "100% Genuine Product",
+          ar: "منتج أصلي 100٪"
+        }
+      },
+      {
+        title: {
+          en: "100% Secure Payment",
+          ar: "دفع آمن 100٪"
+        }
+      },
+      {
+        title: {
+          en: "Easy Returns & Refunds",
+          ar: "إرجاع واسترداد سهل"
+        }
+      }
+    ]
   },
   {
-    id: 16,
-    image: productImg4,
-    brand: 'FashionHub',
-    shortDescription: 'Zip-up hoodie',
-    colour: 'Black',
-    sizes: ['S', 'M', 'L', 'XL', '2XL'],
-    rating: 4.3,
-    totalReviews: 260,
-    deliveryDate: 'Expected delivery in 3–5 days',
-    cashOnDelivery: true,
-    offer: 'Limited Stock',
+    id: "TSHIRT_007",
+
+    title: {
+      en: "Men's Black Wind Hashira Graphic Printed Oversized T-shirt",
+      ar: "تيشيرت أسود مطبوع هاشيرا واسع للرجال"
+    },
+
+    brand: {
+      en: "Official Demon Slayer Merchandise",
+      ar: "منتجات ديمون سلاير الأصلية"
+    },
+
+    category: {
+      id: "tshirts",
+      name: {
+        en: "T-Shirts",
+        ar: "تيشيرت"
+      }
+    },
+
+    subCategory: {
+      id: "topwear",
+      name: {
+        en: "Topwear",
+        ar: "ملابس علوية"
+      }
+    },
+
+    price: {
+      current: 799,
+      original: 1599,
+      discount: 50,
+      currency: "₹"
+    },
+
+    fabric: {
+      en: "Premium Dense Fabric",
+      ar: "قماش كثيف ممتاز"
+    },
+
+    rating: {
+      average: 4.6,
+      totalRatings: 923,
+      totalReviews: 613,
+      recommendationPercent: 93,
+
+      breakdown: {
+        5: 613,
+        4: 249,
+        3: 61,
+        2: 0,
+        1: 0
+      }
+    },
+
+    boughtInfo: {
+      count: 60,
+      days: 7,
+      message: {
+        en: "60 people bought this in the last 7 days",
+        ar: "60 شخص اشتروا هذا المنتج خلال آخر 7 أيام"
+      }
+    },
+
+    images: [
+      "https://images.bewakoof.com/t640/men-s-blue-marvel-moon-knight-graphic-printed-t-shirt-483814-1755083362-1.jpg",
+      "https://images.bewakoof.com/original/men-s-blue-marvel-moon-knight-graphic-printed-oversized-t-shirt-537232-1667562903-2.jpg",
+    ],
+
+    sizes: [
+      { size: "S", stockLeft: 3 },
+      { size: "M", stockLeft: 8 },
+      { size: "L", stockLeft: 0 },
+      { size: "XL", stockLeft: 5 },
+      { size: "2XL", stockLeft: 9 }
+    ],
+
+    offers: [
+      {
+        id: 1,
+        title: {
+          en: "Get ₹79 BK Cash upto ₹500",
+          ar: "احصل على 79 روبية كاش باك حتى 500"
+        },
+        description: {
+          en: "Get EXTRA 10% Cashback on orders above ₹499",
+          ar: "احصل على استرداد نقدي إضافي 10٪ على الطلبات فوق 499"
+        },
+        code: "GETCASH10",
+        tag: {
+          en: "APP ONLY",
+          ar: "التطبيق فقط"
+        }
+      }
+    ],
+
+    delivery: {
+      freeShipping: true,
+
+      message: {
+        en: "This product is eligible for FREE SHIPPING",
+        ar: "هذا المنتج مؤهل للشحن المجاني"
+      },
+
+      codAvailable: true,
+
+      estimatedDays: 5,
+
+      pincodeRequired: true
+    },
+
+    highlights: [
+      {
+        label: {
+          en: "Design",
+          ar: "التصميم"
+        },
+        value: {
+          en: "Graphic Print",
+          ar: "طباعة رسومية"
+        }
+      },
+      {
+        label: {
+          en: "Fit",
+          ar: "المقاس"
+        },
+        value: {
+          en: "Oversized Fit",
+          ar: "مقاس واسع"
+        }
+      },
+      {
+        label: {
+          en: "Neck",
+          ar: "الرقبة"
+        },
+        value: {
+          en: "Round Neck",
+          ar: "ياقة دائرية"
+        }
+      },
+      {
+        label: {
+          en: "Sleeve Style",
+          ar: "الأكمام"
+        },
+        value: {
+          en: "Half Sleeve",
+          ar: "نصف كم"
+        }
+      },
+      {
+        label: {
+          en: "Wash Care",
+          ar: "الغسيل"
+        },
+        value: {
+          en: "Machine wash as per tag",
+          ar: "غسيل آلي حسب التعليمات"
+        }
+      }
+    ],
+
+    description: {
+      en: "Comfortable oversized t-shirt with premium dense fabric. Perfect for casual wear.",
+      ar: "تيشيرت واسع مريح بقماش عالي الجودة. مثالي للارتداء اليومي."
+    },
+
+    returnPolicy: {
+      title: {
+        en: "15 Days Returns & Exchange",
+        ar: "إرجاع واستبدال خلال 15 يوم"
+      },
+      description: {
+        en: "Know about return & exchange policy",
+        ar: "تعرف على سياسة الإرجاع والاستبدال"
+      }
+    },
+
+    badges: [
+      {
+        title: {
+          en: "100% Genuine Product",
+          ar: "منتج أصلي 100٪"
+        }
+      },
+      {
+        title: {
+          en: "100% Secure Payment",
+          ar: "دفع آمن 100٪"
+        }
+      },
+      {
+        title: {
+          en: "Easy Returns & Refunds",
+          ar: "إرجاع واسترداد سهل"
+        }
+      }
+    ]
   },
   {
-    id: 17,
-    image: productImg5,
-    brand: 'ActivePro',
-    shortDescription: 'Training sports tee',
-    colour: 'Blue',
-    sizes: ['S', 'M', 'L', 'XL', '2XL'],
-    rating: 4.0,
-    totalReviews: 115,
-    deliveryDate: 'Expected delivery in 5–7 days',
-    cashOnDelivery: true,
-    offer: 'Gym Essential',
+    id: "TSHIRT_008",
+
+    title: {
+      en: "Men's Black Wind Hashira Graphic Printed Oversized T-shirt",
+      ar: "تيشيرت أسود مطبوع هاشيرا واسع للرجال"
+    },
+
+    brand: {
+      en: "Official Demon Slayer Merchandise",
+      ar: "منتجات ديمون سلاير الأصلية"
+    },
+
+    category: {
+      id: "tshirts",
+      name: {
+        en: "T-Shirts",
+        ar: "تيشيرت"
+      }
+    },
+
+    subCategory: {
+      id: "topwear",
+      name: {
+        en: "Topwear",
+        ar: "ملابس علوية"
+      }
+    },
+
+    price: {
+      current: 799,
+      original: 1599,
+      discount: 50,
+      currency: "₹"
+    },
+
+    fabric: {
+      en: "Premium Dense Fabric",
+      ar: "قماش كثيف ممتاز"
+    },
+
+    rating: {
+      average: 4.6,
+      totalRatings: 923,
+      totalReviews: 613,
+      recommendationPercent: 93,
+
+      breakdown: {
+        5: 613,
+        4: 249,
+        3: 61,
+        2: 0,
+        1: 0
+      }
+    },
+
+    boughtInfo: {
+      count: 60,
+      days: 7,
+      message: {
+        en: "60 people bought this in the last 7 days",
+        ar: "60 شخص اشتروا هذا المنتج خلال آخر 7 أيام"
+      }
+    },
+
+    images: [
+      "https://images.bewakoof.com/t640/men-s-blue-marvel-moon-knight-graphic-printed-t-shirt-483814-1755083362-1.jpg",
+      "https://images.bewakoof.com/original/men-s-blue-marvel-moon-knight-graphic-printed-oversized-t-shirt-537232-1667562903-2.jpg",
+    ],
+
+    sizes: [
+      { size: "S", stockLeft: 3 },
+      { size: "M", stockLeft: 8 },
+      { size: "L", stockLeft: 0 },
+      { size: "XL", stockLeft: 5 },
+      { size: "2XL", stockLeft: 9 }
+    ],
+
+    offers: [
+      {
+        id: 1,
+        title: {
+          en: "Get ₹79 BK Cash upto ₹500",
+          ar: "احصل على 79 روبية كاش باك حتى 500"
+        },
+        description: {
+          en: "Get EXTRA 10% Cashback on orders above ₹499",
+          ar: "احصل على استرداد نقدي إضافي 10٪ على الطلبات فوق 499"
+        },
+        code: "GETCASH10",
+        tag: {
+          en: "APP ONLY",
+          ar: "التطبيق فقط"
+        }
+      }
+    ],
+
+    delivery: {
+      freeShipping: true,
+
+      message: {
+        en: "This product is eligible for FREE SHIPPING",
+        ar: "هذا المنتج مؤهل للشحن المجاني"
+      },
+
+      codAvailable: true,
+
+      estimatedDays: 5,
+
+      pincodeRequired: true
+    },
+
+    highlights: [
+      {
+        label: {
+          en: "Design",
+          ar: "التصميم"
+        },
+        value: {
+          en: "Graphic Print",
+          ar: "طباعة رسومية"
+        }
+      },
+      {
+        label: {
+          en: "Fit",
+          ar: "المقاس"
+        },
+        value: {
+          en: "Oversized Fit",
+          ar: "مقاس واسع"
+        }
+      },
+      {
+        label: {
+          en: "Neck",
+          ar: "الرقبة"
+        },
+        value: {
+          en: "Round Neck",
+          ar: "ياقة دائرية"
+        }
+      },
+      {
+        label: {
+          en: "Sleeve Style",
+          ar: "الأكمام"
+        },
+        value: {
+          en: "Half Sleeve",
+          ar: "نصف كم"
+        }
+      },
+      {
+        label: {
+          en: "Wash Care",
+          ar: "الغسيل"
+        },
+        value: {
+          en: "Machine wash as per tag",
+          ar: "غسيل آلي حسب التعليمات"
+        }
+      }
+    ],
+
+    description: {
+      en: "Comfortable oversized t-shirt with premium dense fabric. Perfect for casual wear.",
+      ar: "تيشيرت واسع مريح بقماش عالي الجودة. مثالي للارتداء اليومي."
+    },
+
+    returnPolicy: {
+      title: {
+        en: "15 Days Returns & Exchange",
+        ar: "إرجاع واستبدال خلال 15 يوم"
+      },
+      description: {
+        en: "Know about return & exchange policy",
+        ar: "تعرف على سياسة الإرجاع والاستبدال"
+      }
+    },
+
+    badges: [
+      {
+        title: {
+          en: "100% Genuine Product",
+          ar: "منتج أصلي 100٪"
+        }
+      },
+      {
+        title: {
+          en: "100% Secure Payment",
+          ar: "دفع آمن 100٪"
+        }
+      },
+      {
+        title: {
+          en: "Easy Returns & Refunds",
+          ar: "إرجاع واسترداد سهل"
+        }
+      }
+    ]
   },
-  {
-    id: 18,
-    image: productImg6,
-    brand: 'ClassicFit',
-    shortDescription: 'Solid formal shirt',
-    colour: 'Pink',
-    sizes: ['S', 'M', 'L', 'XL', '2XL'],
-    rating: 4.6,
-    totalReviews: 430,
-    deliveryDate: 'Expected delivery in 2–3 days',
-    cashOnDelivery: true,
-    offer: 'Office Wear',
-  },
-  {
-    id: 19,
-    image: productImg1,
-    brand: 'UrbanWear',
-    shortDescription: 'Oversized graphic tee',
-    colour: 'Brown',
-    sizes: ['S', 'M', 'L', 'XL', '2XL'],
-    rating: 4.2,
-    totalReviews: 205,
-    deliveryDate: 'Expected delivery in 3–5 days',
-    cashOnDelivery: true,
-    offer: 'New Arrival',
-  },
-  {
-    id: 20,
-    image: productImg2,
-    brand: 'StreetMode',
-    shortDescription: 'Casual everyday t-shirt',
-    colour: 'Sky Blue',
-    sizes: ['S', 'M', 'L', 'XL', '2XL'],
-    rating: 4.1,
-    totalReviews: 190,
-    deliveryDate: 'Expected delivery in 4–6 days',
-    cashOnDelivery: true,
-    offer: 'Value Deal',
-  },
+
+
 ];
-
-export default products;
