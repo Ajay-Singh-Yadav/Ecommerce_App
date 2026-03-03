@@ -59,7 +59,7 @@ yarn-error.log
 *.env.staging
 *.env.production
 *.env
-*../firebaseConfig.ts
+*.../firebaseConfig.ts
 
 # Ruby / CocoaPods
 **/Pods/
