@@ -38,3 +38,19 @@ export type Product = {
   thumbnail?: string;
   products?: any;
 };
+
+export interface SizeItem {
+  size: string;
+  stockLeft: number;
+}
+
+export interface SelectSizeProps {
+  sizes: SizeItem[];
+  onSelectSize?: (size: SizeItem) => void;
+}
+export interface DevliveyDetailsProp {
+  pinCode?: number;
+  onCheckPinCode?: () => void;
+  expectedDate?: string;
+  
+}

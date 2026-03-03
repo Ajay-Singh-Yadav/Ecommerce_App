@@ -1,3 +1,4 @@
+import 'react-native-url-polyfill/auto'
 import { StatusBar, StyleSheet, Text, View } from 'react-native';
 import remoteConfig from '@react-native-firebase/remote-config';
 import React, { useMemo, useEffect, useState } from 'react';

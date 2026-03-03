@@ -19,9 +19,11 @@ import { Sizes } from '@theme/sizes';
 
 import ProductListBanner from './components/ProductlistBanner';
 import { ProductListBannerData } from '@constants/imagePath';
+import { useRoute } from '@react-navigation/native';
 
 
 const ProductListingScreen = () => {
+ 
     const { language, strings } = useLanguage();
     const [loading, setLoading] = useState(true);
 
@@ -113,7 +115,7 @@ const styles = StyleSheet.create({
     card: {
         flex: 1,
         margin: Sizes.gap_8,
-        borderWidth: 1
+      
     },
     imageBannerContainer: {
         position: 'relative',

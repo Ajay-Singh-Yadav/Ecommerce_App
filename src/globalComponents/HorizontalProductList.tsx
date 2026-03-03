@@ -21,7 +21,7 @@ import { tshirtProducts } from '@data/DummyProducts';
 import { useLanguage } from '@locales/useLanguage';
 
 const HorizontalProductList: React.FC<Product> = ({ products }) => {
-  console.log('Products:', tshirtProducts);
+
   const navigation = useNavigation<any>()
   const { language, strings } = useLanguage();
   const styles = useMemo(
@@ -152,8 +152,8 @@ const HorizontalProductList: React.FC<Product> = ({ products }) => {
       <TouchableOpacity
         style={styles.itemContainer}
         onPress={() =>
-          navigation.navigate(navigationStrings.PRODUCT_LIST, {
-            product: item,
+          navigation.navigate(navigationStrings.PRODUCT_DETAILS, {
+            product: product,
           })
         }
       >
@@ -243,7 +243,7 @@ const HorizontalProductList: React.FC<Product> = ({ products }) => {
 
       <FlatList
         horizontal
-        data={tshirtProducts}
+        data={products}
         keyExtractor={item => item.id.toString()}
         renderItem={renderItemsList}
         showsHorizontalScrollIndicator={false}

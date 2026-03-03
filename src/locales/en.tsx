@@ -19,6 +19,18 @@ const en = {
   ARABIC: 'Arabic',
   ENGLISH: 'English',
 
+  //Product Details
+  SIZE_GUIDE: 'Size guide',
+  SELECT_SIZE: 'Select Size',
+  LEFT: 'left',
+  SIZE_NOT_AVAILABLE: 'Size not available?',
+  NOTIFY_ME: 'Notify me',
+  SAVE_EXTRA: 'Save extra with these offers',
+  CHECK_DELIVERY: 'Check for Delivery Details',
+  EXPECTED_DATE: 'Expected devlivery by',
+  CASH_ON_DEVLIVERY: 'Cash on Devlivery is available',
+  FREE_SHIPPIG: 'This product is eligiblefor FREE SHIPPING',
+
   // profile
   MY_PROFILE: 'MY PROFILE',
   MY_ACCOUNT: 'My Account',
@@ -36,8 +48,7 @@ const en = {
   OUR_STORY: 'Our Story',
   FANBOOK: 'Fanbook',
   DELIVERY: 'Delivery to',
-  FREE_SHIPPING: 'FREE SHIPPING on all orders above ₹399',
-
+  FREE_SHIPPING_ON: 'FREE SHIPPING on all orders above ₹399',
 
   //TagLines
   TAGLINE_1: 'Bewakoof Vault',

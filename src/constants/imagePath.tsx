@@ -1,6 +1,7 @@
 export const imagePath = {
   logoIcon: require('@assets/images/logoIcon.jpg'),
   SplashImage: require('@assets/images/splashImage.png'),
+  Delivery: require('@assets/images/delivery.png'),
 };
 
 export const imageSlider = [
@@ -49,7 +50,6 @@ export const imageSlider2 = [
     type: 'image',
     src: 'https://images.bewakoof.com/uploads/grid/app/1x1-2026-BannerRefresh-dotw-27feb-men-1772178173.jpg',
   },
-
 ];
 export const imageSlider3 = [
   {
@@ -69,8 +69,8 @@ export const imageSlider3 = [
   },
 ];
 
-
 export const ProductListBannerData = {
-  TshirtsBanner: 'https://www.bewakoof.com/_next/image?url=https%3A%2F%2Fimages.bewakoof.com%2Fuploads%2Fcategory%2Fdesktop%2FDesktop-CFT-common--2--1771404952.jpg&w=640&q=75',
-  ShirtsBanner: ''
+  TshirtsBanner:
+    'https://www.bewakoof.com/_next/image?url=https%3A%2F%2Fimages.bewakoof.com%2Fuploads%2Fcategory%2Fdesktop%2FDesktop-CFT-common--2--1771404952.jpg&w=640&q=75',
+  ShirtsBanner: '',
 };

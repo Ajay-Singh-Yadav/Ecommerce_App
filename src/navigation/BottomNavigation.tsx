@@ -16,13 +16,7 @@ const Tab = createBottomTabNavigator();
 
 const Stack = createNativeStackNavigator();
 
-const StudioStack = () => {
-  return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="StudioHome" component={StudioScreen} />
-    </Stack.Navigator>
-  );
-};
+
 
 const BottomNavigation = () => {
   return (

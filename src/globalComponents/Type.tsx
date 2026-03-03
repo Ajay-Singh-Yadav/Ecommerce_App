@@ -68,4 +68,5 @@ export interface LineProps {
   style?: any;
   text?: string;
   textStyle?: any;
+  bgColor?:string;
 }

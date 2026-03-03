@@ -3,11 +3,11 @@ import React from 'react';
 import { LineProps } from './Type';
 import { Sizes } from '@theme/sizes';
 
-const Line: React.FC<LineProps> = ({ style, text, textStyle }) => {
+const Line: React.FC<LineProps> = ({ style, text, textStyle,bgColor }) => {
   return (
-    <View style={styles.container}>
-      <Text style={textStyle}>{text}</Text>
-      <View style={style} />
+    <View style={[styles.container,{backgroundColor:bgColor}]}>
+    {text&&   <Text style={textStyle}>{text}</Text>}
+          <View style={[style, { backgroundColor: bgColor }]} />
     </View>
   );
 };

@@ -13,6 +13,7 @@ import SplashScreen from '@screens/splash/SplashScreen';
 
 
 import ProductListingScreen from '@screens/productListing/ProductListingScreen';
+import ProductDetail from '@screens/productDetails/ProductDtails';
 
 const Stack = createNativeStackNavigator();
 
@@ -37,6 +38,7 @@ const RootNavigation = () => {
           component={StudioScreen}
         />
         <Stack.Screen name={navigationStrings.SEARCH} component={SearchSceen} />
+        <Stack.Screen name={navigationStrings.PRODUCT_DETAILS} component={ProductDetail} />
         <Stack.Screen name={navigationStrings.PRODUCT_LIST} component={ProductListingScreen} />
         <Stack.Screen
           name={navigationStrings.WISHLIST}

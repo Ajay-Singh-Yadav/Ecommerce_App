@@ -1,0 +1,8 @@
+# Supabase Configuration
+
+[api]
+enabled = true
+port = 54321
+
+[functions.get-products]
+verify_jwt = false
