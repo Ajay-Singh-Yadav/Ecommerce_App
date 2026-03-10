@@ -14,7 +14,8 @@ import colors from '@theme/colors';
 import { collection, getDocs } from 'firebase/firestore';
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../../api/firebaseConfig';
-import HorizontalProductList from '@screens/productDetails/components/HorizontalProductList';
+import HorizontalProductList from '@global/HorizontalProductList';
+// import HorizontalProductList from '@screens/productDetails/components/HorizontalProductList';
 
 const HomeScreen = () => {
   const { strings } = useLanguage();

@@ -13,7 +13,8 @@ import SplashScreen from '@screens/splash/SplashScreen';
 
 import SignupScreen from '@screens/profile/components/SignupScreen';
 import LoginScreen from '@screens/profile/components/LoginScreen';
-import ProductList from '@screens/productDetails/components/ProductList';
+import ProductDetail from '@screens/productDetails/ProductDtails';
+import ProductListingScreen from '@screens/productListing/ProductListingScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -42,7 +43,9 @@ const RootNavigation = () => {
           component={StudioScreen}
         />
         <Stack.Screen name={navigationStrings.SEARCH} component={SearchSceen} />
-        <Stack.Screen name={navigationStrings.PRODUCT_LIST} component={ProductList} />
+         <Stack.Screen name={navigationStrings.PRODUCT_DETAILS} component={ProductDetail} />
+        <Stack.Screen name={navigationStrings.PRODUCT_LIST} component={ProductListingScreen} />
+   
         <Stack.Screen
           name={navigationStrings.WISHLIST}
           component={WishlistScreen}

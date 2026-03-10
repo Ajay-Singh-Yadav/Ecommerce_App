@@ -1,5 +1,6 @@
 import {
   FlatList,
+  I18nManager,
   Image,
   StyleSheet,
   Text,
@@ -9,18 +10,19 @@ import {
 import React, { useMemo } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 
+import { Product } from '../screens/productDetails/Type';
 import { Sizes } from '@theme/sizes';
 import colors from '@theme/colors';
 import { getDotText } from '@utils/getDotText';
 import Heart from '@assets/svg/Heart.svg';
+import { useNavigation } from '@react-navigation/native';
+import navigationStrings from '@navigation/navigationStrings';
 import { useLanguage } from '@locales/useLanguage';
 
-type Props = {
-  products: any;
-};
-const HorizontalProductList: React.FC<Props> = ({ products }) => {
-  const { language } = useLanguage();
+const HorizontalProductList: React.FC<Product> = ({ products }) => {
 
+  const navigation = useNavigation<any>()
+  const { language, strings } = useLanguage();
   const styles = useMemo(
     () =>
       StyleSheet.create({
@@ -47,7 +49,8 @@ const HorizontalProductList: React.FC<Props> = ({ products }) => {
           paddingHorizontal: Sizes.gap_12,
         },
         exploreText: {
-          color: colors.ExploreAll,
+
+          color: colors.ExploreAll
         },
 
         bottomGradient: {
@@ -72,8 +75,19 @@ const HorizontalProductList: React.FC<Props> = ({ products }) => {
           borderWidth: 1,
         },
         imageContainer: {
-          width: Sizes.w_150,
+          width: "100%",
           height: Sizes.h_180,
+          overflow: "hidden",
+
+
+
+        },
+        imageStyle: {
+          width: '100%',
+          height: '100%',
+          resizeMode: 'cover',
+          overflow: "hidden",
+
         },
 
         ratingBox: {
@@ -91,11 +105,7 @@ const HorizontalProductList: React.FC<Props> = ({ products }) => {
           fontWeight: '500',
           fontSize: Sizes.font_10,
         },
-        imageStyle: {
-          width: '100%',
-          height: '100%',
-          resizeMode: 'contain',
-        },
+
         itemTextContainer: {
           flex: 1,
           borderTopWidth: 1,
@@ -103,7 +113,7 @@ const HorizontalProductList: React.FC<Props> = ({ products }) => {
         },
         itemSubTextContainer: {
           marginHorizontal: Sizes.mr_6,
-          marginTop: Sizes.mr_5,
+          marginTop: Sizes.mr_5
         },
         brand: { fontWeight: '500' },
 
@@ -134,19 +144,31 @@ const HorizontalProductList: React.FC<Props> = ({ products }) => {
   );
 
   const renderItemsList = ({ item }: any) => {
+    const product = item;
+
+
     return (
-      <TouchableOpacity style={styles.itemContainer}>
+      <TouchableOpacity
+        style={styles.itemContainer}
+        onPress={() =>
+          navigation.navigate(navigationStrings.PRODUCT_DETAILS, {
+            product: product,
+          })
+        }
+      >
         <View style={styles.imageContainer}>
           <Image
-            source={{ uri: item?.images?.[0] }}
+            source={{ uri: product?.images?.[0] }}
             style={styles.imageStyle}
           />
 
           <View style={styles.ratingBox}>
-     
-            <Text style={styles.ratingText}>⭐ {item?.rating?.average}</Text>
+            <Text style={styles.ratingText}>
+              ⭐ {product?.rating?.average}
+            </Text>
           </View>
         </View>
+
         <View style={styles.itemTextContainer}>
           <View style={styles.itemSubTextContainer}>
             <View
@@ -156,14 +178,20 @@ const HorizontalProductList: React.FC<Props> = ({ products }) => {
                 alignItems: 'center',
               }}
             >
-              <View>
+              <View style={{ flex: 1 }}>
+
+
                 <Text style={styles.brand} numberOfLines={1}>
-                  {item?.brand?.[language]}
+                  {product?.brand?.[language]}
                 </Text>
+
+
                 <Text style={styles.title} numberOfLines={1}>
-                   {getDotText(item?.title?.[language] || '')}
+                  {getDotText(product?.title?.[language])}
                 </Text>
+
               </View>
+
               <TouchableOpacity>
                 <Heart width={Sizes.w_18} height={Sizes.w_18} />
               </TouchableOpacity>
@@ -171,22 +199,23 @@ const HorizontalProductList: React.FC<Props> = ({ products }) => {
 
             <View style={styles.priceContainer}>
               <Text style={styles.price}>
-                {item?.price?.currency}
-                {item?.price?.current}
+                ₹{product?.price?.current}
               </Text>
 
               <Text style={styles.distText}>
-                {item?.price?.currency}
-                {item?.price?.original}
+                ₹{product?.price?.original}
               </Text>
 
-              <Text style={styles.offStyle}>{item?.price?.discount}% OFF</Text>
+              <Text style={styles.offStyle}>
+                {product?.price?.discount}% OFF
+              </Text>
             </View>
           </View>
         </View>
       </TouchableOpacity>
     );
   };
+
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -213,8 +242,8 @@ const HorizontalProductList: React.FC<Props> = ({ products }) => {
 
       <FlatList
         horizontal
-   data={products || []}
-       keyExtractor={item => item.id}
+        data={products}
+        keyExtractor={item => item.id.toString()}
         renderItem={renderItemsList}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{
