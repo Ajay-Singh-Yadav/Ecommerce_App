@@ -31,7 +31,8 @@ const HomeScreen = () => {
     [],
   );
   useEffect(() => {
-    loadProducts();
+   fetchProducts();
+   console.log(products,'Prodducts')
   }, []);
 
   const loadProducts = async () => {
@@ -55,7 +56,7 @@ const HomeScreen = () => {
       const snapshot = await getDocs(collection(db, 'products'));
 
       const productList: any = snapshot.docs.map(doc => ({
-        id: doc.id,
+        id: doc.id,   
         ...doc.data(),
       }));
       await AsyncStorage.setItem('products', JSON.stringify(productList));
@@ -79,7 +80,7 @@ const HomeScreen = () => {
       <HorizontalProductList products={products} />
       <BanerSlider imageData={imageSlider} />
 
-      <HorizontalProductList products={products} />
+
 
       <View>
         <Text style={{ color: colors.black }}>{strings.TAGLINE_1}</Text>
@@ -88,7 +89,7 @@ const HomeScreen = () => {
         </Text>
         <BanerSlider imageData={imageSlider3} />
       </View>
-      <HorizontalProductList products={products} />
+
     </ScrollView>
   );
 };

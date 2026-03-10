@@ -9,13 +9,18 @@ import {
 import React, { useMemo } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 
-import { Product } from '../Type';
 import { Sizes } from '@theme/sizes';
 import colors from '@theme/colors';
 import { getDotText } from '@utils/getDotText';
 import Heart from '@assets/svg/Heart.svg';
+import { useLanguage } from '@locales/useLanguage';
 
-const HorizontalProductList: React.FC<Product> = ({ products }) => {
+type Props = {
+  products: any;
+};
+const HorizontalProductList: React.FC<Props> = ({ products }) => {
+  const { language } = useLanguage();
+
   const styles = useMemo(
     () =>
       StyleSheet.create({
@@ -41,9 +46,8 @@ const HorizontalProductList: React.FC<Product> = ({ products }) => {
           width: '100%',
           paddingHorizontal: Sizes.gap_12,
         },
-        exploreText:{
-            
-            color:colors.ExploreAll
+        exploreText: {
+          color: colors.ExploreAll,
         },
 
         bottomGradient: {
@@ -64,7 +68,7 @@ const HorizontalProductList: React.FC<Product> = ({ products }) => {
           backgroundColor: colors.white,
           marginHorizontal: Sizes.gap_10,
           borderColor: colors.borderColor,
-          borderRadius:Sizes.rd_4,
+          borderRadius: Sizes.rd_4,
           borderWidth: 1,
         },
         imageContainer: {
@@ -84,7 +88,7 @@ const HorizontalProductList: React.FC<Product> = ({ products }) => {
         },
 
         ratingText: {
-          fontWeight:'500',
+          fontWeight: '500',
           fontSize: Sizes.font_10,
         },
         imageStyle: {
@@ -99,7 +103,7 @@ const HorizontalProductList: React.FC<Product> = ({ products }) => {
         },
         itemSubTextContainer: {
           marginHorizontal: Sizes.mr_6,
-          marginTop:Sizes.mr_5
+          marginTop: Sizes.mr_5,
         },
         brand: { fontWeight: '500' },
 
@@ -133,10 +137,14 @@ const HorizontalProductList: React.FC<Product> = ({ products }) => {
     return (
       <TouchableOpacity style={styles.itemContainer}>
         <View style={styles.imageContainer}>
-          <Image source={{ uri: item?.thumbnail }} style={styles.imageStyle} />
+          <Image
+            source={{ uri: item?.images?.[0] }}
+            style={styles.imageStyle}
+          />
 
           <View style={styles.ratingBox}>
-            <Text style={styles.ratingText}>⭐ {item?.rating}</Text>
+     
+            <Text style={styles.ratingText}>⭐ {item?.rating?.average}</Text>
           </View>
         </View>
         <View style={styles.itemTextContainer}>
@@ -150,10 +158,10 @@ const HorizontalProductList: React.FC<Product> = ({ products }) => {
             >
               <View>
                 <Text style={styles.brand} numberOfLines={1}>
-                  {item?.brand}
+                  {item?.brand?.[language]}
                 </Text>
                 <Text style={styles.title} numberOfLines={1}>
-                  {getDotText(item.title)}
+                   {getDotText(item?.title?.[language] || '')}
                 </Text>
               </View>
               <TouchableOpacity>
@@ -162,9 +170,17 @@ const HorizontalProductList: React.FC<Product> = ({ products }) => {
             </View>
 
             <View style={styles.priceContainer}>
-              <Text style={styles.price}>${item.price}</Text>
-              <Text style={styles.distText}>${item?.discountPercentage}</Text>
-              <Text style={styles.offStyle}>30% OFF</Text>
+              <Text style={styles.price}>
+                {item?.price?.currency}
+                {item?.price?.current}
+              </Text>
+
+              <Text style={styles.distText}>
+                {item?.price?.currency}
+                {item?.price?.original}
+              </Text>
+
+              <Text style={styles.offStyle}>{item?.price?.discount}% OFF</Text>
             </View>
           </View>
         </View>
@@ -197,8 +213,8 @@ const HorizontalProductList: React.FC<Product> = ({ products }) => {
 
       <FlatList
         horizontal
-        data={products}
-        keyExtractor={item => item.id.toString()}
+   data={products || []}
+       keyExtractor={item => item.id}
         renderItem={renderItemsList}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{

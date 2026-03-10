@@ -81,7 +81,7 @@ const BanerSlider: React.FC<Props> = ({
         data={imageData}
         width={sliderWidth}
         height={sliderHeight}
-        autoPlay={!isCurrentVideo}
+        autoPlay={!isCurrentVideo} 
         autoPlayInterval={2500}
         scrollAnimationDuration={800}
         onSnapToItem={i => setActiveIndex(i)}
