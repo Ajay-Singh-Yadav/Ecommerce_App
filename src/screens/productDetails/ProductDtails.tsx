@@ -6,7 +6,9 @@ import {
   View,
   Dimensions,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRoute } from '@react-navigation/native';
 import Header from '@global/Header';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -15,8 +17,21 @@ import { Sizes } from '@theme/sizes';
 import { useLanguage } from '@locales/useLanguage';
 import Line from '@global/Line';
 import SelectSize from './components/SelectSize';
-import OfferList from './components/OfferList';
+
 import DevliveryDetails from './components/DevliveryDetails';
+import KeyHighlights from './components/KeyHighlights';
+import products from '@data/DummyProducts';
+import OfferList from './components/OfferList';
+import ProductDescription from './components/ProductDescription';
+import CommanButton from '@global/CommanButton';
+
+import Bag from '@assets/svg/Bag.svg';
+import HorizontalProductList from '@global/HorizontalProductList';
+
+import { collection, getDocs } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '../../api/firebaseConfig';
+import BanerSlider from '@global/BanerSlider';
 
 const { width, height } = Dimensions.get('window');
 
@@ -24,12 +39,74 @@ const ProductDetail = () => {
   const { language, strings } = useLanguage();
   const route = useRoute<any>();
   const { product } = route.params;
+  console.log(product);
 
   const [activeIndex, setActiveIndex] = useState(0);
 
   const onScroll = (event: any) => {
     const index = Math.round(event.nativeEvent.contentOffset.x / width);
     setActiveIndex(index);
+  };
+
+
+  
+  const [products, setProducts] = useState([]);
+  const [banner, setBanner] = useState([]);
+
+  useEffect(() => {
+    loadProducts();
+    fetchBanners();
+    console.log(products, 'Prodducts');
+    fetchBanners();
+    console.log(banner, 'Prodducts');
+  }, []);
+
+  const loadProducts = async () => {
+    try {
+      const cachedProducts = await AsyncStorage.getItem('products');
+
+      if (cachedProducts) {
+        console.log('Loaded from cache');
+        setProducts(JSON.parse(cachedProducts));
+        return;
+      }
+
+      await fetchProducts();
+    } catch (error) {
+      console.log('Error loading products:', error);
+    }
+  };
+
+  const fetchProducts = async () => {
+    try {
+      const snapshot = await getDocs(collection(db, 'products'));
+
+      const productList: any = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      await AsyncStorage.setItem('products', JSON.stringify(productList));
+      setProducts(productList);
+      console.log('Fetched Products:', productList);
+    } catch (error) {
+      console.log('Error fetching products:', error);
+    }
+  };
+  const fetchBanners = async () => {
+    try {
+      const snapshot = await getDocs(collection(db, 'Banners'));
+
+      const bannerBrand: any = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      await AsyncStorage.setItem('Banners', JSON.stringify(bannerBrand));
+     setBanner(bannerBrand[0]?.images || []);
+      console.log('Fetched Banners:', bannerBrand);
+      console.log('Banners:', banner);
+    } catch (error) {
+      console.log('Error fetching Banners:', error);
+    }
   };
 
   const renderImage = ({ item }: any) => (
@@ -75,7 +152,7 @@ const ProductDetail = () => {
 
             {/* Dots */}
             <View style={styles.dotContainer}>
-              {product?.images?.map((_, index: number) => (
+              {product?.images?.map(( index: number) => (
                 <View
                   key={index}
                   style={[
@@ -121,13 +198,39 @@ const ProductDetail = () => {
               }}
             />
             <View style={{ marginHorizontal: Sizes.mr_10 }}>
-              <OfferList />
+              <OfferList data={product?.offers} />
             </View>
 
             <Line style={styles.LineStyle} bgColor={colors.LineColorGray} />
 
             {/* Check Devlivey Details */}
             <DevliveryDetails />
+
+            {/* Key HighLights */}
+
+            <KeyHighlights data={product?.highlights} language={language} />
+
+            <ProductDescription
+              description={product?.description}
+              returnPolicy={product?.returnPolicy}
+            />
+
+                  <Line style={styles.LineStyle} bgColor={colors.LineColorGray} />
+
+            <CommanButton
+              ButtonText={`${strings.ADD_TO_BAG} ${product?.price?.currency}${product?.price?.current}`}
+              StyleText={styles.addToCartText}
+              styleButton={styles.addToCartButton}
+              Icon={<Bag width={Sizes.w_18} height={Sizes.h_18} />}
+            />
+
+            <Text style={{marginHorizontal:Sizes.mr_12, marginVertical:Sizes.mr_12, fontWeight:'500', color:colors.ArsenicBlack}}>{strings.FREQUENTLY_BOUGHT}</Text>
+
+            <HorizontalProductList products={products} />
+
+    <BanerSlider imageData={banner} />
+
+
           </>
         }
       />
@@ -164,8 +267,8 @@ const styles = StyleSheet.create({
     bottom: Sizes.mr_15,
     left: Sizes.mr_15,
     backgroundColor: colors.white,
-    paddingHorizontal: Sizes.pd_10,
-    paddingVertical: Sizes.pd_5,
+    paddingHorizontal: Sizes.pd_12,
+    paddingVertical: Sizes.pd_2,
     borderRadius: Sizes.rd_20,
   },
 
@@ -254,7 +357,16 @@ const styles = StyleSheet.create({
     width: '100%',
     height: Sizes.h_5,
   },
-  selectSizeContainer: {
-    width: '100%',
+
+  addToCartButton: {
+    backgroundColor: colors.primary,
+    padding: Sizes.pd_12,
+    borderRadius: Sizes.rd_8,
+    marginVertical: Sizes.mr_14,
+    marginHorizontal: Sizes.mr_12,
+  },
+  addToCartText: {
+    fontSize: Sizes.font_12,
+    marginHorizontal: Sizes.mr_4,
   },
 });

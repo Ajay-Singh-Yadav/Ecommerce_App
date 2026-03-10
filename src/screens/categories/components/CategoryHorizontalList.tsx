@@ -33,7 +33,7 @@ const CategoryHorizontalList = () => {
             style={styles.gradientBoder}
           >
             <TouchableOpacity style={styles.innerCircle} activeOpacity={0.8}>
-              {/* <View style={styles.imageSpcial}> */}
+              <View style={styles.imageSpcial}>
               <Image
                 source={
                   typeof item.img === 'string' ? { uri: item.img } : item.img
@@ -41,7 +41,7 @@ const CategoryHorizontalList = () => {
                 resizeMode="contain"
                 style={styles.categoryImage}
               />
-              {/* </View> */}
+              </View>
             </TouchableOpacity>
           </LinearGradient>
         ) : (

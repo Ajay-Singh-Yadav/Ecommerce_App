@@ -1,18 +1,23 @@
+import strings from '@locales/strings';
+import { useLanguage } from '@locales/useLanguage';
 import colors from '@theme/colors';
 import { Sizes } from '@theme/sizes';
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { string } from 'yup';
 
 interface OfferCardProps {
-  title: string;
-  subtitle: string;
+  title: {
+    en: string;
+    ar: string;
+  };
+  subtitle: {
+    en: string;
+    ar: string;
+  };
   code?: string;
+
   autoApplied?: boolean;
-  bgColor?: string;
-  price?: string;
-  getPrice?: string;
-  distPrice?: string;
-  uptoPrice?: string;
 }
 
 const OfferCard: React.FC<OfferCardProps> = ({
@@ -20,43 +25,28 @@ const OfferCard: React.FC<OfferCardProps> = ({
   subtitle,
   code,
   autoApplied,
-  distPrice,
-  price,
-  getPrice,
-  uptoPrice,
-  bgColor = '#F8F3FF',
 }) => {
+  const { language, strings } = useLanguage();
+  console.log('title:', title);
+  console.log('subtitle:', subtitle);
+  console.log('language:', language);
   return (
     <View style={[styles.card, { backgroundColor: colors.white }]}>
       <View style={styles.content}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-          <Text style={styles.title}>{title}</Text>
-          <Text style={{ color: colors.offerPriceColor }}>{distPrice}</Text>
-          <Text
-            style={{
-              textDecorationLine: 'line-through',
-              color: colors.offerGrayProce,
-            }}
-          >
-            {price}
-          </Text>
-          <Text
-            style={{
-              color: colors.offerPriceColor,
-            }}
-          >
-            {uptoPrice}
-          </Text>
+          <Text style={styles.title}>{title?.[language] || title?.en}</Text>
         </View>
-        <Text style={styles.subtitle}>{subtitle} </Text>
+        <Text style={styles.subtitle}>
+          {subtitle?.[language] || subtitle?.en}
+        </Text>
 
         <View style={styles.bottomRow}>
           {autoApplied ? (
-            <Text style={styles.autoApplied}>AUTO APPLIED</Text>
+            <Text style={styles.autoApplied}>{strings.AUTO_APPLY}</Text>
           ) : (
             <Text style={styles.code}>{code}</Text>
           )}
-          <Text style={styles.tnc}>View T&C</Text>
+          <Text style={styles.tnc}>{strings.VIEW_TC}</Text>
         </View>
       </View>
     </View>

@@ -30,6 +30,15 @@ const en = {
   EXPECTED_DATE: 'Expected devlivery by',
   CASH_ON_DEVLIVERY: 'Cash on Devlivery is available',
   FREE_SHIPPIG: 'This product is eligiblefor FREE SHIPPING',
+  KEY_HIGHLIGHT: 'Key Highlights',
+  VIEW_TC: 'View T&C',
+  CHECK: 'Check',
+  AUTO_APPLY: 'AUTO APPLIED',
+  PRODUCT_DESCRIPTION: 'Product Description',
+  PRODUCT_DESCRIPTION_TITLE: 'Manufacture, Care and Fit',
+  ADD_TO_BAG: 'ADD TO BAG',
+  ENTER_PINCODE: 'Enter Pincode',
+  FREQUENTLY_BOUGHT: 'Frequently Bought Together',
 
   // profile
   MY_PROFILE: 'MY PROFILE',

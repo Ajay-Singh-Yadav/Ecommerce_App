@@ -98,7 +98,7 @@ const HorizontalProductList: React.FC<Product> = ({ products }) => {
           paddingHorizontal: Sizes.pd_6,
           paddingVertical: Sizes.pd_1,
           borderRadius: Sizes.rd_6,
-          borderWidth: 0.5,
+     
         },
 
         ratingText: {

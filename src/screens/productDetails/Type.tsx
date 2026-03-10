@@ -52,5 +52,20 @@ export interface DevliveyDetailsProp {
   pinCode?: number;
   onCheckPinCode?: () => void;
   expectedDate?: string;
-  
 }
+export interface HighlightItem {
+  label: {
+    en: string;
+    ar: string;
+  };
+  value: {
+    en: string;
+    ar: string;
+  };
+}
+
+export interface Props {
+  data: HighlightItem[];
+  language: 'en' | 'ar';
+}
+

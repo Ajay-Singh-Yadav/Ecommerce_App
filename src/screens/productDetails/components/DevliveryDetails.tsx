@@ -12,11 +12,9 @@ import { DevliveyDetailsProp } from '../Type';
 import { useLanguage } from '@locales/useLanguage';
 import { Sizes } from '@theme/sizes';
 import colors from '@theme/colors';
+
+
 //SVG
-
-import RightArrow from '@assets/svg/RightArrow.svg';
-import { imagePath } from '@constants/imagePath';
-
 import HeaderDelivery from '@assets/svg/HeaderDelivery.svg';
 
 const DevliveryDetails: React.FC<DevliveyDetailsProp> = ({
@@ -31,12 +29,12 @@ const DevliveryDetails: React.FC<DevliveyDetailsProp> = ({
 
       <View style={styles.inputContainer}>
         <TextInput
-          placeholder="Enter Pincode"
+          placeholder={strings.ENTER_PINCODE}
           placeholderTextColor={colors.textlightGray}
           style={styles.inputStyle}
         />
         <TouchableOpacity style={styles.checkButton}>
-          <Text style={styles.checkButtonText}>Check</Text>
+          <Text style={styles.checkButtonText}>{strings.CHECK}</Text>
         </TouchableOpacity>
       </View>
 
@@ -125,7 +123,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: Sizes.gap_6,
-    marginVertical:Sizes.mr_4
+    marginVertical: Sizes.mr_4,
   },
   expectedDateText: {
     fontSize: Sizes.font_10,
@@ -137,8 +135,8 @@ const styles = StyleSheet.create({
     padding: Sizes.pd_4,
     justifyContent: 'center',
     gap: Sizes.gap_4,
-    borderRadius:Sizes.rd_8,
-    marginVertical:Sizes.mr_4
+    borderRadius: Sizes.rd_8,
+    marginVertical: Sizes.mr_4,
   },
 
   headerText: {

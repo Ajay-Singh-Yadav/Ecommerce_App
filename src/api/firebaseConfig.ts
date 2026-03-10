@@ -16,6 +16,9 @@ export const db = getFirestore(app);
 
 
 
+
+
+
  //   export const addProduct = async () => {
 //     try {
 //       const product ={
