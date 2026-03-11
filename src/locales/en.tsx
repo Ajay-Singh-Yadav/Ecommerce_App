@@ -39,6 +39,9 @@ const en = {
   ADD_TO_BAG: 'ADD TO BAG',
   ENTER_PINCODE: 'Enter Pincode',
   FREQUENTLY_BOUGHT: 'Frequently Bought Together',
+  MORE_FROM_BRAND: 'More from the Brand',
+  EXPLORE_ALL: 'Explore All',
+  YOU_MAY_LIKE: 'You May Also Like',
 
   // profile
   MY_PROFILE: 'MY PROFILE',

@@ -1,8 +1,6 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import React, { useEffect, useMemo, useState } from 'react';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
 import { useLanguage } from '@locales/useLanguage';
 
 import BanerSlider from '@global/BanerSlider';
@@ -13,14 +11,16 @@ import CategoryHorizontalList from '@screens/categories/components/CategoryHoriz
 import colors from '@theme/colors';
 import { collection, getDocs } from 'firebase/firestore';
 import { doc, setDoc } from 'firebase/firestore';
-import { db } from '../../api/firebaseConfig';
+import { addShirts, db } from '../../api/firebaseConfig';
+// import { addProduct, db } from '../../api/firebaseConfig';
 import HorizontalProductList from '@global/HorizontalProductList';
-// import HorizontalProductList from '@screens/productDetails/components/HorizontalProductList';
+import { getCollectionWithCache } from '../../api/firestoreService';
 
 const HomeScreen = () => {
   const { strings } = useLanguage();
 
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<any[]>([]);
+  const [shirts, setShirts] = useState<any[]>([]);
 
   const styles = useMemo(
     () =>
@@ -33,39 +33,12 @@ const HomeScreen = () => {
   );
   useEffect(() => {
     loadProducts();
-    console.log(products, 'Prodducts');
+    
   }, []);
 
   const loadProducts = async () => {
-    try {
-      const cachedProducts = await AsyncStorage.getItem('products');
-
-      if (cachedProducts) {
-        console.log('Loaded from cache');
-        setProducts(JSON.parse(cachedProducts));
-        return;
-      }
-
-      await fetchProducts();
-    } catch (error) {
-      console.log('Error loading products:', error);
-    }
-  };
-
-  const fetchProducts = async () => {
-    try {
-      const snapshot = await getDocs(collection(db, 'products'));
-
-      const productList: any = snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      await AsyncStorage.setItem('products', JSON.stringify(productList));
-      setProducts(productList);
-      console.log('Fetched Products:', productList);
-    } catch (error) {
-      console.log('Error fetching products:', error);
-    }
+    await getCollectionWithCache('products', 'products', setProducts);
+    await getCollectionWithCache('Shirts', 'Shirts', setShirts);
   };
 
   return (
@@ -78,10 +51,11 @@ const HomeScreen = () => {
       <CategoryHorizontalList />
       <BanerSlider imageData={imageSlider2} />
 
-      <HorizontalProductList products={products} />
+      <HorizontalProductList products={products} tagline="New Arrivals" />
+
       <BanerSlider imageData={imageSlider} />
 
-      <HorizontalProductList products={products} />
+      <HorizontalProductList products={products} tagline="Indieverse" />
 
       <View>
         <Text style={{ color: colors.black }}>{strings.TAGLINE_1}</Text>
@@ -89,7 +63,7 @@ const HomeScreen = () => {
           {strings.TAGLINE_2}
         </Text>
         <BanerSlider imageData={imageSlider3} />
-        <HorizontalProductList products={products} />
+        <HorizontalProductList products={shirts} tagline="Polos" />
       </View>
     </ScrollView>
   );

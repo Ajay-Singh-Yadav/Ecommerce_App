@@ -19,10 +19,11 @@ import { useNavigation } from '@react-navigation/native';
 import navigationStrings from '@navigation/navigationStrings';
 import { useLanguage } from '@locales/useLanguage';
 
-const HorizontalProductList: React.FC<Product> = ({ products }) => {
+const HorizontalProductList: React.FC<Product> = ({ products, tagline }) => {
 
   const navigation = useNavigation<any>()
   const { language, strings } = useLanguage();
+  
   const styles = useMemo(
     () =>
       StyleSheet.create({
@@ -145,14 +146,14 @@ const HorizontalProductList: React.FC<Product> = ({ products }) => {
 
   const renderItemsList = ({ item }: any) => {
     const product = item;
-
-
     return (
       <TouchableOpacity
         style={styles.itemContainer}
         onPress={() =>
           navigation.navigate(navigationStrings.PRODUCT_DETAILS, {
             product: product,
+            category: product?.category?.id,
+          
           })
         }
       >
@@ -232,10 +233,10 @@ const HorizontalProductList: React.FC<Product> = ({ products }) => {
         style={styles.topGradient}
       >
         <View style={styles.headerRow}>
-          <Text>New Arrivals</Text>
+          <Text style={{fontSize:Sizes.font_12, fontWeight:'500', color:colors.ArsenicBlack}}> {tagline}</Text>
 
           <TouchableOpacity>
-            <Text style={styles.exploreText}>Explore All</Text>
+            <Text style={styles.exploreText}>{strings.EXPLORE_ALL}</Text>
           </TouchableOpacity>
         </View>
       </LinearGradient>

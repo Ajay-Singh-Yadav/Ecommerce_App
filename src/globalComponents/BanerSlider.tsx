@@ -7,6 +7,7 @@ import {
   StyleProp,
   ViewStyle,
   ImageStyle,
+  Text,
 } from 'react-native';
 import Video from 'react-native-video';
 
@@ -17,7 +18,6 @@ import { useNavigation } from '@react-navigation/native';
 import { CustomDot } from './CustomDot ';
 import navigationStrings from '@navigation/navigationStrings';
 import { Sizes } from '@theme/sizes';
-import { Text } from 'react-native-svg';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -28,6 +28,8 @@ type Props = {
   buttonStyle?: StyleProp<ViewStyle>;
   carouselStyle?: StyleProp<ViewStyle>;
   imageStyle?: StyleProp<ImageStyle>;
+  tagline?: string;
+  products?: any;
 };
 
 const BanerSlider: React.FC<Props> = ({
@@ -37,6 +39,8 @@ const BanerSlider: React.FC<Props> = ({
   buttonStyle,
   carouselStyle,
   imageStyle,
+  tagline,
+  products,
 }) => {
   const navigation = useNavigation<any>();
   const ref = useRef<ICarouselInstance>(null);
@@ -50,9 +54,13 @@ const BanerSlider: React.FC<Props> = ({
 
   const sliderHeight = height ?? autoHeight;
 
-  const handleNavigation = () => {
-    navigation.navigate(navigationStrings.PRODUCT_LIST);
+  const handleNavigation = (item: any) => {
+    if (!item.category) return;
+    navigation.navigate(navigationStrings.PRODUCT_LIST, {
+      category: item.category,
+    });
   };
+
   useEffect(() => {
     if (!imageData?.length || height) return;
 
@@ -72,16 +80,30 @@ const BanerSlider: React.FC<Props> = ({
     if (first?.type === 'video') {
       setAutoHeight(sliderWidth * 0.6);
     }
+    console.log(imageData);
   }, [imageData, sliderWidth, height]);
 
   return (
     <View style={[{ alignItems: 'center', width: '100%' }, buttonStyle]}>
+      {tagline && (
+        <Text
+          style={{
+            width: '100%',
+            fontSize: Sizes.font_14,
+            fontWeight: '600',
+            marginBottom: Sizes.mr_8,
+            paddingHorizontal: Sizes.mr_12,
+          }}
+        >
+          {tagline}
+        </Text>
+      )}
       <Carousel
         ref={ref}
         data={imageData}
         width={sliderWidth}
         height={sliderHeight}
-        autoPlay={!isCurrentVideo} 
+        autoPlay={!isCurrentVideo}
         autoPlayInterval={2500}
         scrollAnimationDuration={800}
         onSnapToItem={i => setActiveIndex(i)}
@@ -94,7 +116,7 @@ const BanerSlider: React.FC<Props> = ({
 
           return (
             <View>
-              <TouchableOpacity activeOpacity={0.9} onPress={handleNavigation}>
+              <TouchableOpacity activeOpacity={0.9} onPress={() => handleNavigation(item)}>
                 {isVideo ? (
                   <Video
                     source={source}

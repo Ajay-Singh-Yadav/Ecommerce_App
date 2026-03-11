@@ -32,14 +32,15 @@ import { collection, getDocs } from 'firebase/firestore';
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../../api/firebaseConfig';
 import BanerSlider from '@global/BanerSlider';
+import { getCollectionWithCache } from '../../api/firestoreService';
 
 const { width, height } = Dimensions.get('window');
 
 const ProductDetail = () => {
   const { language, strings } = useLanguage();
   const route = useRoute<any>();
-  const { product } = route.params;
-  console.log(product);
+  const { product, category } = route.params;
+  console.log('PRoduct Details',product);
 
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -48,50 +49,19 @@ const ProductDetail = () => {
     setActiveIndex(index);
   };
 
-
-  
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<any[]>([]);
   const [banner, setBanner] = useState([]);
 
   useEffect(() => {
     loadProducts();
     fetchBanners();
-    console.log(products, 'Prodducts');
-    fetchBanners();
-    console.log(banner, 'Prodducts');
   }, []);
 
   const loadProducts = async () => {
-    try {
-      const cachedProducts = await AsyncStorage.getItem('products');
-
-      if (cachedProducts) {
-        console.log('Loaded from cache');
-        setProducts(JSON.parse(cachedProducts));
-        return;
-      }
-
-      await fetchProducts();
-    } catch (error) {
-      console.log('Error loading products:', error);
-    }
+    await getCollectionWithCache(category, category, setProducts);
   };
 
-  const fetchProducts = async () => {
-    try {
-      const snapshot = await getDocs(collection(db, 'products'));
-
-      const productList: any = snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      await AsyncStorage.setItem('products', JSON.stringify(productList));
-      setProducts(productList);
-      console.log('Fetched Products:', productList);
-    } catch (error) {
-      console.log('Error fetching products:', error);
-    }
-  };
+ 
   const fetchBanners = async () => {
     try {
       const snapshot = await getDocs(collection(db, 'Banners'));
@@ -100,10 +70,16 @@ const ProductDetail = () => {
         id: doc.id,
         ...doc.data(),
       }));
-      await AsyncStorage.setItem('Banners', JSON.stringify(bannerBrand));
-     setBanner(bannerBrand[0]?.images || []);
-      console.log('Fetched Banners:', bannerBrand);
-      console.log('Banners:', banner);
+
+      const formattedBanners =
+        bannerBrand[0]?.images?.map((img: string) => ({
+          type: 'image',
+          src: img,
+        })) || [];
+
+      setBanner(formattedBanners);
+
+      console.log('Formatted Banners:', formattedBanners);
     } catch (error) {
       console.log('Error fetching Banners:', error);
     }
@@ -123,7 +99,7 @@ const ProductDetail = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header backArrow heart search bag />
+      <Header backArrow heart search bag  title={product?.category?.id ==='products' ? 'T-Shirts' : product?.category?.id   || ''}/>
 
       {/* <SafeAreaView style={styles.container}>
   <Header backArrow heart search bag /> */}
@@ -134,7 +110,7 @@ const ProductDetail = () => {
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={
           <>
-            {/* Image Carousel */}
+         
             <View style={styles.sliderContainer}>
               <FlatList
                 data={product?.images}
@@ -152,7 +128,7 @@ const ProductDetail = () => {
 
             {/* Dots */}
             <View style={styles.dotContainer}>
-              {product?.images?.map(( index: number) => (
+              {product?.images?.map((index: number) => (
                 <View
                   key={index}
                   style={[
@@ -215,7 +191,7 @@ const ProductDetail = () => {
               returnPolicy={product?.returnPolicy}
             />
 
-                  <Line style={styles.LineStyle} bgColor={colors.LineColorGray} />
+            <Line style={styles.LineStyle} bgColor={colors.LineColorGray} />
 
             <CommanButton
               ButtonText={`${strings.ADD_TO_BAG} ${product?.price?.currency}${product?.price?.current}`}
@@ -224,13 +200,28 @@ const ProductDetail = () => {
               Icon={<Bag width={Sizes.w_18} height={Sizes.h_18} />}
             />
 
-            <Text style={{marginHorizontal:Sizes.mr_12, marginVertical:Sizes.mr_12, fontWeight:'500', color:colors.ArsenicBlack}}>{strings.FREQUENTLY_BOUGHT}</Text>
+            <HorizontalProductList
+              products={products}
+              tagline={strings.FREQUENTLY_BOUGHT}
+            />
 
-            <HorizontalProductList products={products} />
+            <Text
+              style={{
+                marginHorizontal: Sizes.mr_12,
+                marginVertical: Sizes.mr_12,
+                fontWeight: '500',
+                color: colors.ArsenicBlack,
+              }}
+            >
+              {strings.MORE_FROM_BRAND}
+            </Text>
 
-    <BanerSlider imageData={banner} />
+            <BanerSlider imageData={banner} />
 
-
+            <HorizontalProductList
+              products={products}
+              tagline={strings.YOU_MAY_LIKE}
+            />
           </>
         }
       />

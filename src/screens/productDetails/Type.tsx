@@ -37,6 +37,7 @@ export type Product = {
   images?: string[];
   thumbnail?: string;
   products?: any;
+  tagline?:string;
 };
 
 export interface SizeItem {

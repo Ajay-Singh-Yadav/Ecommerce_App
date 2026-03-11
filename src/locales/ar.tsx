@@ -40,6 +40,9 @@ const ar = {
   ADD_TO_BAG:'أضف إلى السلة',
   ENTER_PINCODE:'أدخل الرمز السري',
   FREQUENTLY_BOUGHT:'يتم شراؤها معًا بشكل متكرر',
+  MORE_FROM_BRAND:'المزيد من العلامة التجارية',
+  EXPLORE_ALL:'استكشاف الكل',
+  YOU_MAY_LIKE:'قد يعجبك أيضًا',
 
   MY_PROFILE: 'ملفي الشخصي',
   MY_ACCOUNT: 'حسابي',

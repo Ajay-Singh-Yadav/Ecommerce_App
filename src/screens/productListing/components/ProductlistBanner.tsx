@@ -5,7 +5,7 @@ import { Sizes } from '@theme/sizes';
 import HeaderDelivery from '@assets/svg/HeaderDelivery.svg';
 
 interface ProductListBannerProps {
-    image: string;
+    image?: any;
     title?: string;
 }
 

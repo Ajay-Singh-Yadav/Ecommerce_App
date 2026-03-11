@@ -1,6 +1,7 @@
 import colors from '@theme/colors';
 import { Sizes } from '@theme/sizes';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+
 import {
   StyleSheet,
   Text,
@@ -9,24 +10,66 @@ import {
   TextInput,
   TouchableOpacity,
   ImageBackground,
+  Alert,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import BackArrow from '@assets/svg/BackArrow.svg';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginSignup = ({}) => {
+  const navigation = useNavigation();
+  const [phone, setPhone] = useState('');
+  const [otp, setOtp] = useState('');
+  const [generatedOtp, setGeneratedOtp] = useState('');
+  const [otpSent, setOtpSent] = useState(false);
 
-    const navigation = useNavigation();
+
+  useEffect(() => {
+  const checkLogin = async () => {
+    const user = await AsyncStorage.getItem('userLoggedIn');
+
+    if (user) {
+      console.log('User already logged in');
+    }
+  };
+
+  checkLogin();
+}, []);
+
+  const sendOTP = () => {
+    const randomOtp = Math.floor(100000 + Math.random() * 900000).toString();
+
+    setGeneratedOtp(randomOtp);
+    setOtpSent(true);
+
+    console.log('Generated OTP:', randomOtp);
+
+    Alert.alert(`Your OTP is ${randomOtp}`); // for testing
+  };
+
+  const verifyOTP = async () => {
+    if (otp === generatedOtp) {
+      await AsyncStorage.setItem('userLoggedIn', 'true');
+
+      Alert.alert('Login Successful');
+      console.log('User Logged In');
+    } else {
+      Alert.alert('Invalid OTP');
+    }
+  };
   return (
     <SafeAreaView style={styles.container}>
-  
       <View style={styles.imageContainer}>
         <ImageBackground
           source={require('@assets/images/LoginImage.png')}
           style={styles.banner}
         >
-          <TouchableOpacity style={styles.BackIcon} onPress={()=> navigation.goBack()}>
+          <TouchableOpacity
+            style={styles.BackIcon}
+            onPress={() => navigation.goBack()}
+          >
             <BackArrow width={20} height={20} />
           </TouchableOpacity>
         </ImageBackground>
@@ -40,22 +83,37 @@ const LoginSignup = ({}) => {
           Join us now to be a part of Bewakoof® family.
         </Text>
 
-       
         <View style={styles.inputWrapper}>
           <Text style={styles.flag}>🇮🇳 +91</Text>
           <TextInput
             placeholder="Enter Mobile Number"
             style={styles.input}
             keyboardType="phone-pad"
+            value={phone}
+            onChangeText={setPhone}
           />
         </View>
 
-        
-        <TouchableOpacity style={styles.continueBtn}>
-          <Text style={styles.continueText}>CONTINUE</Text>
-        </TouchableOpacity>
+        {!otpSent ? (
+          <TouchableOpacity style={styles.continueBtn} onPress={sendOTP}>
+            <Text style={styles.continueText}>CONTINUE</Text>
+          </TouchableOpacity>
+        ) : (
+          <>
+            <TextInput
+              placeholder="Enter OTP"
+              style={styles.input}
+              keyboardType="number-pad"
+              value={otp}
+              onChangeText={setOtp}
+            />
 
-        
+            <TouchableOpacity style={styles.continueBtn} onPress={verifyOTP}>
+              <Text style={styles.continueText}>VERIFY OTP</Text>
+            </TouchableOpacity>
+          </>
+        )}
+
         <View style={styles.socialRow}>
           <TouchableOpacity style={styles.socialBtn}>
             <Text style={styles.socialText}>GOOGLE</Text>
@@ -66,7 +124,6 @@ const LoginSignup = ({}) => {
           </TouchableOpacity>
         </View>
 
-       
         <Text style={styles.terms}>
           By creating an account or logging in, you agree with Bewakoof’s
           <Text style={styles.link}> T&C </Text>
