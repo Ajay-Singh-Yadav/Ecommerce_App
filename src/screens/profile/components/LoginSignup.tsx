@@ -46,7 +46,7 @@ const LoginSignup = ({}) => {
 
     console.log('Generated OTP:', randomOtp);
 
-    Alert.alert(`Your OTP is ${randomOtp}`); // for testing
+    Alert.alert(`Your OTP is ${randomOtp}`); 
   };
 
   const verifyOTP = async () => {

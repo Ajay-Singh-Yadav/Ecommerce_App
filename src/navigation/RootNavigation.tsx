@@ -11,10 +11,10 @@ import LoginSignup from '@screens/profile/components/LoginSignup';
 import WishlistScreen from '@screens/wishlist/WishlistScreen';
 import SplashScreen from '@screens/splash/SplashScreen';
 
-import SignupScreen from '@screens/profile/components/SignupScreen';
-import LoginScreen from '@screens/profile/components/LoginScreen';
+
 import ProductDetail from '@screens/productDetails/ProductDtails';
 import ProductListingScreen from '@screens/productListing/ProductListingScreen';
+import OderScreen from '@screens/oders/OderScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,12 +28,6 @@ const RootNavigation = () => {
           name={navigationStrings.SPLASH_SCREEN}
           component={SplashScreen}
         />
-        {/* <Stack.Screen name={navigationStrings.LOGIN} component={LoginScreen} />
-        <Stack.Screen
-          name={navigationStrings.SIGNUP}
-          component={SignupScreen}
-        /> */}
-
         <Stack.Screen
           name={navigationStrings.DRAWER}
           component={DrawerNavigation}
@@ -45,6 +39,10 @@ const RootNavigation = () => {
         <Stack.Screen name={navigationStrings.SEARCH} component={SearchSceen} />
          <Stack.Screen name={navigationStrings.PRODUCT_DETAILS} component={ProductDetail} />
         <Stack.Screen name={navigationStrings.PRODUCT_LIST} component={ProductListingScreen} />
+
+        {/* Profile Tab */}
+
+        <Stack.Screen name='order' component={OderScreen} />
    
         <Stack.Screen
           name={navigationStrings.WISHLIST}
