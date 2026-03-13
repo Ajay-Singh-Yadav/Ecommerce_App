@@ -88,17 +88,21 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: Sizes.h_50,
     backgroundColor: '#fff',
+    paddingVertical:5
   },
   tabButtonContainer: {
     flex: 1,
     marginHorizontal: Sizes.mr_8,
+   
+
   },
 
   tabButton: {
     justifyContent: 'center',
     alignItems: 'center',
-    padding: Sizes.pd_10,
+
     borderRadius: Sizes.rd_8,
+   
   },
   tabButtonText: {},
 });
