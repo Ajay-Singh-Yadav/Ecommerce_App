@@ -11,7 +11,6 @@ import LoginSignup from '@screens/profile/components/LoginSignup';
 import WishlistScreen from '@screens/wishlist/WishlistScreen';
 import SplashScreen from '@screens/splash/SplashScreen';
 
-
 import ProductDetail from '@screens/productDetails/ProductDtails';
 import ProductListingScreen from '@screens/productListing/ProductListingScreen';
 import OderScreen from '@screens/oders/OderScreen';
@@ -37,13 +36,19 @@ const RootNavigation = () => {
           component={StudioScreen}
         />
         <Stack.Screen name={navigationStrings.SEARCH} component={SearchSceen} />
-         <Stack.Screen name={navigationStrings.PRODUCT_DETAILS} component={ProductDetail} />
-        <Stack.Screen name={navigationStrings.PRODUCT_LIST} component={ProductListingScreen} />
+        <Stack.Screen
+          name={navigationStrings.PRODUCT_DETAILS}
+          component={ProductDetail}
+        />
+        <Stack.Screen
+          name={navigationStrings.PRODUCT_LIST}
+          component={ProductListingScreen}
+        />
 
         {/* Profile Tab */}
 
-        <Stack.Screen name='order' component={OderScreen} />
-   
+        <Stack.Screen name="order" component={OderScreen} />
+
         <Stack.Screen
           name={navigationStrings.WISHLIST}
           component={WishlistScreen}

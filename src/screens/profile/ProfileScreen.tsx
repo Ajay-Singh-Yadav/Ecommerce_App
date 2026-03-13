@@ -10,7 +10,11 @@ import {
 
 import colors from '@theme/colors';
 import { Sizes } from '@theme/sizes';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import navigationStrings from '@navigation/navigationStrings';
+import { useSelector } from 'react-redux';
+import { RootState } from '@redux/store';
 
 const quickActions = [
   {
@@ -47,10 +51,17 @@ const menuData = [
 
 const ProfileScreen = () => {
   const navigation = useNavigation<any>();
+  const user = useSelector((state: RootState) => state.user);
+
+console.log('mobile:', user.mobile);
+console.log('userId:', user.userId);
+console.log('isLoggedIn:', user.isLoggedIn);
 
   const handleNavigation = ({ item }: any) => {
     navigation.navigate(item?.name || 'order');
   };
+
+  
 
   const renderAction = ({ item }: any) => (
     <TouchableOpacity
@@ -86,7 +97,7 @@ const ProfileScreen = () => {
         </TouchableOpacity>
       </View>
 
-      {/* QUICK ACTIONS */}
+      
       <View style={styles.quickActions}>
         <FlatList
           data={quickActions}
@@ -98,7 +109,7 @@ const ProfileScreen = () => {
         />
       </View>
 
-      {/* MENU */}
+     
       <FlatList
         data={menuData}
         keyExtractor={(item, index) => index.toString()}
@@ -206,7 +217,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     // marginRight: Sizes.mr_10,
-    borderWidth: 1,
+    // borderWidth: 1,
   },
 
   actionIcon: {

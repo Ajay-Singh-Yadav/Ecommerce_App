@@ -11,8 +11,26 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import colors from '@theme/colors';
 import { Sizes } from '@theme/sizes';
 import { categories } from '@constants/categories';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
+import navigationStrings from '@navigation/navigationStrings';
 
 const WishlistScreen = () => {
+
+const navigation = useNavigation<any>();
+
+
+
+  const handleWishlist = async () => {
+  const user = await AsyncStorage.getItem('userLoggedIn');
+
+  if (!user) {
+    navigation.navigate(navigationStrings.LOGIN_SIGNUP);
+    return;
+  }
+
+  // add to wishlist logic
+};
   const styles = useMemo(
     () =>
       StyleSheet.create({

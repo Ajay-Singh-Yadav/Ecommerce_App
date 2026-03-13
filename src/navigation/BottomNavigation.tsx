@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '@screens/home/HomeScreen';
 
@@ -8,7 +8,10 @@ import ProfileScreen from '@screens/profile/ProfileScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import navigationStrings from './navigationStrings';
 import { CustomTabBar } from './CustomeTabBar';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
+import { RootState } from '@redux/store';
 
 const DummyScreen = () => null;
 
@@ -25,6 +28,8 @@ const StudioStack = () => {
 };
 
 const BottomNavigation = () => {
+    const user = useSelector((state: RootState) => state.user);
+
   return (
     <Tab.Navigator
       screenOptions={{ headerShown: false }}
@@ -48,6 +53,14 @@ const BottomNavigation = () => {
       <Tab.Screen
         name={navigationStrings.PROFILE_STACK}
         component={ProfileScreen}
+        listeners={({ navigation }) => ({
+          tabPress: e => {
+          if (!user.isLoggedIn) {
+              e.preventDefault();
+              navigation.getParent()?.getParent()?.navigate(navigationStrings.LOGIN_SIGNUP);
+            }
+          },
+        })}
       />
     </Tab.Navigator>
   );

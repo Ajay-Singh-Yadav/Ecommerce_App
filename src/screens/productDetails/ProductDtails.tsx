@@ -33,6 +33,7 @@ import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../../api/firebaseConfig';
 import BanerSlider from '@global/BanerSlider';
 import { getCollectionWithCache } from '../../api/firestoreService';
+import LogoLoader from '@global/LogoLoader';
 
 const { width, height } = Dimensions.get('window');
 
@@ -40,9 +41,9 @@ const ProductDetail = () => {
   const { language, strings } = useLanguage();
   const route = useRoute<any>();
   const { product, category } = route.params;
-  console.log('PRoduct Details',product);
 
   const [activeIndex, setActiveIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   const onScroll = (event: any) => {
     const index = Math.round(event.nativeEvent.contentOffset.x / width);
@@ -51,6 +52,13 @@ const ProductDetail = () => {
 
   const [products, setProducts] = useState<any[]>([]);
   const [banner, setBanner] = useState([]);
+
+
+useEffect(() => {
+  if (product) {
+    setLoading(false);
+  }
+}, [product]);
 
   useEffect(() => {
     loadProducts();
@@ -61,7 +69,6 @@ const ProductDetail = () => {
     await getCollectionWithCache(category, category, setProducts);
   };
 
- 
   const fetchBanners = async () => {
     try {
       const snapshot = await getDocs(collection(db, 'Banners'));
@@ -99,132 +106,140 @@ const ProductDetail = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header backArrow heart search bag  title={product?.category?.id ==='products' ? 'T-Shirts' : product?.category?.id   || ''}/>
-
-      {/* <SafeAreaView style={styles.container}>
-  <Header backArrow heart search bag /> */}
-
-      <FlatList
-        data={[]}
-        keyExtractor={() => 'key'}
-        showsVerticalScrollIndicator={false}
-        ListHeaderComponent={
-          <>
-         
-            <View style={styles.sliderContainer}>
-              <FlatList
-                data={product?.images}
-                horizontal
-                pagingEnabled
-                showsHorizontalScrollIndicator={false}
-                keyExtractor={(_, index) => index.toString()}
-                renderItem={renderImage}
-                onMomentumScrollEnd={onScroll}
-                initialNumToRender={1}
-                maxToRenderPerBatch={2}
-                windowSize={3}
-              />
-            </View>
-
-            {/* Dots */}
-            <View style={styles.dotContainer}>
-              {product?.images?.map((index: number) => (
-                <View
-                  key={index}
-                  style={[
-                    styles.dot,
-                    activeIndex === index && styles.activeDot,
-                  ]}
-                />
-              ))}
-            </View>
-
-            {/* Product Info */}
-            <View style={styles.infoContainer}>
-              <Text style={styles.brand}>{product?.brand?.[language]}</Text>
-
-              <View style={styles.textBox}>
-                <Text style={styles.title}>{product?.title?.[language]}</Text>
-              </View>
-
-              <View style={styles.priceRow}>
-                <Text style={styles.price}>₹{product?.price?.current}</Text>
-
-                <Text style={styles.oldPrice}>₹{product?.price?.original}</Text>
-
-                <Text style={styles.discount}>
-                  {product?.price?.discount}% OFF
-                </Text>
-              </View>
-
-              <View style={styles.fabric}>
-                <Text style={styles.fabricText}>
-                  {product?.fabric?.[language]}
-                </Text>
-              </View>
-            </View>
-
-            <Line style={styles.LineStyle} bgColor={colors.LineColorGray} />
-
-            {/* Size Selector */}
-            <SelectSize
-              sizes={product?.sizes || []}
-              onSelectSize={item => {
-                console.log('Selected:', item);
-              }}
-            />
-            <View style={{ marginHorizontal: Sizes.mr_10 }}>
-              <OfferList data={product?.offers} />
-            </View>
-
-            <Line style={styles.LineStyle} bgColor={colors.LineColorGray} />
-
-            {/* Check Devlivey Details */}
-            <DevliveryDetails />
-
-            {/* Key HighLights */}
-
-            <KeyHighlights data={product?.highlights} language={language} />
-
-            <ProductDescription
-              description={product?.description}
-              returnPolicy={product?.returnPolicy}
-            />
-
-            <Line style={styles.LineStyle} bgColor={colors.LineColorGray} />
-
-            <CommanButton
-              ButtonText={`${strings.ADD_TO_BAG} ${product?.price?.currency}${product?.price?.current}`}
-              StyleText={styles.addToCartText}
-              styleButton={styles.addToCartButton}
-              Icon={<Bag width={Sizes.w_18} height={Sizes.h_18} />}
-            />
-
-            <HorizontalProductList
-              products={products}
-              tagline={strings.FREQUENTLY_BOUGHT}
-            />
-
-            <Text
-              style={{
-                marginHorizontal: Sizes.mr_12,
-                marginVertical: Sizes.mr_12,
-                fontWeight: '500',
-                color: colors.ArsenicBlack,
-              }}
-            >
-              {strings.MORE_FROM_BRAND}
-            </Text>
-
-            <BanerSlider imageData={banner} />
-
-            <HorizontalProductList
-              products={products}
-              tagline={strings.YOU_MAY_LIKE}
-            />
-          </>
+      <Header
+        backArrow
+        heart
+        search
+        bag
+        title={
+          product?.category?.id === 'products'
+            ? 'Bewakoof@'
+            : product?.category?.id || ''
         }
       />
+
+      {loading ? (
+        <View style={styles.loader}>
+          <LogoLoader />
+        </View>
+      ) : (
+        <FlatList
+          data={[]}
+          keyExtractor={() => 'key'}
+          showsVerticalScrollIndicator={false}
+          ListHeaderComponent={
+            <>
+              <View style={styles.sliderContainer}>
+                <FlatList
+                  data={product?.images}
+                  horizontal
+                  pagingEnabled
+                  showsHorizontalScrollIndicator={false}
+                  keyExtractor={(_, index) => index.toString()}
+                  renderItem={renderImage}
+                  onMomentumScrollEnd={onScroll}
+                  initialNumToRender={1}
+                  maxToRenderPerBatch={2}
+                  windowSize={3}
+                />
+              </View>
+
+              <View style={styles.dotContainer}>
+                {product?.images?.map((index: number) => (
+                  <View
+                    key={index}
+                    style={[
+                      styles.dot,
+                      activeIndex === index && styles.activeDot,
+                    ]}
+                  />
+                ))}
+              </View>
+
+              <View style={styles.infoContainer}>
+                <Text style={styles.brand}>{product?.brand?.[language]}</Text>
+
+                <View style={styles.textBox}>
+                  <Text style={styles.title}>{product?.title?.[language]}</Text>
+                </View>
+
+                <View style={styles.priceRow}>
+                  <Text style={styles.price}>₹{product?.price?.current}</Text>
+
+                  <Text style={styles.oldPrice}>
+                    ₹{product?.price?.original}
+                  </Text>
+
+                  <Text style={styles.discount}>
+                    {product?.price?.discount}% OFF
+                  </Text>
+                </View>
+
+                <View style={styles.fabric}>
+                  <Text style={styles.fabricText}>
+                    {product?.fabric?.[language]}
+                  </Text>
+                </View>
+              </View>
+
+              <Line style={styles.LineStyle} bgColor={colors.LineColorGray} />
+
+              <SelectSize
+                sizes={product?.sizes || []}
+                onSelectSize={item => {
+                  console.log('Selected:', item);
+                }}
+              />
+              <View style={{ marginHorizontal: Sizes.mr_10 }}>
+                <OfferList data={product?.offers} />
+              </View>
+
+              <Line style={styles.LineStyle} bgColor={colors.LineColorGray} />
+
+              <DevliveryDetails />
+
+              <KeyHighlights data={product?.highlights} language={language} />
+
+              <ProductDescription
+                description={product?.description}
+                returnPolicy={product?.returnPolicy}
+              />
+
+              <Line style={styles.LineStyle} bgColor={colors.LineColorGray} />
+
+              <CommanButton
+                ButtonText={`${strings.ADD_TO_BAG} ${product?.price?.currency}${product?.price?.current}`}
+                StyleText={styles.addToCartText}
+                styleButton={styles.addToCartButton}
+                Icon={<Bag width={Sizes.w_18} height={Sizes.h_18} />}
+              />
+
+              <HorizontalProductList
+                products={products}
+                tagline={strings.FREQUENTLY_BOUGHT}
+              />
+
+              <Text
+                style={{
+                  marginHorizontal: Sizes.mr_12,
+                  marginVertical: Sizes.mr_12,
+                  fontWeight: '500',
+                  color: colors.ArsenicBlack,
+                }}
+              >
+                {strings.MORE_FROM_BRAND}
+              </Text>
+
+              <BanerSlider imageData={banner} />
+
+              <HorizontalProductList
+                products={products}
+                tagline={strings.YOU_MAY_LIKE}
+              />
+            </>
+          }
+        />
+      )}
     </SafeAreaView>
   );
 };
@@ -235,6 +250,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.white,
+  },
+  loader: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    
   },
 
   sliderContainer: {

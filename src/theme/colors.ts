@@ -24,6 +24,9 @@ export default {
   filterDotBlue: '#207BB4',
   SteelBlue: '#207BB4',
   whiteBoder: '#EDEFF3',
+  LogOutBg:'#FDE9E9',
+  LogOutText:'#D51E20',
+  LogOutIcon:'#EE4D4F',
 
   //Line BgColor
   LineColorGray: '#F8F9FA',

@@ -36,6 +36,16 @@ export const CustomTabBar = ({ state, descriptors, navigation }: any) => {
         }
 
         const onPress = () => {
+          const event = navigation.emit({
+            type: 'tabPress',
+            target: route.key,
+            canPreventDefault: true,
+          });
+
+          if (event.defaultPrevented) {
+            return;
+          }
+
           if (route.name === navigationStrings.STUDIO_STACK) {
             navigation.navigate(navigationStrings.STUDIO);
           } else {
@@ -46,7 +56,25 @@ export const CustomTabBar = ({ state, descriptors, navigation }: any) => {
         return (
           <View key={route.key} style={styles.tabButtonContainer}>
             <TouchableOpacity onPress={onPress} style={[styles.tabButton]}>
-              <IconComponent width={Sizes.w_20} height={Sizes.h_20} />
+              <IconComponent
+                width={Sizes.w_20}
+                height={Sizes.h_20}
+                fill={isFocused ? colors.primary : colors.ArsenicBlack}
+                strokeOpacity={0.0}
+                strokeWidth={0.5}
+              />
+              <Text
+                style={[
+                  styles.tabButtonText,
+                  {
+                    color: isFocused ? colors.primary : colors.ArsenicBlack,
+                    fontWeight: isFocused ? '600' : '400',
+                    fontSize: isFocused ? Sizes.font_9 : Sizes.font_8,
+                  },
+                ]}
+              >
+                {route.name}
+              </Text>
             </TouchableOpacity>
           </View>
         );
@@ -58,7 +86,7 @@ export const CustomTabBar = ({ state, descriptors, navigation }: any) => {
 const styles = StyleSheet.create({
   tabContainer: {
     flexDirection: 'row',
-    height: Sizes.h_70,
+    height: Sizes.h_50,
     backgroundColor: '#fff',
   },
   tabButtonContainer: {
@@ -72,4 +100,5 @@ const styles = StyleSheet.create({
     padding: Sizes.pd_10,
     borderRadius: Sizes.rd_8,
   },
+  tabButtonText: {},
 });

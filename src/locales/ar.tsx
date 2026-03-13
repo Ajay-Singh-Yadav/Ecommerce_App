@@ -8,7 +8,7 @@ const ar = {
   HEY_THERE: 'مرحبا',
   LOGIN: 'تسجيل الدخول',
   SIGNUP: 'إنشاء حساب',
-  LOGIN_SIGNUP: 'تسجيل الدخول / إنشاء حساب',
+ 
 
   SHOP_IN: 'تسوق في',
   MEN: 'رجال',
@@ -44,11 +44,28 @@ const ar = {
   EXPLORE_ALL:'استكشاف الكل',
   YOU_MAY_LIKE:'قد يعجبك أيضًا',
 
+  // Profile
   MY_PROFILE: 'ملفي الشخصي',
   MY_ACCOUNT: 'حسابي',
   MY_ORDERS: 'طلباتي',
   WALLET: 'محفظتي',
   WISHLIST: 'المفضلة',
+  LOGOUT:'تسجيل الخروج',
+
+  //LogSignup Screeen
+  JOIN_US:'انضم إلينا الآن لتكون جزءًا من عائلة Bewakoof®.',
+  LOGIN_SIGNUP:'تسجيل الدخول / التسجيل',
+  CONTINUE:'يكمل',
+  VERIFY_OTP:'تحقق من رمز التحقق لمرة واحدة',
+  GOOGLE:'جوجل',
+  FACEBOOK:'فيسبوك',
+  BY_CREATING:'بإنشاء حساب أو تسجيل الدخول، فإنك توافق على شروط وأحكام Bewakoof',
+  POLICY:'سياسة الخصوصية',
+  AND:'و',
+  ENTER_NUMBER:'أدخل رقم الجوال',
+  ENTER_OTP:'أدخل كلمة المرور لمرة واحدة',
+
+
 
   CONTACT_US: 'اتصل بنا',
   HELP_SUPPORT: 'المساعدة والدعم',

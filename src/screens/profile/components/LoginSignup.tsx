@@ -11,54 +11,65 @@ import {
   TouchableOpacity,
   ImageBackground,
   Alert,
+  I18nManager,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import BackArrow from '@assets/svg/BackArrow.svg';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import navigationStrings from '@navigation/navigationStrings';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser } from '@redux/reducer/slices/userSlice';
+import { RootState } from '@redux/store';
+import { useLanguage } from '@locales/useLanguage';
 
 const LoginSignup = ({}) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
+    const { language, strings } = useLanguage();
+
+  const dispatch = useDispatch();
+
   const [phone, setPhone] = useState('');
-  const [otp, setOtp] = useState('');
-  const [generatedOtp, setGeneratedOtp] = useState('');
   const [otpSent, setOtpSent] = useState(false);
+  const [otp, setOtp] = useState('');
 
+  const user = useSelector((state: RootState) => state.user);
 
-  useEffect(() => {
-  const checkLogin = async () => {
-    const user = await AsyncStorage.getItem('userLoggedIn');
-
-    if (user) {
-      console.log('User already logged in');
-    }
-  };
-
-  checkLogin();
-}, []);
+  console.log('mobile:', user.mobile);
+  console.log('userId:', user.userId);
+  console.log('isLoggedIn:', user.isLoggedIn);
 
   const sendOTP = () => {
-    const randomOtp = Math.floor(100000 + Math.random() * 900000).toString();
-
-    setGeneratedOtp(randomOtp);
     setOtpSent(true);
-
-    console.log('Generated OTP:', randomOtp);
-
-    Alert.alert(`Your OTP is ${randomOtp}`); 
   };
 
-  const verifyOTP = async () => {
-    if (otp === generatedOtp) {
-      await AsyncStorage.setItem('userLoggedIn', 'true');
+  const verifyOTP = () => {
+    if (otp === '1234') {
+      let userId = user?.userId;
 
-      Alert.alert('Login Successful');
-      console.log('User Logged In');
+      if (!userId || user.mobile !== phone) {
+        userId = 'user_' + Date.now();
+      }
+      dispatch(
+        loginUser({
+          mobile: phone,
+          userId,
+        }),
+      );
+      // navigation.goBack();
+
+      navigation.navigate(navigationStrings.DRAWER, {
+        screen: navigationStrings.BOTTOM_TABS,
+        params: {
+          screen: navigationStrings.PROFILE_STACK,
+        },
+      });
     } else {
       Alert.alert('Invalid OTP');
     }
   };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.imageContainer}>
@@ -70,7 +81,13 @@ const LoginSignup = ({}) => {
             style={styles.BackIcon}
             onPress={() => navigation.goBack()}
           >
-            <BackArrow width={20} height={20} />
+            <BackArrow
+              width={20}
+              height={20}
+              style={{
+                transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+              }}
+            />
           </TouchableOpacity>
         </ImageBackground>
       </View>
@@ -78,57 +95,58 @@ const LoginSignup = ({}) => {
       {/* Card */}
 
       <View style={styles.card}>
-        <Text style={styles.title}>Login / Signup</Text>
+        <Text style={styles.title}>{strings.LOGIN_SIGNUP}</Text>
         <Text style={styles.subtitle}>
-          Join us now to be a part of Bewakoof® family.
+         {strings.JOIN_US}
         </Text>
 
         <View style={styles.inputWrapper}>
           <Text style={styles.flag}>🇮🇳 +91</Text>
           <TextInput
-            placeholder="Enter Mobile Number"
+            placeholder={strings.ENTER_NUMBER}
+            placeholderTextColor={colors.ArsenicBlack}
             style={styles.input}
             keyboardType="phone-pad"
             value={phone}
             onChangeText={setPhone}
           />
         </View>
-
-        {!otpSent ? (
-          <TouchableOpacity style={styles.continueBtn} onPress={sendOTP}>
-            <Text style={styles.continueText}>CONTINUE</Text>
-          </TouchableOpacity>
-        ) : (
-          <>
+        {otpSent && (
+          <View style={styles.otpWrapper}>
             <TextInput
-              placeholder="Enter OTP"
-              style={styles.input}
+              placeholder={strings.ENTER_OTP}
+              placeholderTextColor={colors.ArsenicBlack}
+              style={styles.otpInput}
               keyboardType="number-pad"
+              maxLength={6}
               value={otp}
               onChangeText={setOtp}
             />
-
-            <TouchableOpacity style={styles.continueBtn} onPress={verifyOTP}>
-              <Text style={styles.continueText}>VERIFY OTP</Text>
-            </TouchableOpacity>
-          </>
+          </View>
         )}
-
+        <TouchableOpacity
+          style={styles.continueBtn}
+          onPress={!otpSent ? sendOTP : verifyOTP}
+        >
+          <Text style={styles.continueText}>
+           {!otpSent ? strings.CONTINUE : strings.VERIFY_OTP}
+          </Text>
+        </TouchableOpacity>
         <View style={styles.socialRow}>
           <TouchableOpacity style={styles.socialBtn}>
-            <Text style={styles.socialText}>GOOGLE</Text>
+            <Text style={styles.socialText}>{strings.GOOGLE}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.socialBtn}>
-            <Text style={styles.socialText}>FACEBOOK</Text>
+            <Text style={styles.socialText}>{strings.FACEBOOK}</Text>
           </TouchableOpacity>
         </View>
 
         <Text style={styles.terms}>
-          By creating an account or logging in, you agree with Bewakoof’s
+          {strings.BY_CREATING}
           <Text style={styles.link}> T&C </Text>
           and
-          <Text style={styles.link}> Privacy Policy</Text>
+          <Text style={styles.link}> {strings.POLICY}</Text>
         </Text>
       </View>
     </SafeAreaView>
@@ -247,5 +265,18 @@ const styles = StyleSheet.create({
 
   link: {
     color: '#2a7de1',
+  },
+  otpWrapper: {
+    marginTop: Sizes.mr_12,
+    borderWidth: 1,
+    borderColor: '#e5e5e5',
+    borderRadius: Sizes.rd_8,
+    height: Sizes.h_48,
+    justifyContent: 'center',
+    paddingHorizontal: Sizes.pd_10,
+  },
+
+  otpInput: {
+    fontSize: Sizes.font_14,
   },
 });

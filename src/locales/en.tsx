@@ -6,7 +6,6 @@ const en = {
   HEY_THERE: 'Hey There!',
   LOGIN: 'Login',
   SIGNUP: 'Signup',
-  LOGIN_SIGNUP: 'Login / Signup',
 
   // shop
   SHOP_IN: 'SHOP IN',
@@ -49,6 +48,20 @@ const en = {
   MY_ORDERS: 'My Orders',
   WALLET: 'My Wallet',
   WISHLIST: 'Wishlist',
+  LOGOUT:'Logout',
+
+   JOIN_US:'Join us now to be a part of Bewakoof®',
+  LOGIN_SIGNUP: 'Login / Signup',
+
+  CONTINUE:'Continue',
+  VERIFY_OTP:'Verify OTP',
+  GOOGLE:'Google',
+  FACEBOOK:'Facebook',
+  BY_CREATING:'By creating an account or logging in you agree with Bewakoof’s',
+  POLICY:'Privacy Policy',
+  AND:'and',
+  ENTER_NUMBER:'Enter Mobile Number',
+  ENTER_OTP:'Enter OTP',
 
   // contact
   CONTACT_US: 'CONTACT US',
