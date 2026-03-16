@@ -67,6 +67,11 @@ const ar = {
 
 
 
+  //PLP Screen 
+  NO_PRODUCTS:'لا توجد منتجات متوفرة في هذه الفئة',
+
+
+
   CONTACT_US: 'اتصل بنا',
   HELP_SUPPORT: 'المساعدة والدعم',
   FEEDBACK: 'ملاحظات واقتراحات',

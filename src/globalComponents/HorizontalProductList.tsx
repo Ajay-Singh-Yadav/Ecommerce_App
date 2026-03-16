@@ -21,11 +21,18 @@ import { useLanguage } from '@locales/useLanguage';
 import SkeletonText from './skeleton/SkeletonText';
 import PorductCardSkeleton from './skeleton/PorductCardSkeleton';
 
-const HorizontalProductList: React.FC<Product> = ({ products, tagline }) => {
+export type HorizontalProductListProps = {
+  products: Product[];
+  tagline: string;
+};
+
+const HorizontalProductList: React.FC<HorizontalProductListProps> = ({ products, tagline }) => {
   const navigation = useNavigation<any>();
   const { language, strings } = useLanguage();
   const [loading, setLoading] = useState(true);
 
+
+   console.log('Product H',products)
   useEffect(() => {
     if (products && products.length > 0) {
       setLoading(false);
@@ -248,7 +255,7 @@ const HorizontalProductList: React.FC<Product> = ({ products, tagline }) => {
         <FlatList
           horizontal
           data={products}
-          keyExtractor={item => item.id.toString()}
+          keyExtractor={(item, index) => (item?.id ? item.id.toString() : index.toString())}
           renderItem={renderItemsList}
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={{

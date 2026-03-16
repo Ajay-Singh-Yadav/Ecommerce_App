@@ -63,6 +63,10 @@ const en = {
   ENTER_NUMBER:'Enter Mobile Number',
   ENTER_OTP:'Enter OTP',
 
+
+    //PLP Screen 
+  NO_PRODUCTS:' No products available in this category',
+
   // contact
   CONTACT_US: 'CONTACT US',
   HELP_SUPPORT: 'Help & Support',

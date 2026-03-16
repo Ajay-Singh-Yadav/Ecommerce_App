@@ -13,11 +13,21 @@ import { categories } from '@constants/categories';
 import { Sizes } from '@theme/sizes';
 import colors from '@theme/colors';
 import LinearGradient from 'react-native-linear-gradient';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import navigationStrings from '@navigation/navigationStrings';
 
 const { width } = Dimensions.get('window');
 const ITEM_SIZE = width / 4;
 
 const CategoryHorizontalList = () => {
+  const navigation = useNavigation<any>();
+
+  const handleNavigation = (categoryName: string) => {
+    navigation.navigate(navigationStrings.PRODUCT_LIST, {
+      categoryName: categoryName,
+    });
+  };
+
   const renderItem = ({
     item,
   }: {
@@ -34,18 +44,22 @@ const CategoryHorizontalList = () => {
           >
             <TouchableOpacity style={styles.innerCircle} activeOpacity={0.8}>
               <View style={styles.imageSpcial}>
-              <Image
-                source={
-                  typeof item.img === 'string' ? { uri: item.img } : item.img
-                }
-                resizeMode="contain"
-                style={styles.categoryImage}
-              />
+                <Image
+                  source={
+                    typeof item.img === 'string' ? { uri: item.img } : item.img
+                  }
+                  resizeMode="contain"
+                  style={styles.categoryImage}
+                />
               </View>
             </TouchableOpacity>
           </LinearGradient>
         ) : (
-          <TouchableOpacity style={styles.squareItem} activeOpacity={0.8}>
+          <TouchableOpacity
+            style={styles.squareItem}
+            activeOpacity={0.8}
+            onPress={() => handleNavigation(item.name)}
+          >
             <View style={styles.imageSquare}>
               <Image
                 source={
@@ -72,6 +86,7 @@ const CategoryHorizontalList = () => {
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ paddingHorizontal: 10 }}
+        
       />
     </View>
   );

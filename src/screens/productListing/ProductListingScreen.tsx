@@ -16,30 +16,47 @@ import { useLanguage } from '@locales/useLanguage';
 import { Text } from 'react-native';
 import { Sizes } from '@theme/sizes';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { getCollectionWithCache } from '../../api/firestoreService';
-
 import Offer from '@assets/svg/Offer.svg';
 import ProductListBanner from './components/ProductlistBanner';
 import navigationStrings from '@navigation/navigationStrings';
+import {
+  getAllProducts,
+  getCategoryProducts,
+} from '../../api/axios/getProducts';
 
 const ProductListingScreen = () => {
   const route = useRoute<any>();
   const navigation = useNavigation<any>();
-  const { category } = route.params || {};
-
+  const { categoryName } = route.params || {};
   const { language, strings } = useLanguage();
   const [loading, setLoading] = useState(true);
 
   const [products, setProducts] = useState<any[]>([]);
+  console.log('Productss', products);
 
   useEffect(() => {
-    loadProducts();
+    getProducts();
   }, []);
+  const getProducts = async () => {
+    try {
+      setLoading(true);
 
-  const loadProducts = async () => {
-    setLoading(true);
-    await getCollectionWithCache(category, category, setProducts);
-    setLoading(false);
+      if (categoryName?.toLowerCase() === 'shop now') {
+        const data = await getAllProducts();
+
+        const shuffled = (data?.products || []).sort(() => 0.5 - Math.random());
+
+        setProducts(shuffled);
+      } else {
+        const data = await getCategoryProducts(categoryName);
+
+        setProducts(data?.products || []);
+      }
+    } catch (e) {
+      console.log('Products error', e);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const renderItem = ({ item }: any) => {
@@ -49,7 +66,7 @@ const ProductListingScreen = () => {
         onPress={() =>
           navigation.navigate(navigationStrings.PRODUCT_DETAILS, {
             product: item,
-            category:category
+            // category:category
           })
         }
       >
@@ -82,7 +99,7 @@ const ProductListingScreen = () => {
           <Text style={styles.discount}>{item.price?.discount}% OFF</Text>
         </View>
 
-        {category === 'products' && item.offers?.length > 0 && (
+        {categoryName === 'products' && item.offers?.length > 0 && (
           <View
             style={{
               flexDirection: 'row',
@@ -101,7 +118,13 @@ const ProductListingScreen = () => {
   };
   return (
     <SafeAreaView style={styles.container}>
-      <Header backArrow heart search bag title={category ==='products' ? 'T-Shirts' : category}  />
+      <Header
+        backArrow
+        heart
+        search
+        bag
+        title={categoryName === 'products' ? 'T-Shirts' : categoryName}
+      />
 
       {loading ? (
         <View style={styles.loader}>
@@ -109,13 +132,22 @@ const ProductListingScreen = () => {
         </View>
       ) : (
         <FlatList
-          data={products}
+          data={products || []}
           renderItem={renderItem}
           keyExtractor={item => item.id.toString()}
           numColumns={2}
-          contentContainerStyle={{ paddingBottom: Sizes.pd_30 }}
+          contentContainerStyle={{flexGrow:1, paddingBottom: Sizes.pd_30 }}
           ListHeaderComponent={
             <ProductListBanner title={strings.FREE_SHIPPING_ON} />
+          }
+          ListEmptyComponent={
+            !loading ? (
+              <View style={styles.emptyContainer}>
+                <Text style={styles.emptyText}>
+                  No products available in this category
+                </Text>
+              </View>
+            ) : null
           }
         />
       )}
@@ -220,5 +252,17 @@ const styles = StyleSheet.create({
   boughtText: {
     fontSize: Sizes.font_10,
     color: colors.textlightGray,
+  },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 50,
+  },
+
+  emptyText: {
+    fontSize: 16,
+    color: '#777',
+    fontWeight: '500',
   },
 });

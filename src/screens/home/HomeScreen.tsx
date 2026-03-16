@@ -9,18 +9,34 @@ import { Sizes } from '@theme/sizes';
 import PinCodeHeader from '@global/PinCodeHeader';
 import CategoryHorizontalList from '@screens/categories/components/CategoryHorizontalList';
 import colors from '@theme/colors';
-import { collection, getDocs } from 'firebase/firestore';
-import { doc, setDoc } from 'firebase/firestore';
-import { addShirts, db } from '../../api/firebaseConfig';
-// import { addProduct, db } from '../../api/firebaseConfig';
 import HorizontalProductList from '@global/HorizontalProductList';
-import { getCollectionWithCache } from '../../api/firestoreService';
+import axios from 'axios';
+import {
+  getShirtProducts,
+  getTShirtProducts,
+} from '../../api/axios/getProducts';
 
 const HomeScreen = () => {
   const { strings } = useLanguage();
 
   const [products, setProducts] = useState<any[]>([]);
   const [shirts, setShirts] = useState<any[]>([]);
+  const [tshirts, setTShirts] = useState<any[]>([]);
+
+  useEffect(() => {
+    getShirts();
+    getTShirts();
+  }, []);
+
+  const getShirts = async () => {
+    const data = await getShirtProducts();
+    setShirts(data);
+  };
+  const getTShirts = async () => {
+    const data = await getTShirtProducts();
+    console.log('TShirt', data);
+    setTShirts(data);
+  };
 
   const styles = useMemo(
     () =>
@@ -31,15 +47,6 @@ const HomeScreen = () => {
       }),
     [],
   );
-  useEffect(() => {
-    loadProducts();
-    
-  }, []);
-
-  const loadProducts = async () => {
-    await getCollectionWithCache('products', 'products', setProducts);
-    await getCollectionWithCache('Shirts', 'Shirts', setShirts);
-  };
 
   return (
     <ScrollView
@@ -51,11 +58,11 @@ const HomeScreen = () => {
       <CategoryHorizontalList />
       <BanerSlider imageData={imageSlider2} />
 
-      <HorizontalProductList products={products} tagline="New Arrivals" />
+      <HorizontalProductList products={shirts} tagline="New Arrivals" />
 
       <BanerSlider imageData={imageSlider} />
 
-      <HorizontalProductList products={products} tagline="Indieverse" />
+      <HorizontalProductList products={tshirts} tagline="Indieverse" />
 
       <View>
         <Text style={{ color: colors.black }}>{strings.TAGLINE_1}</Text>
