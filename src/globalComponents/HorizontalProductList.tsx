@@ -32,7 +32,6 @@ const HorizontalProductList: React.FC<HorizontalProductListProps> = ({ products,
   const [loading, setLoading] = useState(true);
 
 
-   console.log('Product H',products)
   useEffect(() => {
     if (products && products.length > 0) {
       setLoading(false);

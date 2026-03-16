@@ -34,6 +34,7 @@ import { db } from '../../api/firebaseConfig';
 import BanerSlider from '@global/BanerSlider';
 import { getCollectionWithCache } from '../../api/firestoreService';
 import LogoLoader from '@global/LogoLoader';
+import { getCategoryProducts } from '../../api/axios/getProducts';
 
 const { width, height } = Dimensions.get('window');
 
@@ -41,6 +42,11 @@ const ProductDetail = () => {
   const { language, strings } = useLanguage();
   const route = useRoute<any>();
   const { product, category } = route.params;
+  console.log('Category', product);
+
+  const categoryName = product?.category?.id || '';
+  const categoryNameAR = product?.category?.name?.ar || '';
+  const categoryNameEN = product?.category?.name?.en || '';
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -53,20 +59,21 @@ const ProductDetail = () => {
   const [products, setProducts] = useState<any[]>([]);
   const [banner, setBanner] = useState([]);
 
-
-useEffect(() => {
-  if (product) {
-    setLoading(false);
-  }
-}, [product]);
+  useEffect(() => {
+    if (product) {
+      setLoading(false);
+    }
+  }, [product]);
 
   useEffect(() => {
-    loadProducts();
+    getSimilarProducts();
     fetchBanners();
   }, []);
 
-  const loadProducts = async () => {
-    await getCollectionWithCache(category, category, setProducts);
+  const getSimilarProducts = async () => {
+    const data = await getCategoryProducts(categoryName);
+    console.log('TShirt', data);
+    setProducts(data);
   };
 
   const fetchBanners = async () => {
@@ -96,11 +103,6 @@ useEffect(() => {
     <View style={styles.imageWrapper}>
       <Image source={{ uri: item }} style={styles.image} resizeMode="cover" />
 
-      <View style={styles.ratingBox}>
-        <Text style={styles.ratingText}>
-          ⭐ {product?.rating?.average} {product?.rating?.count}
-        </Text>
-      </View>
     </View>
   );
 
@@ -111,11 +113,7 @@ useEffect(() => {
         heart
         search
         bag
-        title={
-          product?.category?.id === 'products'
-            ? 'Bewakoof@'
-            : product?.category?.id || ''
-        }
+        title={language === 'ar' ? categoryNameAR : categoryNameEN}
       />
 
       {loading ? (
@@ -255,11 +253,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    
   },
 
   sliderContainer: {
     height: height * 0.6,
+     position: 'relative',
   },
 
   imageWrapper: {

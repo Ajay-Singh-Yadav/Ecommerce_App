@@ -14,6 +14,7 @@ import SplashScreen from '@screens/splash/SplashScreen';
 import ProductDetail from '@screens/productDetails/ProductDtails';
 import ProductListingScreen from '@screens/productListing/ProductListingScreen';
 import OderScreen from '@screens/oders/OderScreen';
+import SpecialScreen from '@screens/specials/SpecialScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -48,6 +49,7 @@ const RootNavigation = () => {
         {/* Profile Tab */}
 
         <Stack.Screen name="order" component={OderScreen} />
+        <Stack.Screen name={navigationStrings.SPECIAL_SCREEN} component={SpecialScreen}  options={{ animation: 'slide_from_bottom' }} />
 
         <Stack.Screen
           name={navigationStrings.WISHLIST}

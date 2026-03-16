@@ -18,6 +18,7 @@ export default {
     LOGIN:'LogIn',
     SIGNUP:'SignUp',
     SPLASH_SCREEN:'Splash Screen',
+    SPECIAL_SCREEN:'Special Screen'
    
 
 

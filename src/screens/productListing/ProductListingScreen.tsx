@@ -27,7 +27,7 @@ import {
 const ProductListingScreen = () => {
   const route = useRoute<any>();
   const navigation = useNavigation<any>();
-  const { categoryName } = route.params || {};
+  const { categoryNameEn, categoryNameAr } = route.params || {};
   const { language, strings } = useLanguage();
   const [loading, setLoading] = useState(true);
 
@@ -41,14 +41,14 @@ const ProductListingScreen = () => {
     try {
       setLoading(true);
 
-      if (categoryName?.toLowerCase() === 'shop now') {
+      if (categoryNameEn?.toLowerCase() === 'shop now') {
         const data = await getAllProducts();
 
         const shuffled = (data?.products || []).sort(() => 0.5 - Math.random());
 
         setProducts(shuffled);
       } else {
-        const data = await getCategoryProducts(categoryName);
+        const data = await getCategoryProducts(categoryNameEn);
 
         setProducts(data?.products || []);
       }
@@ -99,7 +99,7 @@ const ProductListingScreen = () => {
           <Text style={styles.discount}>{item.price?.discount}% OFF</Text>
         </View>
 
-        {categoryName === 'products' && item.offers?.length > 0 && (
+        {categoryNameAr === 'products' && item.offers?.length > 0 && (
           <View
             style={{
               flexDirection: 'row',
@@ -123,7 +123,7 @@ const ProductListingScreen = () => {
         heart
         search
         bag
-        title={categoryName === 'products' ? 'T-Shirts' : categoryName}
+        title={language === 'ar' ? categoryNameAr  || '': categoryNameEn || ''}
       />
 
       {loading ? (
@@ -136,16 +136,14 @@ const ProductListingScreen = () => {
           renderItem={renderItem}
           keyExtractor={item => item.id.toString()}
           numColumns={2}
-          contentContainerStyle={{flexGrow:1, paddingBottom: Sizes.pd_30 }}
+          contentContainerStyle={{ flexGrow: 1, paddingBottom: Sizes.pd_30 }}
           ListHeaderComponent={
             <ProductListBanner title={strings.FREE_SHIPPING_ON} />
           }
           ListEmptyComponent={
             !loading ? (
               <View style={styles.emptyContainer}>
-                <Text style={styles.emptyText}>
-                  No products available in this category
-                </Text>
+                <Text style={styles.emptyText}>{strings.NO_PRODUCTS}</Text>
               </View>
             ) : null
           }

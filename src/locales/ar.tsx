@@ -65,6 +65,10 @@ const ar = {
   ENTER_NUMBER:'أدخل رقم الجوال',
   ENTER_OTP:'أدخل كلمة المرور لمرة واحدة',
 
+  //SPECIAl SCREEN
+  BUY_NOW:'اشتري الآن',
+  SPECIALS:'العروض الخاصة',
+
 
 
   //PLP Screen 

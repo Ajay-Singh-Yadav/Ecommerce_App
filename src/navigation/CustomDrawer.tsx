@@ -198,7 +198,7 @@ export const CustomDrawer = (props: any) => {
       contentContainerStyle={{ paddingTop: Sizes.pd_10 }}
       automaticallyAdjustContentInsets={false}
     >
-      {/* Header */}
+  
       <View style={style.header}>
         <View style={style.subHeader}>
           <User width={Sizes.w_24} height={Sizes.w_24} />
@@ -236,7 +236,6 @@ export const CustomDrawer = (props: any) => {
         textStyle={style.textLineStyle}
       />
 
-      {/* SHOP SECTION */}
       <DrawerRow title={strings.MEN} IconPath={icons.men} />
       <DrawerRow title={strings.WOMEN} IconPath={icons.women} />
 
@@ -271,7 +270,7 @@ export const CustomDrawer = (props: any) => {
         textStyle={style.textLineStyle}
       />
 
-      {/* PROFILE GRID */}
+     
       <View style={{ flexDirection: 'row' }}>
         <ProfileBox
           title={strings.MY_ACCOUNT}
@@ -287,7 +286,7 @@ export const CustomDrawer = (props: any) => {
         style={style.LineStyle}
         textStyle={style.textLineStyle}
       />
-      {/* FOOTER */}
+   
       <DrawerRow title={strings.HELP_SUPPORT} />
       <DrawerRow title={strings.FEEDBACK} />
 

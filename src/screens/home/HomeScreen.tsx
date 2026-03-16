@@ -10,7 +10,6 @@ import PinCodeHeader from '@global/PinCodeHeader';
 import CategoryHorizontalList from '@screens/categories/components/CategoryHorizontalList';
 import colors from '@theme/colors';
 import HorizontalProductList from '@global/HorizontalProductList';
-import axios from 'axios';
 import {
   getShirtProducts,
   getTShirtProducts,
@@ -34,7 +33,7 @@ const HomeScreen = () => {
   };
   const getTShirts = async () => {
     const data = await getTShirtProducts();
-    console.log('TShirt', data);
+
     setTShirts(data);
   };
 

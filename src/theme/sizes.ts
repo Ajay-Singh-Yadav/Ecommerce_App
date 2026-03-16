@@ -45,6 +45,8 @@ export const Sizes = {
   mr_24: moderateScale(24),
   mr_30: moderateScale(30),
   mr_40: moderateScale(40),
+  mr_60: moderateScale(60),
+  mr_65: moderateScale(65),
 
   pd_1: moderateScale(1),
   pd_2: moderateScale(2),

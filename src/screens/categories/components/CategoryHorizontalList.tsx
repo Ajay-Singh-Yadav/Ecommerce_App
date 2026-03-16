@@ -15,23 +15,25 @@ import colors from '@theme/colors';
 import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import navigationStrings from '@navigation/navigationStrings';
+import { useLanguage } from '@locales/useLanguage';
 
 const { width } = Dimensions.get('window');
 const ITEM_SIZE = width / 4;
 
 const CategoryHorizontalList = () => {
   const navigation = useNavigation<any>();
+  const { language } = useLanguage();
 
-  const handleNavigation = (categoryName: string) => {
+  const handleNavigation = (category: { en: string; ar: string }) => {
     navigation.navigate(navigationStrings.PRODUCT_LIST, {
-      categoryName: categoryName,
+      categoryNameEn: category.en,
+      categoryNameAr: category.ar,
     });
   };
-
   const renderItem = ({
     item,
   }: {
-    item: { id: number; name: string; img: any };
+    item: { id: number; name: { en: string; ar: string }; img: any };
   }) => {
     const isFirst = item.id === 1;
 
@@ -42,7 +44,7 @@ const CategoryHorizontalList = () => {
             colors={[colors.primary, colors.GreenOff, colors.brand_blue]}
             style={styles.gradientBoder}
           >
-            <TouchableOpacity style={styles.innerCircle} activeOpacity={0.8}>
+            <TouchableOpacity style={styles.innerCircle} activeOpacity={0.8}  onPress={()=> navigation.navigate(navigationStrings.SPECIAL_SCREEN)}>
               <View style={styles.imageSpcial}>
                 <Image
                   source={
@@ -58,7 +60,12 @@ const CategoryHorizontalList = () => {
           <TouchableOpacity
             style={styles.squareItem}
             activeOpacity={0.8}
-            onPress={() => handleNavigation(item.name)}
+            onPress={() =>
+              handleNavigation({
+                en: item.name.en,
+                ar: item.name.ar,
+              })
+            }
           >
             <View style={styles.imageSquare}>
               <Image
@@ -71,8 +78,9 @@ const CategoryHorizontalList = () => {
             </View>
           </TouchableOpacity>
         )}
-
-        <Text style={styles.itemText}>{item.name}</Text>
+        <Text style={styles.itemText}>
+          {item.name[language] || item.name.en}
+        </Text>
       </View>
     );
   };
@@ -86,7 +94,6 @@ const CategoryHorizontalList = () => {
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ paddingHorizontal: 10 }}
-        
       />
     </View>
   );
