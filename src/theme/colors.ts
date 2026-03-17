@@ -74,6 +74,11 @@ export default {
   offerDasDas: '#D1B3E4',
   offerApplied: '#653F7C',
   offerGrayProce: '#9FA6B5',
+  LightPink:'#f3e8ff',
+  offerRemove:'#7334A4',
+  OvlibeGreen:'#278C03',
+  saveGreen:'#2CA003',
+  
 
   //check PinCode
   silver: '#D5D8DE',

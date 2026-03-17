@@ -73,8 +73,12 @@ const en = {
 
   //SPECIAL SCREEN
   BUY_NOW: 'Buy Now',
-    SPECIALS:'Specials',
+  SPECIALS: 'Specials',
 
+  //Cart Screen
+  START_SHOPPING: 'Start Shopping',
+  EMPTYPUNCHLINE_1: 'Hey, your bag feels so light!',
+  EMPTYPUNCHLINE_2: "Let's add some items in your bag",
 
   // about
   ABOUT_US: 'ABOUT US',

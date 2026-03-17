@@ -69,6 +69,12 @@ const ar = {
   BUY_NOW:'اشتري الآن',
   SPECIALS:'العروض الخاصة',
 
+  //Cart Screen 
+  START_SHOPPING:'ابدأ التسوق',
+  EMPTYPUNCHLINE_1:'يا إلهي، حقيبتك خفيفة جداً!',
+  EMPTYPUNCHLINE_2:'لنضف بعض الأغراض إلى حقيبتك',
+
+
 
 
   //PLP Screen 

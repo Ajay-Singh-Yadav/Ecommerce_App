@@ -3,6 +3,8 @@ import remoteConfig from '@react-native-firebase/remote-config';
 import React, { useMemo, useEffect, useState } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Provider } from 'react-redux';
+import { enableScreens } from 'react-native-screens';
+enableScreens();
 
 import { LanguageProvider } from '@locales/LanguageContext';
 import RootNavigation from '@navigation/RootNavigation';

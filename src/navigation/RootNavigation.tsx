@@ -55,7 +55,7 @@ const RootNavigation = () => {
           name={navigationStrings.WISHLIST}
           component={WishlistScreen}
         />
-        <Stack.Screen name={navigationStrings.CART} component={CartScreen} />
+        <Stack.Screen name={navigationStrings.CART} component={CartScreen}  options={{ animation: 'fade',}}/>
         <Stack.Screen
           name={navigationStrings.LOGIN_SIGNUP}
           component={LoginSignup}

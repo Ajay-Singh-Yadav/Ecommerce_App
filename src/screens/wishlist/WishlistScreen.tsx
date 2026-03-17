@@ -77,13 +77,13 @@ const navigation = useNavigation<any>();
         bag={true}
         search={true}
       />
-      <FlatList
+      {/* <FlatList
         data={categories}
         keyExtractor={item => item.id.toString()}
         renderItem={renderFlatlistItem}
         horizontal
         showsHorizontalScrollIndicator={false}
-      />
+      /> */}
 
       
     </SafeAreaView>

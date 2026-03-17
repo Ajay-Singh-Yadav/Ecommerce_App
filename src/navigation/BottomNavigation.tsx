@@ -33,7 +33,8 @@ const BottomNavigation = () => {
   return (
     <Tab.Navigator
       screenOptions={{ headerShown: false }}
-      tabBar={props => <CustomTabBar {...props} />}
+      tabBar={props => <CustomTabBar {...props}
+      detachInactiveScreens={true} />}
     >
       <Tab.Screen name={navigationStrings.HOME_STACK} component={HomeScreen} />
       <Tab.Screen
